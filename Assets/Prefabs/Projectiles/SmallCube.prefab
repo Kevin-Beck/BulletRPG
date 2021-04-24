@@ -118,7 +118,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 5878284533978475616}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderObject: {fileID: 126695730373523325}
-  slider: {fileID: 0}
+  slider: {fileID: 1346974888774403934}
 --- !u!65 &268917916134277545
 BoxCollider:
   m_ObjectHideFlags: 0

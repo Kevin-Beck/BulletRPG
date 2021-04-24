@@ -14,6 +14,7 @@ public class HealthBarController : MonoBehaviour
     private void Start()
     {
         HealthBarImage = GetComponent<Image>();
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()

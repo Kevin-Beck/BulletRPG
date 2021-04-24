@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IntroLevelNorth
   m_EditorClassIdentifier: 
   firingSequence: 0
-  fireRate: 0.96
+  fireRate: 0.52
   projectileSpeed: 1.72
   projectileSpin: 0

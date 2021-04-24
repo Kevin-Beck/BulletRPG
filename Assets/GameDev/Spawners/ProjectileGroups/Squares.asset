@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Squares
   m_EditorClassIdentifier: 
   projectiles:
-  - {fileID: 8278737311259870401, guid: f801dce4bf6eaf04d8a0e604f93ca620, type: 3}
+  - {fileID: 5299059076309958633, guid: 3db68d27a9b4be84685fad44e690fb45, type: 3}

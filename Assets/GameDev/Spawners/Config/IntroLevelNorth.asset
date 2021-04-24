@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1d790415ce7fd469f03bdc77fa8c6e, type: 3}
   m_Name: IntroLevelNorth
   m_EditorClassIdentifier: 
-  projectileGroup: {fileID: 11400000, guid: c5ff2397619db19498f5839e8effd14c, type: 2}
+  projectileGroup: {fileID: 11400000, guid: f020f45e250d1d942988f90063f81b6e, type: 2}
   firingSettings: {fileID: 11400000, guid: 2629d6c60b74e6341b7c51d16a770b62, type: 2}
