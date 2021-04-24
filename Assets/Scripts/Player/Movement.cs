@@ -43,6 +43,10 @@ public class Movement : MonoBehaviour
             direction += Vector3.left;
         }
         direction = direction.normalized;
-        myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
+
+        Ray ray = new Ray(transform.position, direction);
+        RaycastHit hit;
+        if (!Physics.Raycast(ray, out hit, 0.1f))
+            myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
     }
 }

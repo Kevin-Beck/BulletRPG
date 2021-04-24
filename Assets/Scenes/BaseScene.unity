@@ -450,6 +450,36 @@ Transform:
   m_Father: {fileID: 1361013902}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!1 &628910955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628910956}
+  m_Layer: 0
+  m_Name: StatTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &628910956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628910955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,11 +1266,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1410675747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b585e2df41bcad84288bb51a26704d3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 31cb51cae819b0b4d8800dc2d4fc29d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  MaxHealth: {fileID: 11400000, guid: 2bfcb5a957f59ea42aaca3602a4906dc, type: 2}
+  CurrentHealth: {fileID: 11400000, guid: 0d409c453a7d105498eee2c77dd773a8, type: 2}
   destroyOnDeath: 0
+  deathEvent: {fileID: 11400000, guid: 738c2eac5fc95e34594f0c71ee23e0d6, type: 2}
+  damagedEvent: {fileID: 11400000, guid: 306262fa216c0024abd4de3abf1b880d, type: 2}
 --- !u!114 &1410675755
 MonoBehaviour:
   m_ObjectHideFlags: 0

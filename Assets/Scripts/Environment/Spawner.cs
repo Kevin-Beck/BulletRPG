@@ -5,7 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private SpawnerConfig spawnerConfig;
-    [SerializeField] private float delay;
+    [SerializeField] public bool DelayStart { get; set; }
+    [SerializeField] public float startAfterDelaySeconds { get; set; }
+    [SerializeField] public bool destroyAfter { get; set; }
+    [SerializeField] public float destroyAfterSeconds { get; set; }
+    [SerializeField] GameEvent spawningStartEvent;
 
     private Vector3 minPoint;
     private Vector3 maxPoint;
@@ -16,11 +20,19 @@ public class Spawner : MonoBehaviour
         maxPoint = transform.TransformPoint(Vector3.right * 10);
         minPoint = transform.TransformPoint(Vector3.left * 10);
         StartCoroutine(FireLoop());
+        if (destroyAfter)
+        {
+            Destroy(this, destroyAfterSeconds);
+        }
     }
 
     private IEnumerator FireLoop()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(startAfterDelaySeconds);
+        if(spawningStartEvent != null)
+        {
+            spawningStartEvent.Raise();
+        }
         while (true)
         {
             yield return new WaitForSeconds(1 / spawnerConfig.firingSettings.fireRate);
@@ -28,9 +40,9 @@ public class Spawner : MonoBehaviour
             // get spawn point            
             Vector3 spawnPoint = GetSpawnPoint(); 
             // get projectile
-            var projectile = Instantiate(spawnerConfig.projectileGroup.projectiles[Random.Range(0, spawnerConfig.projectileGroup.projectiles.Count)], spawnPoint, transform.rotation);
+            var projectile = Instantiate(spawnerConfig.projectileGroup.projectiles[Random.Range(0, spawnerConfig.projectileGroup.projectiles.Count)], spawnPoint, gameObject.transform.rotation);
             // send projectile with data
-            var rigidBody = projectile.GetComponent<Rigidbody>();
+            var rigidBody = projectile.GetComponentInChildren<Rigidbody>();
             rigidBody.AddForce(transform.forward * 5000 * spawnerConfig.firingSettings.projectileSpeed);
             rigidBody.AddTorque(transform.up * 2000 * spawnerConfig.firingSettings.projectileSpin);
             spawnCount++;

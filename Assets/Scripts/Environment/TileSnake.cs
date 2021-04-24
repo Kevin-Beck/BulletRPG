@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TileSnake : MonoBehaviour
 {
-    [SerializeField] private SnakeData snakeData;
+    [SerializeField] private SnakeConfig snakeData;
     int currentWaypoint = 0;
 
     private void Start()
@@ -41,10 +41,10 @@ public class TileSnake : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var tile = other.GetComponent<TileController>();
-        if (snakeData.type == SnakeData.SnakeType.Raiser)
+        if (snakeData.type == SnakeConfig.SnakeType.Raiser)
         {
             tile.Raise();
-        }else if(snakeData.type == SnakeData.SnakeType.Freezer)
+        }else if(snakeData.type == SnakeConfig.SnakeType.Freezer)
         {
             tile.Freeze();
         }
