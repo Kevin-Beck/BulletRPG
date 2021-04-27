@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f702ab764ab9cc54ea02b7aeee4a9594, type: 3}
   m_Name: IntroLevelNorth
   m_EditorClassIdentifier: 
-  firingSequence: 0
-  fireRate: 0.52
-  projectileSpeed: 1.72
+  firingSequence: 1
+  fireRate: 1
+  projectileSpeed: 2
   projectileSpin: 0

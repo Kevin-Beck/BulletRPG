@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5709e733b589eb247ac6da2b5bfdfddb, type: 3}
-  m_Name: FreezeDemo
+  m_Script: {fileID: 11500000, guid: db09deff4efc30641b60455c80b108c2, type: 3}
+  m_Name: X
   m_EditorClassIdentifier: 
-  size: 0.5
-  speed: 25
-  type: 0
-  pattern: {fileID: 11400000, guid: 6464a84ab829a0340adfbc9b55686055, type: 2}
+  waypoints:
+  - {x: 10, y: 0, z: -10}
+  - {x: -10.277652, y: 0, z: 9.992225}
+  - {x: 9.817904, y: 0, z: 10}
+  - {x: -10, y: 0, z: -10}
