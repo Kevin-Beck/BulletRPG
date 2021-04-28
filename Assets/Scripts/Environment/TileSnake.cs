@@ -8,7 +8,7 @@ public class TileSnake : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<SphereCollider>().radius = snakeConfig.size;
+        GetComponent<BoxCollider>().transform.localScale = snakeConfig.size * Vector3.one;
     }
     
 

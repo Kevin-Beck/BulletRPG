@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private SpawnerConfig spawnerConfig;
-    [SerializeField] public bool DelayStart { get; set; }
-    [SerializeField] public float startAfterDelaySeconds { get; set; }
-    [SerializeField] public bool destroyAfter { get; set; }
-    [SerializeField] public float destroyAfterSeconds { get; set; }
+    [SerializeField] public bool delayStart;
+    [SerializeField] public float startAfterDelaySeconds;
+    [SerializeField] public bool destroyAfter;
+    [SerializeField] public float destroyAfterSeconds;
     [SerializeField] GameEvent spawningStartEvent;
 
     private Vector3 minPoint;
@@ -17,13 +18,16 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        maxPoint = transform.TransformPoint(Vector3.right * 10);
-        minPoint = transform.TransformPoint(Vector3.left * 10);
+        
         StartCoroutine(FireLoop());
         if (destroyAfter)
         {
             Destroy(this, destroyAfterSeconds);
         }
+    }
+    private void Update()
+    {
+        gameObject.transform.LookAt(Vector3.zero);
     }
 
     private IEnumerator FireLoop()
@@ -40,17 +44,35 @@ public class Spawner : MonoBehaviour
             // get spawn point            
             Vector3 spawnPoint = GetSpawnPoint(); 
             // get projectile
-            var projectile = Instantiate(spawnerConfig.projectileGroup.projectiles[Random.Range(0, spawnerConfig.projectileGroup.projectiles.Count)], spawnPoint, gameObject.transform.rotation);
+            var projectile = Instantiate(spawnerConfig.projectileGroup.projectiles[Random.Range(0, spawnerConfig.projectileGroup.projectiles.Count)], spawnPoint, GetProjectileOrientation());
             // send projectile with data
             var rigidBody = projectile.GetComponentInChildren<Rigidbody>();
-            rigidBody.AddForce(transform.forward * 5000 * spawnerConfig.firingSettings.projectileSpeed);
-            rigidBody.AddTorque(transform.up * 2000 * spawnerConfig.firingSettings.projectileSpin);
+            rigidBody.AddForce(transform.forward * 5000 * rigidBody.mass * spawnerConfig.firingSettings.projectileSpeed);
+            rigidBody.AddTorque(transform.up * 2000 * rigidBody.mass * spawnerConfig.firingSettings.projectileSpin);
             spawnCount++;
         }
     }
+
+    private Quaternion GetProjectileOrientation()
+    {
+        if(spawnerConfig.firingSettings.projectileOrientation == ProjectileOrientation.RandomY)
+        {
+            return Quaternion.Euler(0f, Random.Range(0.0f, 360.0f), 0f);
+        }else if(spawnerConfig.firingSettings.projectileOrientation == ProjectileOrientation.Zero)
+        {
+            return gameObject.transform.rotation;
+        }else
+            return gameObject.transform.rotation;
+    }
     private Vector3 GetSpawnPoint()
     {
-        if (spawnerConfig.firingSettings.firingSequence == FiringSequence.Random)
+        maxPoint = transform.TransformPoint(Vector3.right * 10);
+        minPoint = transform.TransformPoint(Vector3.left * 10);
+        
+        if(spawnerConfig.firingSettings.firingSequence == FiringSequence.Centered)
+        {
+            return gameObject.transform.position;
+        }else if (spawnerConfig.firingSettings.firingSequence == FiringSequence.Random)
         {
             return minPoint + Random.Range(0f, 1f) * (maxPoint - minPoint);
         }
