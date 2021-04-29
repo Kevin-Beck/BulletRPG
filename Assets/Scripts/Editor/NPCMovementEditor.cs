@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(NPCMovement))]
+[CustomEditor(typeof(Movement))]
 public class NPCMovementEditor : Editor
 {
-    private NPCMovement npcMovement;
+    private Movement npcMovement;
 
     private void OnSceneGUI()
     {
-        npcMovement = (NPCMovement)target;
+        npcMovement = (Movement)target;
 
         Handles.color = Color.cyan;
         if(npcMovement.pattern != null)

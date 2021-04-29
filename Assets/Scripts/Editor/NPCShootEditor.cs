@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(NPCShoot))]
+[CustomEditor(typeof(Shoot))]
 public class NPCShootEditor : Editor
 {
     //override public void OnInspectorGUI()
