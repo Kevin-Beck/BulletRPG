@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf7219bab7fe46a1ad266029b2fee19, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 5e60c01ce409d29499065bb487e5941e, type: 3}
+  title: GameDev Folder
+  sections:
+  - heading: GameDev Folder
+    text: This is the primary location for creating game elements for use in the
+      level design process.
+    linkText: 
+    url: 
+  - heading: GameEvents
+    text: GameEvents are scriptable objects used by gameobjects in the scene during
+      gameplay. They can be created in the Project panel by right clicking > Create
+      > GameEvent. Use a consistent naming convention of <Subject><Action> to help
+      others understand the context of the event.
+    linkText: 
+    url: 
+  - heading: 
+    text: GameEvents are raised by objects in the game. Any object in the scene with
+      a GameEventListener that is listening for a specific Event will be notified.
+    linkText: 
+    url: 
+  - heading: 
+    text: 'For example: PlayerDied event. In the player''s health code is a check
+      to see if the player has been killed. Upon the health of the player reaching
+      zero, the "PlayerDied" event is raised. If we want to create a counter on the
+      UI and increment each time the player dies. We drag a "GameEventListener" onto
+      the counter object, then drag the "PlayerDied" event into that listener. Now
+      on the GameEventListener we can define the actions that the counter will take
+      when this event is raised.'
+    linkText: 
+    url: 
+  - heading: 
+    text: Keep in mind that the game events themselves are completely removed from
+      the behavior that triggers them. In the above example there is nothing to stop
+      someone from raising the "PlayerDied" event when a button is pressed etc. This
+      is why naming convention and clear descriptions of the behavior are needed
+      to maintain the decoupled nature.
+    linkText: 
+    url: 
+  - heading: Keybindings
+    text: Keybindings are used to control which action is taken for each press of
+      a button.
+    linkText: 
+    url: 
+  - heading: Patterns
+    text: Patterns are objects that contain a list of vector 3 postions.
+    linkText: 
+    url: 
+  - heading: Snakes
+    text: TileSnakes are objects that move around the scene and interact with the
+      tiles. They tell the tiles to take specific actions based on the snakes' configurations.
+    linkText: 
+    url: 
+  - heading: Spawners
+    text: Spawners are elements that create objects within the scene.
+    linkText: 
+    url: 
+  - heading: Variables
+    text: Using scriptable objects, variables here are used to create a standardized
+      group of data that objects reference upon instantiation.
+    linkText: 
+    url: 
+  loadedLayout: 1

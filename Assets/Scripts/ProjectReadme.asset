@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf7219bab7fe46a1ad266029b2fee19, type: 3}
+  m_Name: ProjectReadme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: c00f27cb2a485e54f8f2d1248c870054, type: 3}
+  title: Bullet RPG
+  sections:
+  - heading: Getting Started
+    text: Bullet RPG is cool! If you're here to code, good luck! Kidding, the project
+      has a few main features that need to be adressed. Those points are listed below.
+      There are also readme objects in different areas in the project that describe
+      things in more detail.
+    linkText: 
+    url: 
+  - heading: Point One
+    text: This is where you'd talk about something
+    linkText: 
+    url: 
+  loadedLayout: 1

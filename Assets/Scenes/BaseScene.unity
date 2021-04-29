@@ -466,12 +466,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f43438153030364a9e6d22958b869c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerConfig: {fileID: 11400000, guid: 2979bc9ff238ad24ba110cc561bdbe76, type: 2}
-  delayStart: 1
-  startAfterDelaySeconds: 10
-  destroyAfter: 0
-  destroyAfterSeconds: 0
-  spawningStartEvent: {fileID: 0}
+  projectileGroup: {fileID: 11400000, guid: c5ff2397619db19498f5839e8effd14c, type: 2}
+  firingSettings: {fileID: 11400000, guid: 380ce5307d233e2438c28f6b3b22016b, type: 2}
+  delayStart: 0
+  startAfterDelaySeconds: 0
+  stopAfter: 0
+  stopAfterSeconds: 0
 --- !u!4 &607887766
 Transform:
   m_ObjectHideFlags: 0
@@ -831,12 +831,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f43438153030364a9e6d22958b869c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerConfig: {fileID: 11400000, guid: 4b01cb8e22a07e64b81e191fa20eb1d8, type: 2}
+  projectileGroup: {fileID: 0}
+  firingSettings: {fileID: 0}
   delayStart: 0
   startAfterDelaySeconds: 10
-  destroyAfter: 0
-  destroyAfterSeconds: 0
-  spawningStartEvent: {fileID: 0}
+  stopAfter: 0
+  stopAfterSeconds: 0
 --- !u!4 &1043694259
 Transform:
   m_ObjectHideFlags: 0
@@ -1590,12 +1590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f43438153030364a9e6d22958b869c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerConfig: {fileID: 11400000, guid: fb388623f7dad6b48934d8a7b4678095, type: 2}
+  projectileGroup: {fileID: 11400000, guid: c5131d525ad8a214993a379a76200e45, type: 2}
+  firingSettings: {fileID: 11400000, guid: 0e493395da164a0418556d16051fc4f0, type: 2}
   delayStart: 0
   startAfterDelaySeconds: 0
-  destroyAfter: 0
-  destroyAfterSeconds: 0
-  spawningStartEvent: {fileID: 0}
+  stopAfter: 0
+  stopAfterSeconds: 0
 --- !u!4 &1601185014
 Transform:
   m_ObjectHideFlags: 0

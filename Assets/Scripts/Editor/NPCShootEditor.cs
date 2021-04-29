@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Spawner))]
-public class SpawnerEditor : Editor
+[CustomEditor(typeof(NPCShoot))]
+public class NPCShootEditor : Editor
 {
     //override public void OnInspectorGUI()
     //{

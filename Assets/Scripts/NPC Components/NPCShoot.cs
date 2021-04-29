@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Spawner : MonoBehaviour
+public class NPCShoot : MonoBehaviour
 {
-    [SerializeField] private SpawnerConfig spawnerConfig;
+    public ProjectileGroup projectileGroup;
+    public FiringSettings firingSettings;
+
     [SerializeField] public bool delayStart;
     [SerializeField] public float startAfterDelaySeconds;
-    [SerializeField] public bool destroyAfter;
-    [SerializeField] public float destroyAfterSeconds;
-    [SerializeField] GameEvent spawningStartEvent;
+    [SerializeField] public bool stopAfter;
+    [SerializeField] public float stopAfterSeconds;
 
     private Vector3 minPoint;
     private Vector3 maxPoint;
@@ -20,9 +21,9 @@ public class Spawner : MonoBehaviour
     {
         
         StartCoroutine(FireLoop());
-        if (destroyAfter)
+        if (stopAfter)
         {
-            Destroy(this, destroyAfterSeconds);
+            Destroy(this, stopAfterSeconds);
         }
     }
     private void Update()
@@ -32,33 +33,32 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator FireLoop()
     {
-        yield return new WaitForSeconds(startAfterDelaySeconds);
-        if(spawningStartEvent != null)
+        if (delayStart)
         {
-            spawningStartEvent.Raise();
+            yield return new WaitForSeconds(startAfterDelaySeconds);
         }
         while (true)
         {
-            yield return new WaitForSeconds(1 / spawnerConfig.firingSettings.fireRate);
+            yield return new WaitForSeconds(1 / firingSettings.fireRate);
             
             // get spawn point            
             Vector3 spawnPoint = GetSpawnPoint(); 
             // get projectile
-            var projectile = Instantiate(spawnerConfig.projectileGroup.projectiles[Random.Range(0, spawnerConfig.projectileGroup.projectiles.Count)], spawnPoint, GetProjectileOrientation());
+            var projectile = Instantiate(projectileGroup.projectiles[Random.Range(0, projectileGroup.projectiles.Count)], spawnPoint, GetProjectileOrientation());
             // send projectile with data
             var rigidBody = projectile.GetComponentInChildren<Rigidbody>();
-            rigidBody.AddForce(transform.forward * 5000 * rigidBody.mass * spawnerConfig.firingSettings.projectileSpeed);
-            rigidBody.AddTorque(transform.up * 2000 * rigidBody.mass * spawnerConfig.firingSettings.projectileSpin);
+            rigidBody.AddForce(transform.forward * 5000 * rigidBody.mass * firingSettings.projectileSpeed);
+            rigidBody.AddTorque(transform.up * 2000 * rigidBody.mass * firingSettings.projectileSpin);
             spawnCount++;
         }
     }
 
     private Quaternion GetProjectileOrientation()
     {
-        if(spawnerConfig.firingSettings.projectileOrientation == ProjectileOrientation.RandomY)
+        if(firingSettings.projectileOrientation == ProjectileOrientation.RandomY)
         {
             return Quaternion.Euler(0f, Random.Range(0.0f, 360.0f), 0f);
-        }else if(spawnerConfig.firingSettings.projectileOrientation == ProjectileOrientation.Zero)
+        }else if(firingSettings.projectileOrientation == ProjectileOrientation.Zero)
         {
             return gameObject.transform.rotation;
         }else
@@ -69,26 +69,26 @@ public class Spawner : MonoBehaviour
         maxPoint = transform.TransformPoint(Vector3.right * 10);
         minPoint = transform.TransformPoint(Vector3.left * 10);
         
-        if(spawnerConfig.firingSettings.firingSequence == FiringSequence.Centered)
+        if(firingSettings.firingSequence == FiringSequence.Centered)
         {
             return gameObject.transform.position;
-        }else if (spawnerConfig.firingSettings.firingSequence == FiringSequence.Random)
+        }else if (firingSettings.firingSequence == FiringSequence.Random)
         {
             return minPoint + Random.Range(0f, 1f) * (maxPoint - minPoint);
         }
-        else if (spawnerConfig.firingSettings.firingSequence == FiringSequence.SineWave)
+        else if (firingSettings.firingSequence == FiringSequence.SineWave)
         {
             return transform.TransformPoint(Vector3.right * Mathf.Sin(spawnCount * (Mathf.PI / 8)) * 10);
         }
-        else if (spawnerConfig.firingSettings.firingSequence == FiringSequence.CosWave)
+        else if (firingSettings.firingSequence == FiringSequence.CosWave)
         {
             return transform.TransformPoint(Vector3.right * Mathf.Cos(spawnCount * (Mathf.PI / 8)) * 10);
         }
-        else if(spawnerConfig.firingSettings.firingSequence == FiringSequence.Sequential)
+        else if(firingSettings.firingSequence == FiringSequence.Sequential)
         {
             int offset = spawnCount % 10;
             return minPoint + transform.TransformPoint(Vector3.right * offset * 2);
-        }else if(spawnerConfig.firingSettings.firingSequence == FiringSequence.ReverseSequential)
+        }else if(firingSettings.firingSequence == FiringSequence.ReverseSequential)
         {
             int offset = spawnCount % 10;
             offset = 10 - offset;
