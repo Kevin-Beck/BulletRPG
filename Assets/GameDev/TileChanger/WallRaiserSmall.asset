@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f702ab764ab9cc54ea02b7aeee4a9594, type: 3}
-  m_Name: Spinning
+  m_Script: {fileID: 11500000, guid: 5709e733b589eb247ac6da2b5bfdfddb, type: 3}
+  m_Name: WallRaiserSmall
   m_EditorClassIdentifier: 
-  firingSequence: 1
-  projectileOrientation: 0
-  fireRate: 0.18
-  projectileSpeed: 0.069
-  projectileSpin: 1
+  size: 1
+  type: 0
+  timeEffectStays: 12

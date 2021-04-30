@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Health : MonoBehaviour
 {
     [SerializeField] public FloatVariable StartingHealth;
@@ -34,7 +33,7 @@ public class Health : MonoBehaviour
             {
                 destroyedEvent.Raise();
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
     public void AddHealthBar(HealthBar bar)

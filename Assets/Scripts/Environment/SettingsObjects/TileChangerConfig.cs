@@ -7,10 +7,12 @@ public class TileChangerConfig : ScriptableObject
 {
     public float size = 1f;   
     public ChangerType type;
+    public float timeEffectStays = 3f;
 
     public enum ChangerType
     {
         Raiser,
         Freezer,
+        Fire
     }
 }

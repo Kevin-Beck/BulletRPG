@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3398287217085917156}
   - component: {fileID: 1235318521659045756}
   m_Layer: 12
-  m_Name: SmallTileChanger
+  m_Name: WallRaiser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseConfig: {fileID: 11400000, guid: ae5d0c321a0ff1b4692fafee365b8c88, type: 2}
-  tileChangerConfig: {fileID: 11400000, guid: 92e20924b4bccc74cb9144d430ce6d75, type: 2}
+  tileChangerConfig: {fileID: 11400000, guid: b2a4f675722f87a4789aebef23e8dfac, type: 2}
 --- !u!54 &3398287217085917156
 Rigidbody:
   m_ObjectHideFlags: 0

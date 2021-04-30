@@ -14,8 +14,7 @@ public class TileController : MonoBehaviour
 
     private bool isActivated = false;
 
-
-    // Start is called before the first frame update
+    // TODO the types of tileactions can probably be cleaned up and made into the scriptable object enum thing
     void Start()
     {        
         myRigidbody = GetComponent<Rigidbody>();
@@ -37,33 +36,51 @@ public class TileController : MonoBehaviour
         myRenderer.material.color = color;
     }
 
-    public void Raise()
+    public void Raise(float time)
     {
         if (isActivated)
         {
             return;
         }
-        StartCoroutine(RaiseSequence());
+        StartCoroutine(RaiseSequence(time));
     }
-    public void Freeze()
+    public void Freeze(float time)
     {
         if (isActivated)
         {
             return;
         }
-        StartCoroutine(FreezeSequence());
+        StartCoroutine(FreezeSequence(time));
     }
-    private IEnumerator FreezeSequence()
+    public void Fire(float time)
+    {
+        if (isActivated)
+        {
+            return;
+        }
+        StartCoroutine(FireSequence(time));
+    }
+    public IEnumerator FireSequence(float time)
     {
         isActivated = true;
 
-        SetColor(Color.blue);
-        yield return new WaitForSeconds(3f);
+        SetColor(Color.red);
+        yield return new WaitForSeconds(time);
         SetColor(Color.white);
 
         isActivated = false;
     }
-    private IEnumerator RaiseSequence()
+    private IEnumerator FreezeSequence(float time)
+    {
+        isActivated = true;
+
+        SetColor(Color.blue);
+        yield return new WaitForSeconds(time);
+        SetColor(Color.white);
+
+        isActivated = false;
+    }
+    private IEnumerator RaiseSequence(float time)
     {
         isActivated = true;
 
@@ -71,14 +88,14 @@ public class TileController : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(.2f);
-            SetColor(Color.Lerp(Color.white, Color.red, (float)i/10));
+            SetColor(Color.Lerp(Color.white, Color.black, (float)i/10));
         }
-        SetColor(Color.red);  
+        SetColor(Color.black);  
         while (Vector3.SqrMagnitude(myRigidbody.position - raisePosition) > 0.1)
         {
             RaiseTile();
         }
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(time);
         SetColor(Color.white);
         while(Vector3.SqrMagnitude(myRigidbody.position - startPosition) > 0.1)
         {
