@@ -6,7 +6,7 @@ namespace BulletRPG.NPCBehavior
 {
     public class NPCBehavior : MonoBehaviour
     {
-        [SerializeField] PhaseConfig phaseConfig;
+        [SerializeField] public PhaseConfig phaseConfig;
 
         private void Awake()
         {

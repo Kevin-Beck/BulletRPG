@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5709e733b589eb247ac6da2b5bfdfddb, type: 3}
-  m_Name: Small Freeze
+  m_Script: {fileID: 11500000, guid: 32543bbcd380bfa4aa4db17f9707da35, type: 3}
+  m_Name: FreezeCubes
   m_EditorClassIdentifier: 
-  size: 1
-  tileElement: {fileID: 11400000, guid: c71c62e0d45e4d647a5476f902484d71, type: 2}
-  timeEffectStays: 3
+  projectiles:
+  - {fileID: 1428650829472018256, guid: a440402479d57aa4eb29e39c3711d9b6, type: 3}

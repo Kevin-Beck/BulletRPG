@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BigLongFire
   m_EditorClassIdentifier: 
   size: 3
-  type: 2
+  tileElement: {fileID: 11400000, guid: af68e5e47521bfe47bc9022d02c55f56, type: 2}
   timeEffectStays: 6

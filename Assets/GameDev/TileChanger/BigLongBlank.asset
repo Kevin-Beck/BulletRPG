@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5709e733b589eb247ac6da2b5bfdfddb, type: 3}
-  m_Name: Small Freeze
+  m_Name: BigLongBlank
   m_EditorClassIdentifier: 
-  size: 1
-  tileElement: {fileID: 11400000, guid: c71c62e0d45e4d647a5476f902484d71, type: 2}
-  timeEffectStays: 3
+  size: 4
+  tileElement: {fileID: 11400000, guid: 17eb41a877a02db49aa7e498f41c56cb, type: 2}
+  timeEffectStays: 10

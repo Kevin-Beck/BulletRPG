@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using BulletRPG.NPCBehavior;
 using UnityEngine;
 
@@ -16,16 +15,13 @@ public class TileChanger : NPCBehavior
     private void OnTriggerEnter(Collider other)
     {
         var tile = other.GetComponent<TileController>();
-        if (tileChangerConfig.type == TileChangerConfig.ChangerType.Raiser)
+        if (tile != null)
         {
-            tile.Raise(tileChangerConfig.timeEffectStays);
-        }else if(tileChangerConfig.type == TileChangerConfig.ChangerType.Freezer)
-        {
-            tile.Freeze(tileChangerConfig.timeEffectStays);
+            tile.ProcessChange(tileChangerConfig);
         }
-        else if (tileChangerConfig.type == TileChangerConfig.ChangerType.Fire)
+        else
         {
-            tile.Fire(tileChangerConfig.timeEffectStays);
+            Debug.Log("Changer collided with non-tile object");
         }
     }   
 }

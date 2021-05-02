@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32543bbcd380bfa4aa4db17f9707da35, type: 3}
-  m_Name: BigLongFire
+  m_Name: FireCubes
   m_EditorClassIdentifier: 
   projectiles:
-  - {fileID: 2153171105000773745, guid: 48699a2fa23d2de409737212f050c2a4, type: 3}
+  - {fileID: 1428650829472018256, guid: d68ef257161991e4dbd8201fd03ad4f3, type: 3}
