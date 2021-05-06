@@ -7,14 +7,20 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     Health myHealth;
-    public Slider slider;
-    Camera mainCamera;    
+    Slider slider;
+    Camera mainCamera;
+    
 
     private void Start()
     {
         mainCamera = Camera.main;
         myHealth = GetComponent<Health>();
         myHealth.AddHealthBar(this);
+        slider = GetComponentInChildren<Slider>();
+        if(slider == null)
+        {
+            Debug.Log($"Slider not found for Healthbar on {gameObject}");           
+        }
         slider.gameObject.SetActive(false);
     }
     public void UpdateBar(float percentage)
@@ -24,6 +30,7 @@ public class HealthBar : MonoBehaviour
     }
     private void Update()
     {
-        slider.gameObject.transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.back, mainCamera.transform.rotation * Vector3.up);
+        //slider.gameObject.transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
+        slider.gameObject.transform.LookAt(gameObject.transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
     }
 }

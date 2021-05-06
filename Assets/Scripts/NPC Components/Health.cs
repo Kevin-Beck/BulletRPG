@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Health : MonoBehaviour
 {
-    [SerializeField] public FloatVariable StartingHealth;
+    [SerializeField] public float startingHealth;
     [SerializeField] bool destroyOnDeath = true;
     [SerializeField] GameEvent destroyedEvent;
     private HealthBar healthBar;
@@ -14,10 +14,14 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = StartingHealth.Value;
+        if(startingHealth == 0)
+        {
+            Debug.LogWarning($"Starting Health of {gameObject} is zero.");
+        }
+        currentHealth = startingHealth;
         if (healthBar != null)
         {
-            healthBar.UpdateBar(currentHealth / StartingHealth.Value);
+            healthBar.UpdateBar(currentHealth / startingHealth);
         }
 
     }
@@ -26,7 +30,7 @@ public class Health : MonoBehaviour
         currentHealth = currentHealth - collision.impulse.sqrMagnitude / 10;
         if(healthBar != null)
         {
-            healthBar.UpdateBar(currentHealth / StartingHealth.Value);
+            healthBar.UpdateBar(currentHealth / startingHealth);
         }
         if(destroyOnDeath && currentHealth <= 0)
         {

@@ -7,14 +7,17 @@ public class Movement : NPCBehavior
 {
     public Pattern pattern;
     public Vector3 patternOffset;
-    public float speed;
+    public float speed = 4;
     private int currentWaypoint = 0;
     public bool startAtFirstPoint = true;
     public bool reverseDirection = false;
     
     private void Start()
     {
-
+        if(speed == 0)
+        {
+            Debug.LogWarning($"Movement on {gameObject} is set to 0.");
+        }
         if (startAtFirstPoint)
         {
             transform.position = pattern.waypoints[0] + patternOffset;

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firingSequence: 1
   projectileOrientation: 0
-  fireRate: 0.18
+  fireRate: 2.24
   projectileSpeed: 0.069
   projectileSpin: 1

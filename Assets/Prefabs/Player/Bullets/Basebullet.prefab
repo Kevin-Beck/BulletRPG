@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b585e2df41bcad84288bb51a26704d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: {fileID: 11400000, guid: 2c566875492fa8845b8401d766cb0e68, type: 2}
+  startingHealth: 10
   destroyOnDeath: 1
   destroyedEvent: {fileID: 0}
   currentHealth: 0
