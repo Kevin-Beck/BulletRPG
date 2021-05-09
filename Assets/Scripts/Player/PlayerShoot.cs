@@ -23,8 +23,7 @@ public class PlayerShoot : MonoBehaviour
             var spawn = Instantiate(bullet, BulletSpawnPoint.position, Quaternion.identity);
             
             spawn.transform.LookAt(Cursor);
-            spawn.GetComponent<Rigidbody>().AddForce(speed * spawn.transform.forward);
-           
+            spawn.GetComponent<Rigidbody>().AddForce(speed * spawn.transform.forward);           
         }
     }
 }

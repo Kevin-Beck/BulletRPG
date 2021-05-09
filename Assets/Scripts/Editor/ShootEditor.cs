@@ -11,10 +11,16 @@ public class ShootEditor : Editor
         var shoot = target as Shoot;
         GUIStyle phaseStyle = new GUIStyle();
         phaseStyle.normal.textColor = Color.blue;
-        Handles.Label(Vector3.up * 3.5f + shoot.transform.position, $"Shooting: {shoot.phaseConfig.name}", phaseStyle);
+        
 
         if (shoot != null)
         {
+            if(shoot.phaseConfig != null && shoot.phaseConfig.name != null)
+            {
+                Handles.Label(Vector3.up * 3.5f + shoot.transform.position, $"Shooting: {shoot.phaseConfig.name}", phaseStyle);
+            }
+
+
             var firingConfig = shoot.firingSettings;
             if (firingConfig != null && shoot.target != null)
             {

@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        currentHealth = currentHealth - collision.impulse.sqrMagnitude / 10;
+        currentHealth -= collision.impulse.sqrMagnitude / 10;
         if(healthBar != null)
         {
             healthBar.UpdateBar(currentHealth / startingHealth);

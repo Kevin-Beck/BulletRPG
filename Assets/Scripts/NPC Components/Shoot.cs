@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Shoot : NPCBehavior
 {
-    public ProjectileGroup projectileGroup;
+    public Projectiles projectileGroup;
     public FiringSettings firingSettings;
     public Transform target;
 
@@ -14,7 +14,9 @@ public class Shoot : NPCBehavior
     private Vector3 maxPoint;
     private int spawnCount = 0;
 
-
+    [SerializeField] Transform Turret;
+    [SerializeField] Transform Barrel;
+    [SerializeField] Transform BarrelEnd;
 
     Coroutine firing;
 
@@ -29,22 +31,40 @@ public class Shoot : NPCBehavior
             StopCoroutine(firing);
         }
     }
+    void Update()
+    {
+        Vector3 lookDirectionY = target.position - Turret.position;
+        lookDirectionY.y = 0;
+        Turret.rotation = Quaternion.RotateTowards(Turret.rotation, Quaternion.LookRotation(lookDirectionY), Time.time * 2);
 
+
+        Vector3 lookDirection = target.position - Barrel.position;
+        Barrel.rotation = Quaternion.RotateTowards(Barrel.rotation, Quaternion.LookRotation(lookDirection), Time.time * 2);
+    }
 
     private IEnumerator FireLoop()
     {
         while (true)
         {
             yield return new WaitForSeconds(1 / firingSettings.fireRate);
+
+            // get spawn point
+            Vector3 spawnPoint;
+            if(BarrelEnd == null)
+            {
+                spawnPoint = GetSpawnPoint();
+            }
+            else
+            {
+                spawnPoint = BarrelEnd.transform.position;
+            }
             
-            // get spawn point            
-            Vector3 spawnPoint = GetSpawnPoint(); 
             // get projectile
-            var projectile = Instantiate(projectileGroup.projectiles[Random.Range(0, projectileGroup.projectiles.Count)], spawnPoint, GetProjectileOrientation());
+            var projectile = Instantiate(projectileGroup.items[Random.Range(0, projectileGroup.items.Count)], spawnPoint, GetProjectileOrientation());
             // send projectile with data
             var rigidBody = projectile.GetComponentInChildren<Rigidbody>();
 
-            Vector3 firingDirection = target.position - transform.position;
+            Vector3 firingDirection = target.position - BarrelEnd.position;
 
             rigidBody.AddForce(firingDirection.normalized * 5000 * rigidBody.mass * firingSettings.projectileSpeed);
             rigidBody.AddTorque(transform.up * 2000 * rigidBody.mass * firingSettings.projectileSpin);
