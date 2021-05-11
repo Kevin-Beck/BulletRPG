@@ -13,11 +13,19 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth.Value = MaxHealth.Value;
-        healthChangedEvent.Raise();
+        if (healthChangedEvent != null)
+        {
+            healthChangedEvent.Raise();
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        CurrentHealth.Value = CurrentHealth.Value - collision.impulse.sqrMagnitude / 10;
+        ChangeHealth(-1 * collision.impulse.sqrMagnitude / 10);
+    }
+    public void ChangeHealth(float healthPoints)
+    {
+        Debug.Log("HealthChanged by " + healthPoints);
+        CurrentHealth.Value = CurrentHealth.Value + healthPoints;
         if (healthChangedEvent != null)
         {
             healthChangedEvent.Raise();
@@ -28,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (CurrentHealth.Value <= 0)
         {
-            if(deathEvent != null)
+            if (deathEvent != null)
             {
                 deathEvent.Raise();
             }
@@ -40,6 +48,10 @@ public class PlayerHealth : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+        }
+        if(CurrentHealth.Value > MaxHealth.Value)
+        {
+            CurrentHealth.Value = MaxHealth.Value;
         }
     }
 }

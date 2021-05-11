@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float speed = 1;
     [SerializeField] Transform cursorObject;
 
+    private bool sliding = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +20,26 @@ public class PlayerMove : MonoBehaviour
         myTransform = GetComponent<Transform>();
     }
 
+    public void EnabledSliding(float time)
+    {
+        sliding = true;
+        StartCoroutine("DisableSliding");
+    }
+    private IEnumerator DisableSliding()
+    {
+        yield return new WaitForSeconds(1f);
+        sliding = false;
+    }
+
     private void FixedUpdate()
     {
         myTransform.LookAt(new Vector3(cursorObject.position.x, myTransform.position.y, cursorObject.position.z));
 
-        myRigidbody.velocity = Vector3.zero;
-        myRigidbody.angularVelocity = Vector3.zero;
+        if (!sliding)
+        {
+            myRigidbody.velocity = Vector3.zero;
+            myRigidbody.angularVelocity = Vector3.zero;
+        }
 
         Vector3 direction = Vector3.zero;
         if (inputManager.GetKey(KeybindingActions.North))
@@ -44,9 +60,9 @@ public class PlayerMove : MonoBehaviour
         }
         direction = direction.normalized;
 
-        Ray ray = new Ray(transform.position, direction);
-        RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit, 0.1f))
-            myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
+       // Ray ray = new Ray(transform.position, direction);
+        // RaycastHit hit;
+        //if (!Physics.Raycast(ray, out hit, 0.1f))
+        myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
     }
 }

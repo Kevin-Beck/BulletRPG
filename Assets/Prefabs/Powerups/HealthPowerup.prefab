@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3238809188494902226}
   - component: {fileID: 3214124457922711876}
   - component: {fileID: 3220499787800720742}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_health_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3238929351385183312}
   - component: {fileID: 3212636499762063674}
   - component: {fileID: 3220296614164239670}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_health_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3237515456800458452}
   - component: {fileID: 3212700381176191988}
   - component: {fileID: 3220394576996065840}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_health_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 3238830738115749368}
   - component: {fileID: 3213258553160056230}
   - component: {fileID: 3221123083185769746}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_block_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 3237171793237616782}
   - component: {fileID: 3212405848544132086}
   - component: {fileID: 3220101034964674756}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_block_1_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3238742478607209620}
   - component: {fileID: 3331031554696456696}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: block_health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 3238840077105350376}
   - component: {fileID: 3212415645320977046}
   - component: {fileID: 3220136969930445962}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: lootblock_block_1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3236987908760815648}
   - component: {fileID: 3330600842068955928}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: block_1_health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710699275653018499}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3758881050542391080}
-  m_Layer: 0
+  - component: {fileID: 2352427337812083710}
+  - component: {fileID: 8053835215455964155}
+  m_Layer: 14
   m_Name: HealthPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,3 +673,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2352427337812083710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755480183522308884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c16d13fd7ef0c4e9ed4e17f8180086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+--- !u!65 &8053835215455964155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755480183522308884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1.6, z: 1.6}
+  m_Center: {x: 0, y: 0, z: 0}

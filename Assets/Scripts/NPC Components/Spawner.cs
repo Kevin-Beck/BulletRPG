@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] public Collectibles group;
 
     [Header("Drop Statistics")]
-    [SerializeField] public DropSequence dropSequence;
     [Range(0f, 1f)]
     [SerializeField] public float dropChance;
     [Range(0f, 10f)]
@@ -33,11 +32,8 @@ public class Spawner : MonoBehaviour
             yield return delay;
             if (Random.Range(0f, 1f) < dropRate)
             {
-                if (dropSequence == DropSequence.Random)
-                {
-                    var dropLocation = SnapPosition(transform.position, dropPositionOffset, 2f);
-                    var drop = Instantiate(group.items[Random.Range(0, group.items.Count)], dropLocation, Quaternion.identity);
-                }
+                var dropLocation = SnapPosition(transform.position, dropPositionOffset, 2f);
+                Instantiate(group.items[Random.Range(0, group.items.Count)], dropLocation, Quaternion.identity);
             }
         }
     }
@@ -53,14 +49,5 @@ public class Spawner : MonoBehaviour
 
         return new Vector3(x, y, z) + offset;
     }
-    // TODO make spawners that walk around and spawn things
-    // TODO make them drop them centered on tiles
-    // TOOD make boxes for items and make mines
-    // TODO make the player interact with the mines on collision/while colliding
-    // 
-}
-public enum DropSequence
-{
-    Random,
-    Sequential,
+
 }

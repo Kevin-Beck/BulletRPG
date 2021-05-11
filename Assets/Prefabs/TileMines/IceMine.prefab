@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382987407190985117}
   - component: {fileID: 542583165658779945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ice_cube_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 383256209862896031}
   - component: {fileID: 371496592770177485}
   - component: {fileID: 363431776227978509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice_block_1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 382453884931013527}
   - component: {fileID: 371901285992446305}
   - component: {fileID: 364261832373774127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice_block_1_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 382701117409049851}
   - component: {fileID: 371583713956889629}
   - component: {fileID: 364049788207918351}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice_block_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8214929348195883409}
-  m_Layer: 0
+  - component: {fileID: 6197041681348568026}
+  - component: {fileID: 6450096882802525141}
+  m_Layer: 7
   m_Name: IceMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,6 +337,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6197041681348568026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214929348195883406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6450096882802525141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214929348195883406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5f5689d4cb1dc4cb9fabd799f50647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8214929348417900592
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8214929348417900595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IceMineScaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
