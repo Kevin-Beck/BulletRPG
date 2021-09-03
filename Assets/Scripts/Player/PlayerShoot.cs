@@ -1,29 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] Transform BulletSpawnPoint;
-    [SerializeField] Transform Cursor;
     [SerializeField] GameObject bullet;
     [SerializeField] float speed;
     [SerializeField] float damageMultiplier;
+    PlayerInputActions playerInputActions;
 
-    private InputManager inputManager;
-
-    void Start()
+    private void Awake()
     {
-        inputManager = InputManager.instance;
+        playerInputActions = new PlayerInputActions();
     }
-    private void Update()
+    private void Start()
     {
-        if(inputManager.GetKeyDown(KeybindingActions.Primary))
+        playerInputActions.Player.Enable();
+        playerInputActions.Player.Shoot.performed += Shoot;
+    }
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             var spawn = Instantiate(bullet, BulletSpawnPoint.position, Quaternion.identity);
-            
-            spawn.transform.LookAt(Cursor);
-            spawn.GetComponent<Rigidbody>().AddForce(speed * spawn.transform.forward);           
+            spawn.transform.rotation = transform.rotation;
+            spawn.GetComponent<Rigidbody>().AddForce(speed * spawn.transform.forward);
         }
+    }
+    public void OnDestroy()
+    {
+        playerInputActions.Player.Shoot.performed -= Shoot;
     }
 }

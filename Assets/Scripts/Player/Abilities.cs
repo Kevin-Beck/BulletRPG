@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
-    InputManager inputManager;
     public Camera myCamera;
     public LayerMask tileLayerMask;
     // Start is called before the first frame update
     void Start()
     {
-        inputManager = InputManager.instance;
     }
     private void Update()
     {
-        if (inputManager.GetKey(KeybindingActions.Secondary))
-        {
-            Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+        //if (inputManager.GetKey(KeybindingActions.Secondary))
+        //{
+        //    Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 10000, tileLayerMask))
-            {
-                Teleport(hit.point);
-            }
-        }
+        //    if (Physics.Raycast(ray, out RaycastHit hit, 10000, tileLayerMask))
+        //    {
+        //        Teleport(hit.point);
+        //    }
+        //}
     }
     private void Teleport(Vector3 target)
     {

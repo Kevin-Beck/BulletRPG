@@ -1,68 +1,80 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    InputManager inputManager;
     private Rigidbody myRigidbody;
     private Transform myTransform;
     [SerializeField] float speed = 1;
-    [SerializeField] Transform cursorObject;
 
-    private bool sliding = false;
+    private float capsuleColliderRadius;
+    private float radiusBuffer = 0.1f;
 
-    // Start is called before the first frame update
-    void Start()
+    private PlayerInputActions playerInputActions;
+    public LayerMask playerPlaneLayer;
+
+    private void Awake()
     {
-        inputManager = InputManager.instance;
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+        capsuleColliderRadius = GetComponent<CapsuleCollider>().radius + radiusBuffer;
         myRigidbody = GetComponent<Rigidbody>();
         myTransform = GetComponent<Transform>();
     }
-
-    public void EnabledSliding(float time)
-    {
-        sliding = true;
-        StartCoroutine("DisableSliding");
-    }
-    private IEnumerator DisableSliding()
-    {
-        yield return new WaitForSeconds(1f);
-        sliding = false;
-    }
-
     private void FixedUpdate()
     {
-        myTransform.LookAt(new Vector3(cursorObject.position.x, myTransform.position.y, cursorObject.position.z));
+        Vector2 inputDirection = playerInputActions.Player.Movement.ReadValue<Vector2>();
+        Vector3 direction = new Vector3(inputDirection.x, 0, inputDirection.y).normalized;
 
-        if (!sliding)
-        {
-            myRigidbody.velocity = Vector3.zero;
-            myRigidbody.angularVelocity = Vector3.zero;
-        }
+        myRigidbody.velocity = myRigidbody.velocity * 0.9f;
+        myRigidbody.angularVelocity = Vector3.zero;
 
-        Vector3 direction = Vector3.zero;
-        if (inputManager.GetKey(KeybindingActions.North))
+        Ray ray = new Ray(transform.position, direction);
+        if (!Physics.Raycast(ray, out RaycastHit hit, capsuleColliderRadius))
         {
-            direction += Vector3.forward;
+            myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
         }
-        if (inputManager.GetKey(KeybindingActions.East))
-        {
-            direction += Vector3.right;
-        }
-        if (inputManager.GetKey(KeybindingActions.South))
-        {
-            direction += Vector3.back;
-        }
-        if (inputManager.GetKey(KeybindingActions.West))
-        {
-            direction += Vector3.left;
-        }
-        direction = direction.normalized;
+    }
+    private void Update()
+    {
+        //if (inputManager.GetKey(KeybindingActions.Secondary))
+        //{
+        //    Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
 
-       // Ray ray = new Ray(transform.position, direction);
-        // RaycastHit hit;
-        //if (!Physics.Raycast(ray, out hit, 0.1f))
-        myRigidbody.MovePosition(myRigidbody.position + (direction * speed * Time.deltaTime));
+        //    if (Physics.Raycast(ray, out RaycastHit hit, 10000, tileLayerMask))
+        //    {
+        //        Teleport(hit.point);
+        //    }
+        //}
+        // TODO fix this some? reduce new vector3 constructors etc
+        Ray ray = Camera.main.ScreenPointToRay(playerInputActions.Player.MousePosition.ReadValue<Vector2>());
+        if(Physics.Raycast(ray, out RaycastHit hit, 100, playerPlaneLayer))
+        {
+            myTransform.LookAt(new Vector3(hit.point.x, myTransform.position.y, hit.point.z));
+        }
+        else
+        {
+            Debug.LogWarning("Player look depends on the player plane existing and being set to the correct layer");
+        }
+    }
+
+    public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds) // 0 for permanent change
+    {
+        var currentSpeed = speed;
+        speed = speed * speedMultiplier;
+
+        if(revertAfterSeconds > 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SetSpeed(currentSpeed, revertAfterSeconds));
+        }
+    }
+    IEnumerator SetSpeed(float speedValue, float timeDelay)
+    {
+        yield return new WaitForSeconds(timeDelay);
+        speed = speedValue;
     }
 }

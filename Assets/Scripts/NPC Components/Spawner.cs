@@ -13,11 +13,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] public float dropChance;
     [Range(0f, 10f)]
     [SerializeField] public float dropRate;
+    [Range(0f, 100f)]
+    [SerializeField] public int maxDropped;
 
     [Header("Config")]
     [SerializeField] Vector3 dropPositionOffset = new Vector3(1, .25f, 1);
-
     WaitForSeconds delay;
+    
 
 
     void Start()
@@ -33,7 +35,7 @@ public class Spawner : MonoBehaviour
             if (Random.Range(0f, 1f) < dropRate)
             {
                 var dropLocation = SnapPosition(transform.position, dropPositionOffset, 2f);
-                Instantiate(group.items[Random.Range(0, group.items.Count)], dropLocation, Quaternion.identity);
+                var drop = Instantiate(group.items[Random.Range(0, group.items.Count)], dropLocation, Quaternion.identity);
             }
         }
     }

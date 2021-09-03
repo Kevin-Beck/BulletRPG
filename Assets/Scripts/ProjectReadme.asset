@@ -16,14 +16,19 @@ MonoBehaviour:
   title: Bullet RPG
   sections:
   - heading: Getting Started
-    text: Bullet RPG is cool! If you're here to code, good luck! Kidding, the project
-      has a few main features that need to be adressed. Those points are listed below.
-      There are also readme objects in different areas in the project that describe
-      things in more detail.
+    text: Bullet RPG is cool!
     linkText: 
     url: 
-  - heading: Point One
-    text: This is where you'd talk about something
+  - heading: 'Packages: Cube World'
+    text: 'First you need to import the assets which are not commited to the project
+      repo. Window > Package Manager. Currently you need Cube World - Proto Series.
+      Click download then import the entire package. If you suddenly see a bunch
+      of pink textures, don''t panic. Go to Edit > Render Pipeline > Universal Render
+      Pipeline > Upgrade All Materials to ... and hopefully that fixes your issue. '
+    linkText: Cube World Package
+    url: https://assetstore.unity.com/packages/3d/environments/cube-world-proto-series-144159
+  - heading: Understanding The Project
+    text: 'There are a few main features to keep in mind in the project. '
     linkText: 
     url: 
   loadedLayout: 1
