@@ -21,7 +21,7 @@ public class PowerUp : MonoBehaviour
             var playerMovement = other.gameObject.GetComponent<PlayerMove>();
             if (playerMovement != null)
             {
-                playerMovement.SetSpeedMultiplier(1.5f, 5.0f);
+               // playerMovement.SetSpeedMultiplier(1.5f, 5.0f);
                 Destroy(gameObject);
             }
         }

@@ -14,8 +14,14 @@ namespace BulletRPG.NPCBehavior
         public bool startAtFirstPoint = true;
         public bool reverseDirection = false;
 
+        public Animator animator;
+        private void OnDisable()
+        {
+            animator.SetBool("Walk Forward", false);
+        }
         private void Start()
         {
+            animator = GetComponent<Animator>();
             if (speed == 0)
             {
                 Debug.LogWarning($"Movement on {gameObject} is set to 0.");
@@ -72,7 +78,9 @@ namespace BulletRPG.NPCBehavior
                 }
             }
             // walk towards point        
+            transform.LookAt(pattern.waypoints[currentWaypoint]);
             transform.position = Vector3.MoveTowards(transform.position, pattern.waypoints[currentWaypoint] + patternOffset, Time.deltaTime * speed);
+            animator.SetBool("Walk Forward", true);
         }
         public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds) // 0 for permanent change
         {
@@ -81,6 +89,7 @@ namespace BulletRPG.NPCBehavior
 
             StartCoroutine(SetSpeed(currentSpeed, revertAfterSeconds));
         }
+
         IEnumerator SetSpeed(float speedValue, float timeDelay)
         {
             yield return new WaitForSeconds(timeDelay);
