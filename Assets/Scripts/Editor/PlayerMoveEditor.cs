@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEditor;
-using BulletRPG.NPCBehavior;
+using BulletRPG.Player;
 
-[CustomEditor(typeof(PlayerMove))]
-public class PlayerMoveEditor : Editor
+[CustomEditor(typeof(Move))]
+public class MoveEditor : Editor
 {
-    private PlayerMove playerMove;
+    private Move move;
 
     private void OnSceneGUI()
     {
-        playerMove = (PlayerMove)target;
+        move = (Move)target;
 
         Handles.color = Color.blue;
-        if(playerMove.navMeshAgent != null)
+        if(move.navMeshAgent != null)
         {
-                Handles.DrawLine(playerMove.transform.position-new Vector3(0, playerMove.navMeshAgent.baseOffset, 0), playerMove.navMeshAgent.destination, 16f);
+                Handles.DrawLine(move.transform.position-new Vector3(0, move.navMeshAgent.baseOffset, 0), move.navMeshAgent.destination, 16f);
         }
     }
 }

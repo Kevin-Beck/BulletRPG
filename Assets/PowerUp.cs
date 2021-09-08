@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using BulletRPG.Player;
 public class PowerUp : MonoBehaviour
 {
     public PowerUpType myType;
@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
         }
         else if (myType == PowerUpType.AddSpeed)
         {
-            var playerMovement = other.gameObject.GetComponent<PlayerMove>();
+            var playerMovement = other.gameObject.GetComponent<Move>();
             if (playerMovement != null)
             {
                // playerMovement.SetSpeedMultiplier(1.5f, 5.0f);

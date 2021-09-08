@@ -41,6 +41,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c5aee33-2d01-4e15-9d04-7e3720a3a99c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +128,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6169621c-0a60-4258-ae7f-edc55009c3da"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +162,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -195,6 +215,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_MousePosition;
+    private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -202,6 +223,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -220,6 +242,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -233,6 +258,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -251,5 +279,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
