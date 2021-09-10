@@ -43,3 +43,7 @@ Before entering a level the player may adjust their equipments and skills. After
 - UI elements for character screen before levels
 - Main Menu
 - Player/character shoot
+- IShoot Interface
+- IHealth Interface and Healthbar flexibility
+- Interactor needs to have IHealth and IMove
+

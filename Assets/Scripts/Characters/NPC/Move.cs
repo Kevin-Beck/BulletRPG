@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BulletRPG.NPCBehavior;
 
-namespace BulletRPG.NPCBehavior
+namespace BulletRPG.Characters.NPC
 {
-    public class Movement : NPCBehavior
+    public class Move : NPCBehavior, IMove
     {
         public Pattern pattern;
         public Vector3 patternOffset;
@@ -80,13 +79,13 @@ namespace BulletRPG.NPCBehavior
             // walk towards point        
             transform.LookAt(pattern.waypoints[currentWaypoint]);
             transform.position = Vector3.MoveTowards(transform.position, pattern.waypoints[currentWaypoint] + patternOffset, Time.deltaTime * speed);
-            animator.SetBool("Walk Forward", true);
+            animator.SetBool("Walk Forward", true); // TODO SET THIS TO A GENERIC SOMEHOW
         }
-        public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds) // 0 for permanent change
+        public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds)
         {
             var currentSpeed = speed;
             var newSpeed = speed * speedMultiplier;
-
+            speed = newSpeed;
             StartCoroutine(SetSpeed(currentSpeed, revertAfterSeconds));
         }
 

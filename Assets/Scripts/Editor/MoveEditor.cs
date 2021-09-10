@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using BulletRPG.NPCBehavior;
+using BulletRPG.Characters.NPC;
 
-[CustomEditor(typeof(Movement))]
-public class MovementEditor : Editor
+[CustomEditor(typeof(Move))]
+public class MoveEditor : Editor
 {
-    private Movement movement;
+    private Move movement;
 
     private void OnSceneGUI()
     {
-        movement = (Movement)target;
+        movement = (Move)target;
 
         Handles.color = Color.cyan;
         if(movement.pattern != null)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using BulletRPG.NPCBehavior;
+using BulletRPG.Characters.NPC;
 
 [CustomEditor(typeof(Shoot))]
 public class ShootEditor : Editor

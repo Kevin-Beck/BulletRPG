@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BulletRPG.NPCBehavior
+namespace BulletRPG.Characters
 {
     public class NPCBehavior : MonoBehaviour
     {

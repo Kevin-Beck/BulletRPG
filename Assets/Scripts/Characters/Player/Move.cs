@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
-namespace BulletRPG.Player
+namespace BulletRPG.Characters.Player
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Move : MonoBehaviour
+    public class Move : MonoBehaviour, IMove
     {
         private PlayerInputActions playerInputActions;
         public LayerMask playerLookLayer;
@@ -63,6 +63,20 @@ namespace BulletRPG.Player
             {
                 Debug.LogWarning($"Animator is null on {name}");
             }
+        }
+        //TODO Below is untested
+        public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds)
+        {
+            var currentSpeed = navMeshAgent.speed;
+            var newSpeed = navMeshAgent.speed * speedMultiplier;
+            navMeshAgent.speed = newSpeed;
+            StartCoroutine(SetSpeed(currentSpeed, revertAfterSeconds));
+        }
+
+        IEnumerator SetSpeed(float speedValue, float timeDelay)
+        {
+            yield return new WaitForSeconds(timeDelay);
+            navMeshAgent.speed = speedValue;
         }
     }
 }

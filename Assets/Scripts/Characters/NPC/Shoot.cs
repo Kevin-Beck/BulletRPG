@@ -1,8 +1,7 @@
-﻿using BulletRPG.NPCBehavior;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-namespace BulletRPG.NPCBehavior
+namespace BulletRPG.Characters.NPC
 {
     public class Shoot : NPCBehavior
     {
