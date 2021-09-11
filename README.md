@@ -40,10 +40,14 @@ Before entering a level the player may adjust their equipments and skills. After
 - Objects for player character stats
 - System for unlocking new playable characters / growing characters from base eggs
 - Build out level terrains, build out level cameras
+    - Level 2
+    - Level 3
+    - Level 4
+    - Level 5
 - UI elements for character screen before levels
 - Main Menu
 - Player/character shoot
 - IShoot Interface
-- IHealth Interface and Healthbar flexibility
-- Interactor needs to have IHealth and IMove
+- ~~IHealth Interface and Healthbar flexibility~~
+- ~~Interactor needs to have IHealth and IMove~~
 

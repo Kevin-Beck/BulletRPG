@@ -11,8 +11,6 @@ public class GameSettings : MonoBehaviour
     {
         Application.targetFrameRate = targetFrameRate;
         Debug.Log(Application.companyName);
-    }
-
-    
+    }  
 
 }

@@ -3,12 +3,12 @@
 namespace BulletRPG.Characters.NPC
 {
     [RequireComponent(typeof(Collider))]
-    public class NPCHealth : MonoBehaviour
+    public class NPCHealth : MonoBehaviour, IHealth
     {
         [SerializeField] public float startingHealth;
         [SerializeField] bool destroyOnDeath = true;
         [SerializeField] GameEvent destroyedEvent;
-        private NPCHealthBar healthBar;
+        private IHealthBar healthBar;
         public float currentHealth;
 
         private void Start()
@@ -22,11 +22,6 @@ namespace BulletRPG.Characters.NPC
             {
                 healthBar.UpdateHealthBar(currentHealth / startingHealth);
             }
-        }
-
-        public void AddHealthBar(NPCHealthBar bar)
-        {
-            healthBar = bar;
         }
 
         public void ChangeHealth(float amount)
@@ -44,6 +39,59 @@ namespace BulletRPG.Characters.NPC
                 }
                 Destroy(gameObject);
             }
+        }
+
+        public void HealFlatAmount(float amount)
+        {
+            if(amount < 0)
+            {
+                Debug.Log("Cannot heal for less than 0");
+                return;
+            }
+            ChangeHealth(amount);
+        }
+
+        public void HealPercentage(float percentage)
+        {
+            if(percentage < 0)
+            {
+                Debug.Log("Cannot heal with percent less than 0");
+                return;
+            }
+            if(percentage > 100)
+            {
+                percentage = 100;
+            }
+            ChangeHealth(startingHealth * (percentage/100));
+        }
+
+        public void TakeDamageAmount(float amount)
+        {
+            if(amount < 0)
+            {
+                Debug.Log("Cannot damage for less than 0");
+                return;
+            }
+            ChangeHealth(-1 * amount);
+        }
+
+        public void TakeDamagePercentage(float percentage)
+        {
+            if (percentage < 0)
+            {
+                Debug.Log("Cannot damage with percent less than 0");
+                return;
+            }
+            if (percentage > 1)
+            {
+                percentage = 1;
+            }
+            ChangeHealth(startingHealth * (percentage/100) * -1);
+        }
+
+        public void AddHealthBar(IHealthBar bar)
+        {
+            healthBar = bar;
         }
     }
 }

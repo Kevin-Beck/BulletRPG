@@ -7,7 +7,10 @@ public class EventOnAwake : MonoBehaviour
     public GameEvent Event;
     private void Start()
     {
-        Event.Raise();
+        if(Event != null)
+        {
+            Event.Raise();
+        }
     }
 
 }

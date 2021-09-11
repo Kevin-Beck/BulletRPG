@@ -15,6 +15,10 @@ namespace BulletRPG.Characters.Player
         public string animationForwardAxisName;
         public string animationRightAxisName;
 
+        private float baseSpeed;
+        private float baseAcceleration;
+        private Coroutine speedChange = null;
+
 
         private void Awake()
         {
@@ -23,6 +27,8 @@ namespace BulletRPG.Characters.Player
             navMeshAgent.updateRotation = false;
             playerInputActions = new PlayerInputActions();
             playerInputActions.Player.Enable();
+            baseSpeed = navMeshAgent.speed;
+            baseAcceleration = navMeshAgent.acceleration;
         }
         private void Start()
         {
@@ -37,13 +43,13 @@ namespace BulletRPG.Characters.Player
             {
                 transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
-            else
-            {
-#if UNITY_EDITOR
-                if (!(0 > Input.mousePosition.x || 0 > Input.mousePosition.y || Screen.width < Input.mousePosition.x || Screen.height < Input.mousePosition.y))
-                    Debug.LogWarning("Raycast for player look direction not hitting anything on PlayerLookLayer");
-#endif
-            }
+//            else
+//            {
+//#if UNITY_EDITOR
+//                if (!(0 > Input.mousePosition.x || 0 > Input.mousePosition.y || Screen.width < Input.mousePosition.x || Screen.height < Input.mousePosition.y))
+//                    Debug.LogWarning("Raycast for player look direction not hitting anything on PlayerLookLayer");
+//#endif
+//            }
 
             // Get input from player, create a vector3
             Vector2 inputDirection = playerInputActions.Player.Movement.ReadValue<Vector2>();
@@ -64,19 +70,26 @@ namespace BulletRPG.Characters.Player
                 Debug.LogWarning($"Animator is null on {name}");
             }
         }
-        //TODO Below is untested
         public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds)
         {
-            var currentSpeed = navMeshAgent.speed;
+            if(speedChange != null)
+            {
+                StopCoroutine(speedChange);
+            }
             var newSpeed = navMeshAgent.speed * speedMultiplier;
+            var newAcceleration = navMeshAgent.acceleration * speedMultiplier * 1.5f;
+
+            navMeshAgent.acceleration = newAcceleration;
             navMeshAgent.speed = newSpeed;
-            StartCoroutine(SetSpeed(currentSpeed, revertAfterSeconds));
+
+            speedChange = StartCoroutine(SetSpeed(baseSpeed, baseAcceleration, revertAfterSeconds));
         }
 
-        IEnumerator SetSpeed(float speedValue, float timeDelay)
+        IEnumerator SetSpeed(float speedValue, float accelerationValue, float timeDelay)
         {
             yield return new WaitForSeconds(timeDelay);
             navMeshAgent.speed = speedValue;
+            navMeshAgent.acceleration = accelerationValue;
         }
     }
 }

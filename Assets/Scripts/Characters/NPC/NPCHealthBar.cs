@@ -5,9 +5,9 @@ using UnityEngine.UI;
 namespace BulletRPG.Characters.NPC
 {
     [RequireComponent(typeof(NPCHealth))]
-    public class NPCHealthBar : MonoBehaviour
-    {
-        NPCHealth myHealth;
+    public class NPCHealthBar : MonoBehaviour, IHealthBar
+    {        
+        private IHealth myHealth;
         Slider slider;
         Camera mainCamera;
 
