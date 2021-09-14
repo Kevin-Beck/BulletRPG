@@ -44,6 +44,5 @@ namespace BulletRPG.Items
                 Debug.Log("Nothing in inventory");
             }
         }
-
     }
 }

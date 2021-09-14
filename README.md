@@ -33,9 +33,17 @@ Before entering a level the player may adjust their equipments and skills. After
 ## Todo List
 
 - Tile system
-- Build enemy animations and attacks
-- Build inventory system
+- ~~Build enemy animations and attacks~~ always needing more
+- Write guide to constructing new characters (animations, movement, interactor, animation event, triggering attacks, all required scripts)
+- ~~Build inventory system~~
+- Add Items
+- Fix Ice Dagger shooting, original Prefab orientation incorrect, TOP PRIORITY
+- Flesh out equipment slots on other characters
+- Build Characters
+- Add Other collectible resources (gold, gems etc)
+- ~~Create Item usability (if you're holding equipment, override original attack)~~
 - Figure out player preferences for saving data
+- Figure out loading and saving with player+equipments
 - UI elements for picking skills/equipments/boosts
 - Objects for player character stats
 - System for unlocking new playable characters / growing characters from base eggs
@@ -46,8 +54,8 @@ Before entering a level the player may adjust their equipments and skills. After
     - Level 5
 - UI elements for character screen before levels
 - Main Menu
-- Player/character shoot
-- IShoot Interface
+- ~~Player shoot~~
+- ~~IShoot Interface~~
 - ~~IHealth Interface and Healthbar flexibility~~
 - ~~Interactor needs to have IHealth and IMove~~
 

@@ -23,8 +23,7 @@ namespace BulletRPG.Items
         IInventory myInventory;
     
         void Start()
-        {
-            
+        {            
             myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "HeadSlot"), GearSlots.Head));
             myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "LeftHandSlot"), GearSlots.OffHand));
             myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "RightHandSlot"), GearSlots.MainHand));
@@ -72,7 +71,7 @@ namespace BulletRPG.Items
 
                     // Equip
                     equippedGear[gear.Slot] = gear;
-                    Instantiate(gear.VisualObject, equipmentSlot.SpawnPoint.position, equipmentSlot.SpawnPoint.rotation, equipmentSlot.SpawnPoint);
+                    Instantiate(gear.InGameObject, equipmentSlot.SpawnPoint.position, equipmentSlot.SpawnPoint.rotation, equipmentSlot.SpawnPoint);
                 }
             }
         }

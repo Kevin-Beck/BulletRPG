@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace BulletRPG.Items
 {
-    [CreateAssetMenu(fileName = "NewGear", menuName = "Item/Gear")]
-    public class Gear : ScriptableObject
+    public abstract class Gear : ScriptableObject
     {
-        public string Name;
-        public string Description;
+        public string ItemName;
+        public string ItemDescription;
         [SerializeField] public GearSlots Slot;
         [SerializeField] public GameObject LootObject;
-        [SerializeField] public GameObject VisualObject;
+        [SerializeField] public GameObject InGameObject;
     }
 }

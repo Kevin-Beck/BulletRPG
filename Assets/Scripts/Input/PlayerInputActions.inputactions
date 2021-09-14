@@ -6,7 +6,7 @@
             "id": "c22aa6b5-acb6-4bad-b873-2d44af4a8e9a",
             "actions": [
                 {
-                    "name": "Shoot",
+                    "name": "PrimaryAttack",
                     "type": "Button",
                     "id": "00572b29-9022-4caf-a3d0-7c10786bcef3",
                     "expectedControlType": "Button",
@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SecondaryAttack",
+                    "type": "Button",
+                    "id": "54a63a23-aab7-47ea-bd1f-a25dd7f105a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -46,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Shoot",
+                    "action": "PrimaryAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -124,6 +132,44 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12f85630-a77e-4270-be0d-f36106cb542c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SecondaryAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CharacterMenu",
+            "id": "0d91318f-03da-4bf1-a093-860c0ba69277",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "70f663af-2acb-4cb6-82e4-e9ab8d916b34",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1db5c9cc-15ea-4680-9ac0-6f438684c72a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
