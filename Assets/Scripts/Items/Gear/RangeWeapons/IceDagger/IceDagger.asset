@@ -15,12 +15,12 @@ MonoBehaviour:
   ItemName: IceDagger
   ItemDescription: Shoots Icy shards
   Slot: 1
-  LootObject: {fileID: 2133502678263590122, guid: bfa201af725ebf44489d9eeef27b102a,
+  LootObject: {fileID: 8351058013121161651, guid: 312d525e7c940fa4389cd5fd3c46a62f,
     type: 3}
-  InGameObject: {fileID: 8377461614954836973, guid: f5bee7dcc431a6141959efba835b158e,
+  InGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
     type: 3}
-  Projectile: {fileID: 1859982727299480151, guid: 76329a0114e749d419e51908d4d7443d,
+  Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
     type: 3}
-  Cooldown: 4
+  Cooldown: 1
   Speed: 10
   DamageMultiplier: 3

@@ -40,7 +40,8 @@ namespace BulletRPG.Items
             var spawn = Instantiate(rangedWeapon.Projectile, transform.position, Quaternion.identity);
             spawn.transform.rotation = Quaternion.identity;
             spawn.GetComponent<BulletMovement>().BulletSpeed = rangedWeapon.Speed;
-            spawn.transform.rotation = GetComponentInParent<Rigidbody>().rotation;
+            spawn.transform.rotation = GetComponentInParent<Rigidbody>().transform.rotation;
+
         }
         public void OnDestroy()
         {

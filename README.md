@@ -37,7 +37,7 @@ Before entering a level the player may adjust their equipments and skills. After
 - Write guide to constructing new characters (animations, movement, interactor, animation event, triggering attacks, all required scripts)
 - ~~Build inventory system~~
 - Add Items
-- Fix Ice Dagger shooting, original Prefab orientation incorrect, TOP PRIORITY
+- ~~Fix Ice Dagger shooting, original Prefab orientation incorrect~~
 - Flesh out equipment slots on other characters
 - Build Characters
 - Add Other collectible resources (gold, gems etc)

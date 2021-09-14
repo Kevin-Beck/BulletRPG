@@ -43,13 +43,6 @@ namespace BulletRPG.Characters.Player
             {
                 transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
-//            else
-//            {
-//#if UNITY_EDITOR
-//                if (!(0 > Input.mousePosition.x || 0 > Input.mousePosition.y || Screen.width < Input.mousePosition.x || Screen.height < Input.mousePosition.y))
-//                    Debug.LogWarning("Raycast for player look direction not hitting anything on PlayerLookLayer");
-//#endif
-//            }
 
             // Get input from player, create a vector3
             Vector2 inputDirection = playerInputActions.Player.Movement.ReadValue<Vector2>();
