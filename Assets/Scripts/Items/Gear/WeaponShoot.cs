@@ -16,6 +16,8 @@ namespace BulletRPG.Items
 
         private void Awake()
         {
+            canShoot = false;
+            Invoke("CooldownReset", rangedWeapon.Cooldown);
             animator = GetComponentInParent<Animator>();            
             playerInputActions = new PlayerInputActions();
         }
@@ -45,6 +47,7 @@ namespace BulletRPG.Items
         }
         public void OnDestroy()
         {
+            StopAllCoroutines();
             playerInputActions.Player.PrimaryAttack.performed -= StartAttack;
         }
 

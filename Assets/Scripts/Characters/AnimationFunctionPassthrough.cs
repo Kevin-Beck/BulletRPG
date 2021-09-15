@@ -14,10 +14,8 @@ public class AnimationFunctionPassthrough : MonoBehaviour
     public void FireAttack()
     {
         Debug.Log("firingfrom AnimationFunctionPassthrough");
-        if(attackScript == null)
-        {
-            attackScript = GetComponentInChildren<IAttack>();
-        }
+        attackScript = GetComponentInChildren<IAttack>();
+
 
         if (attackScript != null)
         {

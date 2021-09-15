@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BulletRPG.Items
 {
@@ -11,5 +12,7 @@ namespace BulletRPG.Items
         [SerializeField] public GearSlots Slot;
         [SerializeField] public GameObject LootObject;
         [SerializeField] public GameObject InGameObject;
+        [SerializeField] public Sprite Sprite;
+        [SerializeField] public Color Color;
     }
 }

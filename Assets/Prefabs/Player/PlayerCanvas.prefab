@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 8168069827727415136}
   - component: {fileID: 8168069827727415143}
   - component: {fileID: 8168069827727415142}
-  - component: {fileID: 8168069827727415137}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -189,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded589120a0d04849afb25b8983f9420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealthObject: {fileID: 0}
   gradient:
     serializedVersion: 2
     key0: {r: 0.9056604, g: 0.06250433, b: 0, a: 1}
@@ -218,39 +218,3 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
-  CurrentPlayerHealth:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 0d409c453a7d105498eee2c77dd773a8, type: 2}
-  MaxPlayerHealth:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bfcb5a957f59ea42aaca3602a4906dc, type: 2}
---- !u!114 &8168069827727415137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168069827727415140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c968a626da1793540a61094d00513764, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 306262fa216c0024abd4de3abf1b880d, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8168069827727415142}
-        m_TargetAssemblyTypeName: HealthBarController, Assembly-CSharp
-        m_MethodName: UpdateHealthBar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

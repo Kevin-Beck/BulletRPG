@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b76de387f5df5143ac93cc4681bc79b, type: 3}
   m_Name: IceDagger
   m_EditorClassIdentifier: 
-  ItemName: IceDagger
-  ItemDescription: Shoots Icy shards
+  ItemName: Ice Dagger
+  ItemDescription: Shoots an icy shard at enemies.
   Slot: 1
-  LootObject: {fileID: 8351058013121161651, guid: 312d525e7c940fa4389cd5fd3c46a62f,
+  LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
     type: 3}
   InGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
     type: 3}
+  Sprite: {fileID: 21300000, guid: de74ed0a8306d400ab3b46432116cf0b, type: 3}
+  Color: {r: 0, g: 0.65242577, b: 1, a: 1}
   Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
     type: 3}
   Cooldown: 1

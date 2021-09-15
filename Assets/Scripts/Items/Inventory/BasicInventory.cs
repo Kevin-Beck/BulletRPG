@@ -6,6 +6,7 @@ namespace BulletRPG.Items
 {
     public class BasicInventory : MonoBehaviour, IInventory
     {
+        [SerializeField] GameEvent PlayerInventoryChanged;
         [SerializeField] int inventorySize;
         [SerializeField] List<Gear> inventory;
         [SerializeField] EquipmentManager equipmentManager;
@@ -18,6 +19,7 @@ namespace BulletRPG.Items
             if(inventorySize > inventory.Count)
             {
                 inventory.Add(gear);
+                PlayerInventoryChanged.Raise();
                 return true;
             }
             return false;
@@ -28,21 +30,27 @@ namespace BulletRPG.Items
             if (inventory.Contains(gear))
             {
                 inventory.Remove(gear);
+                PlayerInventoryChanged.Raise();
             }
         }
 
-        public void EquipRandom()
+        public void Equip(Gear gear)
         {
             if(inventory.Count > 0)
             {
-                int random = Random.Range(0, inventory.Count);
-                equipmentManager.Equip(inventory[random]);
-                inventory.RemoveAt(random);
+                equipmentManager.Equip(gear);
+                inventory.Remove(gear);
+                PlayerInventoryChanged.Raise();
             }
             else
             {
                 Debug.Log("Nothing in inventory");
             }
+        }
+
+        public List<Gear> GetInventoryGearList()
+        {
+            return inventory;
         }
     }
 }

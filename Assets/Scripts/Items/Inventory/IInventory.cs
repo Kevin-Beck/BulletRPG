@@ -7,6 +7,8 @@ namespace BulletRPG.Items
     {
         public bool Add(Gear gear);
         public void Remove(Gear gear);
+        public List<Gear> GetInventoryGearList();
+        public void Equip(Gear gear);
     }
 }
 

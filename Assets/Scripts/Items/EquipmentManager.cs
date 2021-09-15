@@ -24,9 +24,9 @@ namespace BulletRPG.Items
     
         void Start()
         {            
-            myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "HeadSlot"), GearSlots.Head));
-            myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "LeftHandSlot"), GearSlots.OffHand));
-            myEquipmentSlots.Add(new EquipmentSlot(RecursiveFindChild(transform, "RightHandSlot"), GearSlots.MainHand));
+            myEquipmentSlots.Add(new EquipmentSlot(Utilities.RecursiveFindChild(transform, "HeadSlot"), GearSlots.Head));
+            myEquipmentSlots.Add(new EquipmentSlot(Utilities.RecursiveFindChild(transform, "LeftHandSlot"), GearSlots.OffHand));
+            myEquipmentSlots.Add(new EquipmentSlot(Utilities.RecursiveFindChild(transform, "RightHandSlot"), GearSlots.MainHand));
 
             for(int i = myEquipmentSlots.Count-1; i >= 0; i--)
             {
@@ -74,25 +74,6 @@ namespace BulletRPG.Items
                     Instantiate(gear.InGameObject, equipmentSlot.SpawnPoint.position, equipmentSlot.SpawnPoint.rotation, equipmentSlot.SpawnPoint);
                 }
             }
-        }
-        Transform RecursiveFindChild(Transform parent, string childName)
-        {
-            foreach (Transform child in parent)
-            {
-                if (child.name == childName)
-                {
-                    return child;
-                }
-                else
-                {
-                    Transform found = RecursiveFindChild(child, childName);
-                    if (found != null)
-                    {
-                        return found;
-                    }
-                }
-            }
-            return null;
         }
     }
 }
