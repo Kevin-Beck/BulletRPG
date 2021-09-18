@@ -33,23 +33,13 @@ Before entering a level the player may adjust their equipments and skills. After
 ## Todo List
 
 - TODO DECIDE ON INVENTORY SIZE AND SUCH TO CLEAN UP INVENTORY FUNCTIONALITY
+- Fix bug where if you switch weapons before animation function call occurs you get the projectile from the previous weapon (BIG BUG TODO)
+    - Above bug can be reproduced by switching to a fast cool down weapon, firing once, then when the cooldown allows you to shoot, clicking inventory to switch to long cooldown weapon. Upon clicking the fast cd weapon triggers a fire event, but the ui also switches the weapon, when the call to create the projectile occurs the new weapon's projectile is selected to fire. 
+- ~~Build enemy animations and attacks~~ always needing more
 
 - Tile system
-- ~~Build enemy animations and attacks~~ always needing more
-- Write guide to constructing new characters (animations, movement, interactor, animation event, triggering attacks, all required scripts)
-- ~~Build inventory system~~
-- ~~Add Items~~ always need more
-- ~~Fix Ice Dagger shooting, original Prefab orientation incorrect~~
-- Flesh out equipment slots on other characters
-- Build Characters
-- Add Other collectible resources (gold, gems etc)
-- ~~Create Item usability (if you're holding equipment, override original attack)~~
-- Figure out player preferences for saving data
-- Figure out loading and saving with player+equipments
-- ~~UI elements for inventory~~
 - Fix Inventory from rotating when equipping, (only delete the spot that was equipped, leave the rest alone)
 - Add UI element for shoot timer cooldown
-- Fix bug where if you switch weapons before animation function call occurs you get the projectile from the previous weapon (BIG BUG TODO)
 - UI elements for equipped objects
 - UI elements for picking skills/equipments/boosts
 - Objects for player character stats
@@ -61,8 +51,20 @@ Before entering a level the player may adjust their equipments and skills. After
     - Level 5
 - UI elements for character screen before levels
 - Main Menu
+- Flesh out equipment slots on other characters
+- Build Characters
+- Add Other collectible resources (gold, gems etc)
+- Figure out player preferences for saving data
+- Figure out loading and saving with player+equipments
+
+- ~~Build enemy animations and attacks~~ always needing more
+- ~~Add Items~~ always need more
+
+- ~~Fix Ice Dagger shooting, original Prefab orientation incorrect~~
+- ~~UI elements for inventory~~
 - ~~Player shoot~~
 - ~~IShoot Interface~~
 - ~~IHealth Interface and Healthbar flexibility~~
 - ~~Interactor needs to have IHealth and IMove~~
-
+- ~~Build inventory system~~
+- ~~Create Item usability (if you're holding equipment, override original attack)~~

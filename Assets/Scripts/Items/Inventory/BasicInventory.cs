@@ -7,7 +7,7 @@ namespace BulletRPG.Items
     public class BasicInventory : MonoBehaviour, IInventory
     {
         [SerializeField] GameEvent PlayerInventoryChanged;
-        [SerializeField] int inventorySize;
+        [SerializeField] public int inventorySize;
         [SerializeField] List<Gear> inventory;
         [SerializeField] EquipmentManager equipmentManager;
         private void Awake()
@@ -36,21 +36,23 @@ namespace BulletRPG.Items
 
         public void Equip(Gear gear)
         {
-            if(inventory.Count > 0)
+            if (inventory.Contains(gear))
             {
-                equipmentManager.Equip(gear);
                 inventory.Remove(gear);
+                equipmentManager.Equip(gear);
                 PlayerInventoryChanged.Raise();
+                Debug.Log("BasicInventory Equipped Object");
             }
-            else
-            {
-                Debug.Log("Nothing in inventory");
-            }
+
         }
 
         public List<Gear> GetInventoryGearList()
         {
             return inventory;
+        }
+        public int GetMaxCapacity()
+        {
+            return inventorySize;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BulletRPG.Items
     public class WeaponShoot : MonoBehaviour, IAttack
     {
         [SerializeField] RangedWeapon rangedWeapon;
-        
+        private Gear gearPlaceholder;
         private bool canShoot = true;
 
         PlayerInputActions playerInputActions;
@@ -24,37 +24,51 @@ namespace BulletRPG.Items
         private void Start()
         {
             playerInputActions.Player.Enable();
-            playerInputActions.Player.PrimaryAttack.performed += StartAttack;
+            playerInputActions.Player.PrimaryAttack.performed += StartAttackFromInput;
         }
-        public void StartAttack(InputAction.CallbackContext context)
+        public void StartAttackFromInput(InputAction.CallbackContext context)
         {
-            if (context.performed && canShoot)
+            StartAttackAnimation();
+        }
+        public void StartAttackAnimation()
+        {
+            if (canShoot)
             {
+                gearPlaceholder = rangedWeapon;
                 canShoot = false;
                 Invoke("CooldownReset", rangedWeapon.Cooldown);
                 Debug.Log("Attack");
                 animator.SetTrigger("Default Attack");
             }
         }
+        public void CooldownReset()
+        {
+            canShoot = true;
+            if (playerInputActions.Player.PrimaryAttack.ReadValue<float>() >= InputSystem.settings.defaultButtonPressPoint)
+            {
+                StartAttackAnimation();
+            }
+        }
         public void FireAttack()
         {
-            Debug.Log("Firing Actual Attack");
+            if(gearPlaceholder != rangedWeapon)
+            {
+                Debug.Log("Not firing, weapon switch occured");
+                return;
+            }
+            Debug.Log("Firing Projectile");
             var spawn = Instantiate(rangedWeapon.Projectile, transform.position, Quaternion.identity);
             spawn.transform.rotation = Quaternion.identity;
             spawn.GetComponent<BulletMovement>().BulletSpeed = rangedWeapon.Speed;
             spawn.transform.rotation = GetComponentInParent<Rigidbody>().transform.rotation;
-
         }
         public void OnDestroy()
         {
             StopAllCoroutines();
-            playerInputActions.Player.PrimaryAttack.performed -= StartAttack;
+            playerInputActions.Player.PrimaryAttack.performed -= StartAttackFromInput;
         }
+       
 
-        public void CooldownReset()
-        {
-            canShoot = true;
-        }
     }
 
 }

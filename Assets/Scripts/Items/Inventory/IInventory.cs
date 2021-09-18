@@ -9,6 +9,8 @@ namespace BulletRPG.Items
         public void Remove(Gear gear);
         public List<Gear> GetInventoryGearList();
         public void Equip(Gear gear);
+
+        public int GetMaxCapacity();
     }
 }
 

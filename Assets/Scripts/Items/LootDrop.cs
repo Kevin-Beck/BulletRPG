@@ -10,8 +10,10 @@ namespace BulletRPG.Items
         public Gear myGear;
         public override void Interact(Interactor agent)
         {
-            agent.GetComponent<IInventory>().Add(myGear);
-            Destroy(gameObject);
+            if (agent.GetComponent<IInventory>().Add(myGear))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

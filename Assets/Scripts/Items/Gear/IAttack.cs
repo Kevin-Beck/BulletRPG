@@ -7,7 +7,7 @@ namespace BulletRPG.Items
 {
     public interface IAttack
     {
-        public void StartAttack(InputAction.CallbackContext context);
+        public void StartAttackFromInput(InputAction.CallbackContext context);
         public void FireAttack();
     }
 }
