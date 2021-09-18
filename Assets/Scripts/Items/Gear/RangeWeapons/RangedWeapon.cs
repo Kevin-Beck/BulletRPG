@@ -9,6 +9,7 @@ namespace BulletRPG.Items
     [CreateAssetMenu(fileName = "NewGear", menuName = "Item/Ranged Weapon")]
     public class RangedWeapon : Gear
     {
+        [Header("Ranged Weapon Elements")]
         [SerializeField] public GameObject Projectile;
         [SerializeField] public float Cooldown;
         [SerializeField] public float Speed;

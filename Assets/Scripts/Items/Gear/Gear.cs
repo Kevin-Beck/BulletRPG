@@ -7,6 +7,7 @@ namespace BulletRPG.Items
 {
     public abstract class Gear : ScriptableObject
     {
+        [Header("Core Gear Elements")]
         public string ItemName;
         public string ItemDescription;
         [SerializeField] public GearSlots Slot;

@@ -31,24 +31,18 @@ Before entering a level the player may adjust their equipments and skills. After
 
 
 ## Todo List
-
-- TODO DECIDE ON INVENTORY SIZE AND SUCH TO CLEAN UP INVENTORY FUNCTIONALITY
-- Fix bug where if you switch weapons before animation function call occurs you get the projectile from the previous weapon (BIG BUG TODO)
-    - Above bug can be reproduced by switching to a fast cool down weapon, firing once, then when the cooldown allows you to shoot, clicking inventory to switch to long cooldown weapon. Upon clicking the fast cd weapon triggers a fire event, but the ui also switches the weapon, when the call to create the projectile occurs the new weapon's projectile is selected to fire. 
+ 
 - ~~Build enemy animations and attacks~~ always needing more
-
+- ~~Add Items~~ always need more
+- Create structure for each item slot and what they add to the player
+- Create integration for those item structures
 - Tile system
 - Fix Inventory from rotating when equipping, (only delete the spot that was equipped, leave the rest alone)
 - Add UI element for shoot timer cooldown
-- UI elements for equipped objects
 - UI elements for picking skills/equipments/boosts
 - Objects for player character stats
 - System for unlocking new playable characters / growing characters from base eggs
 - Build out level terrains, build out level cameras
-    - Level 2
-    - Level 3
-    - Level 4
-    - Level 5
 - UI elements for character screen before levels
 - Main Menu
 - Flesh out equipment slots on other characters
@@ -57,9 +51,10 @@ Before entering a level the player may adjust their equipments and skills. After
 - Figure out player preferences for saving data
 - Figure out loading and saving with player+equipments
 
-- ~~Build enemy animations and attacks~~ always needing more
-- ~~Add Items~~ always need more
 
+- ~~UI elements for equipped objects~~
+- ~~TODO DECIDE ON INVENTORY SIZE AND SUCH TO CLEAN UP INVENTORY FUNCTIONALITY~~
+- ~~Fix bug where if you switch weapons before animation function call occurs you get the projectile from the previous weapon (BIG BUG TODO)~~   
 - ~~Fix Ice Dagger shooting, original Prefab orientation incorrect~~
 - ~~UI elements for inventory~~
 - ~~Player shoot~~
