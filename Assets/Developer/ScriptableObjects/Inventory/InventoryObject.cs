@@ -8,14 +8,17 @@ using UnityEngine;
 
 namespace BulletRPG.Items
 {
+    public delegate void Notify();
+
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Item/InventoryObject")]
     public class InventoryObject : ScriptableObject
     {
         public string savePath;
         public ItemDatabaseObject database;
         public Inventory Container;
-        public GameEvent inventoryChanged;
         public int InventoryMaxSize = 5;
+
+        public event Notify PlayerInventoryChanged; 
         public bool AddItem(Item _item, int _amount)
         {
             if (Container.Items.Count >= InventoryMaxSize)
@@ -25,33 +28,33 @@ namespace BulletRPG.Items
             }
             for (int i = 0; i < Container.Items.Count; i++)
             {
-                if (Container.Items[i].item == _item)
+                if (Container.Items[i].item.Id == _item.Id)
                 {
                     Container.Items[i].AddAmount(_amount);
                     Debug.Log($"Added {_amount}x {_item.Name} to existing stack");
-                    inventoryChanged.Raise();
+                    PlayerInventoryChanged?.Invoke();
                     return true;
                 }
             }
 
             Container.Items.Add(new InventorySlot(_item.Id, _item, _amount));
             Debug.Log($"Added {_amount}x {_item.Name} to new stack");
-            inventoryChanged.Raise();
+            PlayerInventoryChanged?.Invoke();
             return true;
         }
         [ContextMenu("Save")]
         public void Save()
         {
-            //string saveData = JsonUtility.ToJson(this, true);
-            //BinaryFormatter bf = new BinaryFormatter();
-            //FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
-            //bf.Serialize(file, saveData);
-            //file.Close();
+            string saveData = JsonUtility.ToJson(this, true);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
+            bf.Serialize(file, saveData);
+            file.Close();
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, Container);
-            stream.Close();
+            //IFormatter formatter = new BinaryFormatter();
+            //Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
+            //formatter.Serialize(stream, Container);
+            //stream.Close();
             Debug.Log($"Inventory: {name} saved to: {savePath}");
         }
         [ContextMenu("Load")]
@@ -59,28 +62,28 @@ namespace BulletRPG.Items
         {
             if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
             {
-                //BinaryFormatter bf = new BinaryFormatter();
-                //FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath), FileMode.Open);
-                //JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
-                //file.Close();
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath), FileMode.Open);
+                JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+                file.Close();
 
-                IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
-                Container = (Inventory)formatter.Deserialize(stream);
-                for (int i = 0; i < Container.Items.Count; i++)
-                {
-                    Container.Items[i].UpdateSlot(Container.Items[i].ID, Container.Items[i].item, Container.Items[i].amount);
-                }
-                stream.Close();
+                //IFormatter formatter = new BinaryFormatter();
+                //Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
+                //Container = (Inventory)formatter.Deserialize(stream);
+                //for (int i = 0; i < Container.Items.Count; i++)
+                //{
+                //    Container.Items[i].UpdateSlot(Container.Items[i].ID, Container.Items[i].item, Container.Items[i].amount);
+                //}
+                //stream.Close();
                 Debug.Log($"Inventory: {name} loaded from: {savePath}");
-                inventoryChanged.Raise();
+                PlayerInventoryChanged.Invoke();
             }
         }
         [ContextMenu("Clear")]
         public void Clear()
         {
             Container.Items.Clear();
-            inventoryChanged.Raise();
+            PlayerInventoryChanged.Invoke();
         }
     }
     [System.Serializable]

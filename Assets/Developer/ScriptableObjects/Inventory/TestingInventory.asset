@@ -16,5 +16,4 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
   Container:
     Items: []
-  inventoryChanged: {fileID: 11400000, guid: 8920a258e39f0d64d8b1258025d93550, type: 2}
   InventoryMaxSize: 21

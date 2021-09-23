@@ -32,6 +32,7 @@ Before entering a level the player may adjust their equipments and skills. After
 
 ## Todo List
  
+- Serialization on GameEvent on inventory object fails, if you use inventory, then close and restart, the UnityID for the event changes. Just use different delegate system instead of game events
 - ~~Build enemy animations and attacks~~ always needing more
 - ~~Add Items~~ always need more
 - Create structure for each item slot and what they add to the player

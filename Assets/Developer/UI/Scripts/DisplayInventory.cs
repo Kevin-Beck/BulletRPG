@@ -18,6 +18,8 @@ namespace BulletRPG.UI
             {
                 inventorySlotButtons[i].SetItemDatabaseObject(inventory.database);
             }
+
+            inventory.PlayerInventoryChanged += UpdateDisplay;
         }
         private void Start()
         {

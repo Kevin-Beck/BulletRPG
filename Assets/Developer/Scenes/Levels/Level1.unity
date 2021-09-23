@@ -6111,46 +6111,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 95579031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &766017413 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4438283577197100756, guid: be790ededd96ee046b332e3bd2a17762,
-    type: 3}
-  m_PrefabInstance: {fileID: 95579031}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766017411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aed24cdf59cc5b4f82d2e08f9b753e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &766017415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766017411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c968a626da1793540a61094d00513764, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 8920a258e39f0d64d8b1258025d93550, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 766017413}
-        m_TargetAssemblyTypeName: BulletRPG.UI.DisplayInventory, Assembly-CSharp
-        m_MethodName: UpdateDisplay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &968016251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6368,7 +6328,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh283624
+  m_Name: pb_Mesh19766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
