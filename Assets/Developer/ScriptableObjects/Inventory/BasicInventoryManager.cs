@@ -8,7 +8,6 @@ namespace BulletRPG.Items
     {
         [SerializeField] InventoryObject inventory;
         [SerializeField] int MaxInventorySize;
-        public GameEvent inventoryChangedEvent;
 
         public bool AddToInventory(ItemObject item, int amount)
         {
@@ -21,7 +20,6 @@ namespace BulletRPG.Items
             }
             inventory.AddItem(item, amount);
             Debug.Log($"Added {item.ItemName}x{amount}");
-            inventoryChangedEvent.Raise();
             return true;
         }
     }

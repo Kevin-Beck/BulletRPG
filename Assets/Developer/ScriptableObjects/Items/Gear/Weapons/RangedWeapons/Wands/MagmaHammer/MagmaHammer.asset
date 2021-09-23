@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
   m_Name: MagmaHammer
   m_EditorClassIdentifier: 
-  ItemName: RedWand
+  ItemName: MagmaHammer
   ItemType: 1
   ItemDescription: Firey and fire burns
   Sprite: {fileID: 21300000, guid: 33e82704c74834d9290ecbba2b001b95, type: 3}

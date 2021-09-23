@@ -1,16 +1,35 @@
+using BulletRPG.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameSettings : MonoBehaviour
 {
     [Range(30, 250)]
     [SerializeField] int targetFrameRate;
-    // Start is called before the first frame update
+    public InventoryObject playerInventory;
+    PlayerInputActions playerInputActions;
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+    }
     void Start()
     {
         Application.targetFrameRate = targetFrameRate;
         Debug.Log(Application.companyName);
-    }  
+        playerInputActions.Player.Enable();
+        playerInputActions.Player.SaveInventory.performed += SavePlayerInventory;
+        playerInputActions.Player.LoadInventory.performed += LoadPlayerInventory;
+
+    }
+    public void SavePlayerInventory(InputAction.CallbackContext context)
+    {
+        playerInventory.Save();
+    }
+    public void LoadPlayerInventory(InputAction.CallbackContext context)
+    {
+        playerInventory.Load();
+    }
 
 }
