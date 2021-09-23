@@ -15,10 +15,6 @@ MonoBehaviour:
   savePath: /playerinventory.save
   database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
   Container:
-  - ID: 0
-    item: {fileID: 11400000, guid: 22e8fc6417fed67428546e9159556152, type: 2}
-    amount: 4
-  - ID: 1
-    item: {fileID: 11400000, guid: aad008c8d0be3814495e07edd934efaa, type: 2}
-    amount: 1
+    Items: []
   inventoryChanged: {fileID: 11400000, guid: 8920a258e39f0d64d8b1258025d93550, type: 2}
+  InventoryMaxSize: 21

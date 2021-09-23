@@ -4,23 +4,26 @@ using UnityEngine;
 
 namespace BulletRPG.Items
 {
+    [RequireComponent(typeof(Collider))]
     public class BasicInventoryManager : MonoBehaviour
     {
         [SerializeField] InventoryObject inventory;
-        [SerializeField] int MaxInventorySize;
 
-        public bool AddToInventory(ItemObject item, int amount)
+        private void OnTriggerEnter(Collider other)
         {
-            if (inventory.Container.Count >= MaxInventorySize )
-                return false;
-            
-            if(amount < 1)
+            var item = other.GetComponent<LootableItem>();
+            if (item)
             {
-                Debug.LogWarning($"Amount set to 0 when adding {item.ItemName}");
+                if (item.amount < 1)
+                {
+                    Debug.LogWarning($"Amount set to 0 when adding {item.itemObject}");
+                }
+                if (inventory.AddItem(new Item(item.itemObject), item.amount))
+                {
+                    Destroy(other.gameObject);
+                }
+
             }
-            inventory.AddItem(item, amount);
-            Debug.Log($"Added {item.ItemName}x{amount}");
-            return true;
         }
     }
 }

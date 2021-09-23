@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2231335643708388777}
   - component: {fileID: 2231335643708388772}
   - component: {fileID: 176226582920866455}
-  - component: {fileID: 176226582920866454}
   - component: {fileID: 1447473140063593642}
   - component: {fileID: 6672162848600631206}
   m_Layer: 9
@@ -126,18 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &176226582920866454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231335643708388770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81149c021a2fed0428ec5edd3a9f749c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1447473140063593642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbcf38c7211543438ad36025495b5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInventoryChanged: {fileID: 0}
-  inventorySize: 0
-  inventory: []
-  equipmentManager: {fileID: 0}
+  inventory: {fileID: 11400000, guid: adc612b24b21c84479ce14d0920301b1, type: 2}
+  MaxInventorySize: 0
 --- !u!114 &6672162848600631206
 MonoBehaviour:
   m_ObjectHideFlags: 0

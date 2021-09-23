@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
   m_Name: IceDagger
   m_EditorClassIdentifier: 
+  Id: 0
   ItemName: IceDagger
   ItemType: 1
   ItemDescription: This is the Star Wand
-  Sprite: {fileID: 21300000, guid: 7c554f13a30254ed69540ffb9e90255b, type: 3}
+  sprite: {fileID: 21300000, guid: 036e0a9856c214f478367a052def8fea, type: 3}
   Color: {r: 0, g: 0.8157754, b: 1, a: 1}
   LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
     type: 3}

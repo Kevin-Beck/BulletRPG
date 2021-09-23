@@ -11,23 +11,31 @@ namespace BulletRPG.UI
 
         Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             inventorySlotButtons = GetComponentsInChildren<InventorySlotButton>();
+            for(int i = 0; i < inventorySlotButtons.Length; i++)
+            {
+                inventorySlotButtons[i].SetItemDatabaseObject(inventory.database);
+            }
+        }
+        private void Start()
+        {
             UpdateDisplay();
         }
         public void UpdateDisplay()
         {
-            for(int i = 0; i < inventory.Container.Count; i++)
+            for(int i = 0; i < inventory.InventoryMaxSize; i++)
             {
-                inventorySlotButtons[i].SetInventorySlot(inventory.Container[i]);
+                if(i < inventory.Container.Items.Count)
+                {
+                    inventorySlotButtons[i].SetInventorySlot(inventory.Container.Items[i]);
+                }
+                else
+                {
+                    inventorySlotButtons[i].SetInventorySlot(null);
+                }
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

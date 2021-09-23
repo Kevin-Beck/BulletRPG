@@ -684,7 +684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlot:
-    item: {fileID: 0}
+    ID: 0
+    item:
+      Name: 
+      Description: 
+      Id: -1
     amount: 0
 --- !u!114 &3344208396853709392
 MonoBehaviour:

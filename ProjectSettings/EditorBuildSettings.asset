@@ -8,11 +8,14 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Imported/Low Poly Modular Terrain Pack/Demo/Demo_Scenes/Demo_02.unity
     guid: 8305580f20d81f547af8aca3882be021
-  - enabled: 1
+  - enabled: 0
     path: Assets/Imported/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Dark/Dark -
       Game.unity
     guid: 3e961f553cad04680b4e67a97dbaf86a
+  - enabled: 1
+    path: Assets/Developer/Scenes/Levels/Level1.unity
+    guid: 68623c3095f245141b7831395388895e
   m_configObjects: {}

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc974f5381cf0834e95d3ae960ea96a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myItemReference: {fileID: 11400000, guid: aad008c8d0be3814495e07edd934efaa, type: 2}
+  itemObject: {fileID: 11400000, guid: aad008c8d0be3814495e07edd934efaa, type: 2}
   amount: 1
 --- !u!95 &-2292156832096075731
 Animator:

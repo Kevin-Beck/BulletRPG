@@ -16,6 +16,7 @@ namespace BulletRPG.UI
         private TextMeshProUGUI tooltiptitle;
         private TextMeshProUGUI tooltiptext;
         private GameObject ToolTip;
+        private ItemDatabaseObject database;
         private void Awake()
         {
             ToolTip = Utilities.RecursiveFindChild(transform, "ToolTip").gameObject;
@@ -23,13 +24,14 @@ namespace BulletRPG.UI
             counter = Utilities.RecursiveFindChild(transform, "Counter").GetComponent<TextMeshProUGUI>();
             tooltiptitle = Utilities.RecursiveFindChild(transform, "ToolTipTitle").GetComponent<TextMeshProUGUI>();
             tooltiptext = Utilities.RecursiveFindChild(transform, "ToolTipText").GetComponent<TextMeshProUGUI>();
+        }
+        private void Start()
+        {
             UpdateButton();
         }
-
         private void UpdateButton()
         {
-            var item = inventorySlot.item;
-            if(item == null)
+            if (inventorySlot == null || inventorySlot.item.Id < 0)
             {
                 SetIconSpriteAndColor(null, Color.clear);
                 SetToolTipTitleAndText("", "");
@@ -38,10 +40,12 @@ namespace BulletRPG.UI
             }
             else
             {
+                var gameItem = inventorySlot.item;
+                var referenceObject = database.GetItem[gameItem.Id];
+                SetIconSpriteAndColor(referenceObject.sprite, referenceObject.Color); // references the scriptable object
+                SetToolTipTitleAndText(gameItem.Name, gameItem.Description); // references the actual object instance
+                SetCounterText(inventorySlot.amount.ToString());
                 ToolTip.SetActive(true);
-                SetIconSpriteAndColor(item.Sprite, item.Color);
-                SetToolTipTitleAndText(item.name, item.ItemDescription);
-                SetCounterText(inventorySlot.amount.ToString());                
             }
         }
         private void SetToolTipTitleAndText(string title, string text)
@@ -63,6 +67,11 @@ namespace BulletRPG.UI
             inventorySlot = slot;
             UpdateButton();
         }
+        public void SetItemDatabaseObject(ItemDatabaseObject databaseObject)
+        {
+            database = databaseObject;
+        }
+        
     }
 }
 
