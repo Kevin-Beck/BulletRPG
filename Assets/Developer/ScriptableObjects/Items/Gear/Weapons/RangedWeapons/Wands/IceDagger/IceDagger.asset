@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
+  m_Name: IceDagger
+  m_EditorClassIdentifier: 
+  ItemName: IceDagger
+  ItemType: 1
+  ItemDescription: This is the Star Wand
+  Sprite: {fileID: 21300000, guid: 7c554f13a30254ed69540ffb9e90255b, type: 3}
+  Color: {r: 0, g: 0.8157754, b: 1, a: 1}
+  LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
+    type: 3}
+  Slot: 0
+  EquippedInGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
+    type: 3}
+  Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
+    type: 3}
+  Cooldown: 5
+  Speed: 5
+  DamageMultiplier: 5
