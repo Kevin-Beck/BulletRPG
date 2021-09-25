@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 0
   ItemName: IceDagger
   ItemType: 1
-  ItemDescription: This is the Star Wand
+  ItemDescription: green
   sprite: {fileID: 21300000, guid: 036e0a9856c214f478367a052def8fea, type: 3}
   Color: {r: 0, g: 0.8157754, b: 1, a: 1}
   LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
@@ -23,6 +23,11 @@ MonoBehaviour:
   Slot: 0
   EquippedInGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
     type: 3}
+  Buffs:
+  - attribute: 2
+    buffValue: 0
+    minValue: 10
+    maxValue: 20
   Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
     type: 3}
   Cooldown: 5

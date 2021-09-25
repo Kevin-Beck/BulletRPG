@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Spawner : MonoBehaviour
 {
     public float range = 10.0f;
-    public List<Gear> items;
+    public List<GearObject> items;
     
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {

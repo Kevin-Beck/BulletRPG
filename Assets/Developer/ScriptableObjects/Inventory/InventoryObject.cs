@@ -16,32 +16,50 @@ namespace BulletRPG.Items
         public string savePath;
         public ItemDatabaseObject database;
         public Inventory Container;
-        public int InventoryMaxSize = 5;
 
-        public event Notify PlayerInventoryChanged; 
+        public event Notify PlayerInventoryChanged;
+
         public bool AddItem(Item _item, int _amount)
         {
-            if (Container.Items.Count >= InventoryMaxSize)
+            // TODO inventory is casting the gear as an item and we lose Gear specific stats and instead get item
+            //// if the item is not stackable
+            //if (_item.itemType == ItemType.Gear && ((Gear)_item).buffs.Length > 0)
+            //{
+            //    Container.Items.Add(new InventorySlot(_item.Id, _item, _amount));
+            //    Debug.Log($"Added {_amount}x {_item.Name} to new stack because it is unstackable");
+            //    PlayerInventoryChanged?.Invoke();
+            //    return true;
+            //}
+
+            for (int i = 0; i < Container.Items.Length; i++)
             {
-                Debug.Log("Inventory is full");
-                return false;
-            }
-            for (int i = 0; i < Container.Items.Count; i++)
-            {
-                if (Container.Items[i].item.Id == _item.Id)
+                if (Container.Items[i].ID == _item.Id)
                 {
                     Container.Items[i].AddAmount(_amount);
-                    Debug.Log($"Added {_amount}x {_item.Name} to existing stack");
                     PlayerInventoryChanged?.Invoke();
                     return true;
                 }
             }
-
-            Container.Items.Add(new InventorySlot(_item.Id, _item, _amount));
-            Debug.Log($"Added {_amount}x {_item.Name} to new stack");
-            PlayerInventoryChanged?.Invoke();
+            AddToFirstEmptySlot(_item, _amount);
             return true;
         }
+        private InventorySlot AddToFirstEmptySlot(Item item, int amount)
+        {
+            for (int i = 0; i < Container.Items.Length; i++)
+            {
+                if (Container.Items[i].ID <= -1)
+                {
+                    Container.Items[i].UpdateSlot(item.Id, item, amount);
+                    Debug.Log($"Added {amount}x {item} to new stack");
+                    PlayerInventoryChanged?.Invoke();
+                    return Container.Items[i];
+                }
+            }
+            // full inventory here!
+            Debug.Log("Full Inventory not handled");
+            return null;
+        }
+
         [ContextMenu("Save")]
         public void Save()
         {
@@ -76,20 +94,21 @@ namespace BulletRPG.Items
                 //}
                 //stream.Close();
                 Debug.Log($"Inventory: {name} loaded from: {savePath}");
+                database = Resources.Load<ItemDatabaseObject>("ItemDatabase");
                 PlayerInventoryChanged.Invoke();
             }
         }
         [ContextMenu("Clear")]
         public void Clear()
         {
-            Container.Items.Clear();
+            Container.Items = new InventorySlot[Container.Items.Length];
             PlayerInventoryChanged.Invoke();
         }
     }
     [System.Serializable]
     public class Inventory
     {
-        public List<InventorySlot> Items= new List<InventorySlot>();
+        public InventorySlot[] Items = new InventorySlot[21];
     }
     [System.Serializable]
     public class InventorySlot

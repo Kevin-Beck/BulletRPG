@@ -8,8 +8,8 @@ namespace BulletRPG.Items
         public bool AddToInventory(ItemObject itemObject);
         public bool RemoveFromInventory(ItemObject itemObject);
         public List<ItemObject> GetInventoryItemObjectList();
-        public bool Equip(Gear gear);
-        public bool Unequip(Gear gear);
+        public bool Equip(GearObject gear);
+        public bool Unequip(GearObject gear);
         public bool Drop(ItemObject itemObject);
 
         public int GetMaxCapacity();

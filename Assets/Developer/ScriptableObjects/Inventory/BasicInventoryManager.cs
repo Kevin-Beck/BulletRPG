@@ -9,6 +9,10 @@ namespace BulletRPG.Items
     {
         [SerializeField] InventoryObject inventory;
 
+        private void Awake()
+        {
+            inventory.database = Resources.Load<ItemDatabaseObject>("ItemDatabase");
+        }
         private void OnTriggerEnter(Collider other)
         {
             var item = other.GetComponent<LootableItem>();
@@ -24,6 +28,10 @@ namespace BulletRPG.Items
                 }
 
             }
+        }
+        private void OnApplicationQuit()
+        {
+            inventory.Container.Items = new InventorySlot[21];
         }
     }
 }

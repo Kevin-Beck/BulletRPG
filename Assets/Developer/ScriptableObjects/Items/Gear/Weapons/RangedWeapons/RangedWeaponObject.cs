@@ -6,13 +6,13 @@ using UnityEngine;
 namespace BulletRPG.Items.RangedWeapons
 {
     [Serializable]
-    public abstract class RangedWeaponObject : Gear
+    public abstract class RangedWeaponObject : GearObject
     {
         [Header("RangedWeapon Data")]
-        [SerializeField] public GameObject Projectile;
-        [SerializeField] public float Cooldown;
-        [SerializeField] public float Speed;
-        [SerializeField] public float DamageMultiplier;
+        public GameObject Projectile;
+        public float Cooldown;
+        public float Speed;
+        public float DamageMultiplier;
     }
 }
 

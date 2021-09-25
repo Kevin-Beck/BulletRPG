@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 1
   ItemName: MagmaHammer
   ItemType: 1
-  ItemDescription: Firey and fire burns
+  ItemDescription: magma hammer text
   sprite: {fileID: 21300000, guid: 83000609c3abf487c9accb7828f41ee6, type: 3}
   Color: {r: 1, g: 0, b: 0, a: 1}
   LootObject: {fileID: 2733858270270533154, guid: 6f525adf997b80a4c9dcd328ef63c777,
@@ -23,6 +23,7 @@ MonoBehaviour:
   Slot: 0
   EquippedInGameObject: {fileID: 5574695480326562781, guid: 4bc3fc3e5e527c14696aaeb45ed25547,
     type: 3}
+  Buffs: []
   Projectile: {fileID: 9102322668835006777, guid: 433a69d6ced70074b8e0a54250dcfbc7,
     type: 3}
   Cooldown: 5

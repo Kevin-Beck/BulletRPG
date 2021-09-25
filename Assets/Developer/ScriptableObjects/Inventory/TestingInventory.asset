@@ -15,5 +15,151 @@ MonoBehaviour:
   savePath: /playerinventory.save
   database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
   Container:
-    Items: []
-  InventoryMaxSize: 21
+    Items:
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0
+    - ID: -1
+      item:
+        Name: 
+        Description: 
+        Id: 0
+        itemType: 0
+      amount: 0

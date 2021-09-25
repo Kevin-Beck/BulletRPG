@@ -8,7 +8,7 @@ namespace BulletRPG.Items.RangedWeapons
     public class WeaponShoot : MonoBehaviour, IAttack
     {
         [SerializeField] RangedWeaponObject rangedWeapon;
-        private Gear gearPlaceholder;
+        private GearObject gearPlaceholder;
         private bool canShoot = true;
 
         PlayerInputActions playerInputActions;

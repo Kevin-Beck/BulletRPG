@@ -12,9 +12,9 @@ namespace BulletRPG.Items
 
         public void OnAfterDeserialize()
         {
-            GetItem = new Dictionary<int, ItemObject>();
             for(int i = 0; i < Items.Length; i++)
             {
+                Debug.Log("Database Saving: " + Items[i].ItemName + " with id: " + i);
                 Items[i].Id = i;
                 GetItem.Add(i, Items[i]);
             }
