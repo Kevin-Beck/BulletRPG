@@ -290,8 +290,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 5448816217687990797}
   - component: {fileID: -8665039225509087470}
   - component: {fileID: 3344208396853709392}
+  - component: {fileID: 5545152726245557933}
   m_Layer: 5
   m_Name: InventorySlotButton
   m_TagString: Untagged
@@ -683,13 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c3e20a33fab7b4dbe303a79e080ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlot:
-    ID: 0
-    item:
-      Name: 
-      Description: 
-      Id: -1
-    amount: 0
 --- !u!114 &3344208396853709392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +698,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: {fileID: 614353792304252142}
   fadeTime: 0.3
+--- !u!114 &5545152726245557933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604307558602649985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &6604307559381473017
 GameObject:
   m_ObjectHideFlags: 0

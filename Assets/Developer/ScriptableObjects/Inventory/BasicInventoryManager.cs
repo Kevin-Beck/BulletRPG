@@ -15,14 +15,14 @@ namespace BulletRPG.Items
         }
         private void OnTriggerEnter(Collider other)
         {
-            var item = other.GetComponent<LootableItem>();
-            if (item)
+            var gear = other.GetComponent<LootableItem>();
+            if (gear)
             {
-                if (item.amount < 1)
+                if (gear.amount < 1)
                 {
-                    Debug.LogWarning($"Amount set to 0 when adding {item.itemObject}");
+                    Debug.LogWarning($"Amount set to 0 when adding {gear.gearObject}");
                 }
-                if (inventory.AddItem(new Item(item.itemObject), item.amount))
+                if (inventory.AddItem(new Gear(gear.gearObject), gear.amount))
                 {
                     Destroy(other.gameObject);
                 }
@@ -31,7 +31,7 @@ namespace BulletRPG.Items
         }
         private void OnApplicationQuit()
         {
-            inventory.Container.Items = new InventorySlot[21];
+            inventory.Container.inventorySlots = new InventorySlot[21];
         }
     }
 }

@@ -15,151 +15,172 @@ MonoBehaviour:
   savePath: /playerinventory.save
   database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
   Container:
-    Items:
+    inventorySlots:
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0
     - ID: -1
-      item:
+      gear:
         Name: 
         Description: 
         Id: 0
         itemType: 0
+        buffs: []
       amount: 0

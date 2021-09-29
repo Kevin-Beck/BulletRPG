@@ -56,6 +56,10 @@ namespace BulletRPG.Items
         {
             buffValue = UnityEngine.Random.Range(minValue, maxValue);
         }
+        public string Stringify()
+        {
+            return $"{attribute}: {buffValue}"; 
+        }
     }
 
     public enum Attributes

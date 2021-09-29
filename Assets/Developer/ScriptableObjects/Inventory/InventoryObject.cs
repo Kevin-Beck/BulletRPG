@@ -19,45 +19,65 @@ namespace BulletRPG.Items
 
         public event Notify PlayerInventoryChanged;
 
-        public bool AddItem(Item _item, int _amount)
+        public bool AddItem(Gear gear, int _amount)
         {
-            // TODO inventory is casting the gear as an item and we lose Gear specific stats and instead get item
-            //// if the item is not stackable
-            //if (_item.itemType == ItemType.Gear && ((Gear)_item).buffs.Length > 0)
-            //{
-            //    Container.Items.Add(new InventorySlot(_item.Id, _item, _amount));
-            //    Debug.Log($"Added {_amount}x {_item.Name} to new stack because it is unstackable");
-            //    PlayerInventoryChanged?.Invoke();
-            //    return true;
-            //}
-
-            for (int i = 0; i < Container.Items.Length; i++)
+            // if the item is not stackable
+            if (gear.buffs.Length > 0)
             {
-                if (Container.Items[i].ID == _item.Id)
+                AddToFirstEmptySlot(gear, _amount);
+                PlayerInventoryChanged?.Invoke();
+                return true;
+            }
+
+            for (int i = 0; i < Container.inventorySlots.Length; i++)
+            {
+                if (Container.inventorySlots[i].ID == gear.Id)
                 {
-                    Container.Items[i].AddAmount(_amount);
+                    Container.inventorySlots[i].AddAmount(_amount);
                     PlayerInventoryChanged?.Invoke();
                     return true;
                 }
             }
-            AddToFirstEmptySlot(_item, _amount);
+            AddToFirstEmptySlot(gear, _amount);
             return true;
         }
-        private InventorySlot AddToFirstEmptySlot(Item item, int amount)
+        private InventorySlot AddToFirstEmptySlot(Gear item, int amount)
         {
-            for (int i = 0; i < Container.Items.Length; i++)
+            for (int i = 0; i < Container.inventorySlots.Length; i++)
             {
-                if (Container.Items[i].ID <= -1)
+                if (Container.inventorySlots[i].ID <= -1)
                 {
-                    Container.Items[i].UpdateSlot(item.Id, item, amount);
+                    Container.inventorySlots[i].UpdateSlot(item.Id, item, amount);
                     Debug.Log($"Added {amount}x {item} to new stack");
                     PlayerInventoryChanged?.Invoke();
-                    return Container.Items[i];
+                    return Container.inventorySlots[i];
                 }
             }
             // full inventory here!
             Debug.Log("Full Inventory not handled");
             return null;
+        }
+        public void MoveItem(InventorySlot firstSlot, InventorySlot secondSlot)
+        {
+            InventorySlot temp = new InventorySlot(secondSlot.ID, secondSlot.gear, secondSlot.amount);
+            secondSlot.UpdateSlot(firstSlot.ID, firstSlot.gear, firstSlot.amount);
+            firstSlot.UpdateSlot(temp.ID, temp.gear, temp.amount);
+            PlayerInventoryChanged?.Invoke();
+        }
+        public bool RemoveItem(Gear _gear)
+        {
+            for (int i = 0; i < Container.inventorySlots.Length; i++)
+            {
+                if(Container.inventorySlots[i].gear == _gear)
+                {
+                    Container.inventorySlots[i].UpdateSlot(-1, null, 0);
+                    Instantiate(database.gearObjects[_gear.Id].LootObject, Vector3.zero, Quaternion.identity);
+                    PlayerInventoryChanged?.Invoke();
+                    return true;
+                }
+            }
+            Debug.Log("Failed To Remove Item");
+            return false;
         }
 
         [ContextMenu("Save")]
@@ -101,37 +121,37 @@ namespace BulletRPG.Items
         [ContextMenu("Clear")]
         public void Clear()
         {
-            Container.Items = new InventorySlot[Container.Items.Length];
+            Container.inventorySlots = new InventorySlot[Container.inventorySlots.Length];
             PlayerInventoryChanged.Invoke();
         }
     }
     [System.Serializable]
     public class Inventory
     {
-        public InventorySlot[] Items = new InventorySlot[21];
+        public InventorySlot[] inventorySlots = new InventorySlot[21];
     }
     [System.Serializable]
     public class InventorySlot
     {
-        public int ID;
-        public Item item;
+        public int ID = -1;
+        public Gear gear = null;
         public int amount;
         public InventorySlot()
         {
             ID = -1;
-            item = null;
+            gear = null;
             amount = 0;
         }
-        public InventorySlot(int _id, Item _item, int _amount)
+        public InventorySlot(int _id, Gear _gear, int _amount)
         {
             ID = _id;
-            item = _item;
+            gear = _gear;
             amount = _amount;
         }
-        public void UpdateSlot(int _id, Item _item, int _amount)
+        public void UpdateSlot(int _id, Gear _gear, int _amount)
         {
             ID = _id;
-            item = _item;
+            gear = _gear;
             amount = _amount;
         }
         public void AddAmount(int value)
