@@ -359,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4508015502312513529}
   - component: {fileID: 4506734015328846469}
-  - component: {fileID: 4438283577197100756}
+  - component: {fileID: 7287202665477936231}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -400,7 +400,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4438283577197100756
+--- !u!114 &7287202665477936231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4438283577197100757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aed24cdf59cc5b4f82d2e08f9b753e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 272cd669bafa94741b97bd660702a94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: adc612b24b21c84479ce14d0920301b1, type: 2}

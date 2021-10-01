@@ -11,7 +11,6 @@ namespace BulletRPG.Characters.Player
     {
         IMove movement;
         IHealth health;
-        IInventoryManager inventoryManager;
 
         [SerializeField] StatBlockObject currentStats; // changes with upgrades etc
         CharacterStats baseStats; // stats based on this character

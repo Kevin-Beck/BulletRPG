@@ -8,10 +8,9 @@ namespace BulletRPG.Items
     public class BasicInventoryManager : MonoBehaviour
     {
         [SerializeField] InventoryObject inventory;
-
         private void Awake()
         {
-            inventory.database = Resources.Load<ItemDatabaseObject>("ItemDatabase");
+            inventory.database = Resources.Load<GearDatabaseObject>("ItemDatabase");
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -31,7 +30,7 @@ namespace BulletRPG.Items
         }
         private void OnApplicationQuit()
         {
-            inventory.Container.inventorySlots = new InventorySlot[21];
+            inventory.Container.Clear();
         }
     }
 }

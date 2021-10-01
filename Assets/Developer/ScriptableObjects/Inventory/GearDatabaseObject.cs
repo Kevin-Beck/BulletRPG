@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace BulletRPG.Items
 {
-    [CreateAssetMenu(fileName = "New Item Database", menuName = "Item/Item Database")]
-    public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName = "New Gear Database", menuName = "Gear/Gear Database")]
+    public class GearDatabaseObject : ScriptableObject, ISerializationCallbackReceiver
     {
         public GearObject[] gearObjects;
-        public Dictionary<int, ItemObject> GetGearObject = new Dictionary<int, ItemObject>();
+        public Dictionary<int, GearObject> GetGearObject = new Dictionary<int, GearObject>();
 
         public void OnAfterDeserialize()
         {
@@ -22,7 +22,7 @@ namespace BulletRPG.Items
 
         public void OnBeforeSerialize()
         {
-            GetGearObject = new Dictionary<int, ItemObject>();
+            GetGearObject = new Dictionary<int, GearObject>();
         }
     }
 }

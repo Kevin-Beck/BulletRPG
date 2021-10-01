@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 namespace BulletRPG.UI
 {
-    public class InventorySlotUIHelper : MonoBehaviour
+    public class InventorySlotButton : MonoBehaviour
     {
+        public UserInterface inventoryGroupParent;
         private Image icon;
         private TextMeshProUGUI counter;
         private TextMeshProUGUI tooltiptitle;
@@ -23,6 +24,7 @@ namespace BulletRPG.UI
             counter = Utilities.RecursiveFindChild(transform, "Counter").GetComponent<TextMeshProUGUI>();
             tooltiptitle = Utilities.RecursiveFindChild(transform, "ToolTipTitle").GetComponent<TextMeshProUGUI>();
             tooltiptext = Utilities.RecursiveFindChild(transform, "ToolTipText").GetComponent<TextMeshProUGUI>();
+            inventoryGroupParent = GetComponentInParent<UserInterface>();
         }
 
         public void SetToolTipTitleAndText(string title, string text)

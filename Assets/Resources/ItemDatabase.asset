@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b9689091d88d6e44ba5238e00c026af, type: 3}
+  m_Script: {fileID: 11500000, guid: 7861f1813bce9b84f8b1443da701882b, type: 3}
   m_Name: ItemDatabase
   m_EditorClassIdentifier: 
   gearObjects:
-  - {fileID: 11400000, guid: 22e8fc6417fed67428546e9159556152, type: 2}
   - {fileID: 11400000, guid: aad008c8d0be3814495e07edd934efaa, type: 2}
+  - {fileID: 11400000, guid: 22e8fc6417fed67428546e9159556152, type: 2}

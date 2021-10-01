@@ -1,3 +1,4 @@
+using BulletRPG.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -14,27 +15,28 @@ namespace BulletRPG.Items
     public class InventoryObject : ScriptableObject
     {
         public string savePath;
-        public ItemDatabaseObject database;
+        public GearDatabaseObject database;
         public Inventory Container;
 
-        public event Notify PlayerInventoryChanged;
+        public event Notify InventoryChanged;
 
         public bool AddItem(Gear gear, int _amount)
         {
+            Debug.Log("Adding gear in InventoryObject");
             // if the item is not stackable
             if (gear.buffs.Length > 0)
             {
                 AddToFirstEmptySlot(gear, _amount);
-                PlayerInventoryChanged?.Invoke();
+                InventoryChanged.Invoke();
                 return true;
             }
 
             for (int i = 0; i < Container.inventorySlots.Length; i++)
             {
-                if (Container.inventorySlots[i].ID == gear.Id)
+                if (Container.inventorySlots[i].gear != null && Container.inventorySlots[i].gear.Id == gear.Id)
                 {
                     Container.inventorySlots[i].AddAmount(_amount);
-                    PlayerInventoryChanged?.Invoke();
+                    InventoryChanged?.Invoke();
                     return true;
                 }
             }
@@ -45,11 +47,11 @@ namespace BulletRPG.Items
         {
             for (int i = 0; i < Container.inventorySlots.Length; i++)
             {
-                if (Container.inventorySlots[i].ID <= -1)
+                if (Container.inventorySlots[i].gear == null || Container.inventorySlots[i].gear.Id == -1)
                 {
-                    Container.inventorySlots[i].UpdateSlot(item.Id, item, amount);
+                    Container.inventorySlots[i].UpdateSlot(item, amount);
                     Debug.Log($"Added {amount}x {item} to new stack");
-                    PlayerInventoryChanged?.Invoke();
+                    InventoryChanged?.Invoke();
                     return Container.inventorySlots[i];
                 }
             }
@@ -59,21 +61,32 @@ namespace BulletRPG.Items
         }
         public void MoveItem(InventorySlot firstSlot, InventorySlot secondSlot)
         {
-            InventorySlot temp = new InventorySlot(secondSlot.ID, secondSlot.gear, secondSlot.amount);
-            secondSlot.UpdateSlot(firstSlot.ID, firstSlot.gear, firstSlot.amount);
-            firstSlot.UpdateSlot(temp.ID, temp.gear, temp.amount);
-            PlayerInventoryChanged?.Invoke();
+            InventorySlot temp = new InventorySlot (secondSlot.gear, secondSlot.amount);
+            secondSlot.UpdateSlot(firstSlot.gear, firstSlot.amount);
+            firstSlot.UpdateSlot(temp.gear, temp.amount);
+            InventoryChanged?.Invoke();
         }
-        public bool RemoveItem(Gear _gear)
+        public bool RemoveItem(Gear _gear, int amountToRemove)
         {
             for (int i = 0; i < Container.inventorySlots.Length; i++)
             {
-                if(Container.inventorySlots[i].gear == _gear)
+                if(_gear.Id > -1)
                 {
-                    Container.inventorySlots[i].UpdateSlot(-1, null, 0);
-                    Instantiate(database.gearObjects[_gear.Id].LootObject, Vector3.zero, Quaternion.identity);
-                    PlayerInventoryChanged?.Invoke();
-                    return true;
+                    if (Container.inventorySlots[i].gear == _gear)
+                    {
+                        var amountInSlot = Container.inventorySlots[i].amount;
+                        if( amountInSlot >= amountToRemove)
+                        {
+                            Container.inventorySlots[i].UpdateSlot(null, amountInSlot-amountToRemove);                        
+                            InventoryChanged?.Invoke();
+                            return true;
+                        }
+                        else
+                        {
+                            Debug.Log("tried to remove more than we have!");
+                            return false;
+                        }
+                    }
                 }
             }
             Debug.Log("Failed To Remove Item");
@@ -89,10 +102,6 @@ namespace BulletRPG.Items
             bf.Serialize(file, saveData);
             file.Close();
 
-            //IFormatter formatter = new BinaryFormatter();
-            //Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
-            //formatter.Serialize(stream, Container);
-            //stream.Close();
             Debug.Log($"Inventory: {name} saved to: {savePath}");
         }
         [ContextMenu("Load")]
@@ -105,52 +114,47 @@ namespace BulletRPG.Items
                 JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
                 file.Close();
 
-                //IFormatter formatter = new BinaryFormatter();
-                //Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
-                //Container = (Inventory)formatter.Deserialize(stream);
-                //for (int i = 0; i < Container.Items.Count; i++)
-                //{
-                //    Container.Items[i].UpdateSlot(Container.Items[i].ID, Container.Items[i].item, Container.Items[i].amount);
-                //}
-                //stream.Close();
                 Debug.Log($"Inventory: {name} loaded from: {savePath}");
-                database = Resources.Load<ItemDatabaseObject>("ItemDatabase");
-                PlayerInventoryChanged.Invoke();
+                database = Resources.Load<GearDatabaseObject>("ItemDatabase");
+                InventoryChanged.Invoke();
             }
         }
         [ContextMenu("Clear")]
         public void Clear()
         {
-            Container.inventorySlots = new InventorySlot[Container.inventorySlots.Length];
-            PlayerInventoryChanged.Invoke();
+            Container.Clear();
+            InventoryChanged.Invoke();
         }
     }
     [System.Serializable]
     public class Inventory
     {
         public InventorySlot[] inventorySlots = new InventorySlot[21];
+        public void Clear()
+        {
+            for (int i = 0; i < inventorySlots.Length; i++)
+            {
+                inventorySlots[i].UpdateSlot(new Gear(), 0);
+            }
+        }
     }
     [System.Serializable]
     public class InventorySlot
     {
-        public int ID = -1;
         public Gear gear = null;
         public int amount;
         public InventorySlot()
         {
-            ID = -1;
             gear = null;
             amount = 0;
         }
-        public InventorySlot(int _id, Gear _gear, int _amount)
+        public InventorySlot(Gear _gear, int _amount)
         {
-            ID = _id;
             gear = _gear;
             amount = _amount;
         }
-        public void UpdateSlot(int _id, Gear _gear, int _amount)
+        public void UpdateSlot(Gear _gear, int _amount)
         {
-            ID = _id;
             gear = _gear;
             amount = _amount;
         }
