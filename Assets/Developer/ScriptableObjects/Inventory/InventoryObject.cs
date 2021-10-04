@@ -20,6 +20,12 @@ namespace BulletRPG.Items
 
         public event Notify InventoryChanged;
 
+        public bool SetInventorySlot(InventorySlot slot, Gear gear, int amount)
+        {
+            slot.SetSlotData(gear, amount);
+            InventoryChanged.Invoke();
+            return true;
+        }
         public bool AddItem(Gear gear, int _amount)
         {
             Debug.Log("Adding gear in InventoryObject");
@@ -49,7 +55,7 @@ namespace BulletRPG.Items
             {
                 if (Container.inventorySlots[i].gear == null || Container.inventorySlots[i].gear.Id == -1)
                 {
-                    Container.inventorySlots[i].UpdateSlot(item, amount);
+                    Container.inventorySlots[i].SetSlotData(item, amount);
                     Debug.Log($"Added {amount}x {item} to new stack");
                     InventoryChanged?.Invoke();
                     return Container.inventorySlots[i];
@@ -62,8 +68,8 @@ namespace BulletRPG.Items
         public void MoveItem(InventorySlot firstSlot, InventorySlot secondSlot)
         {
             InventorySlot temp = new InventorySlot (secondSlot.gear, secondSlot.amount);
-            secondSlot.UpdateSlot(firstSlot.gear, firstSlot.amount);
-            firstSlot.UpdateSlot(temp.gear, temp.amount);
+            secondSlot.SetSlotData(firstSlot.gear, firstSlot.amount);
+            firstSlot.SetSlotData(temp.gear, temp.amount);
             InventoryChanged?.Invoke();
         }
         public bool RemoveItem(Gear _gear, int amountToRemove)
@@ -77,7 +83,7 @@ namespace BulletRPG.Items
                         var amountInSlot = Container.inventorySlots[i].amount;
                         if( amountInSlot >= amountToRemove)
                         {
-                            Container.inventorySlots[i].UpdateSlot(null, amountInSlot-amountToRemove);                        
+                            Container.inventorySlots[i].SetSlotData(null, amountInSlot-amountToRemove);                        
                             InventoryChanged?.Invoke();
                             return true;
                         }
@@ -134,7 +140,7 @@ namespace BulletRPG.Items
         {
             for (int i = 0; i < inventorySlots.Length; i++)
             {
-                inventorySlots[i].UpdateSlot(new Gear(), 0);
+                inventorySlots[i].SetSlotData(new Gear(), 0);
             }
         }
     }
@@ -143,6 +149,7 @@ namespace BulletRPG.Items
     {
         public Gear gear = null;
         public int amount;
+        public GearType[] AllowedGear = new GearType[0];
         public InventorySlot()
         {
             gear = null;
@@ -153,7 +160,12 @@ namespace BulletRPG.Items
             gear = _gear;
             amount = _amount;
         }
-        public void UpdateSlot(Gear _gear, int _amount)
+        /// <summary>
+        /// Warning: Updating this does not trigger an UpdateDisplay call, use the InventoryObject.SetInventorySlot() instead
+        /// </summary>
+        /// <param name="_gear"></param>
+        /// <param name="_amount"></param>
+        public void SetSlotData(Gear _gear, int _amount)
         {
             gear = _gear;
             amount = _amount;
@@ -161,6 +173,41 @@ namespace BulletRPG.Items
         public void AddAmount(int value)
         {
             amount += value;
+        }
+        public string PrintAllowedSlots()
+        {
+            string slots = $"AllowedGear.Length = {AllowedGear.Length}\n";
+            for (int i = 0; i < AllowedGear.Length; i++)
+            {
+                slots += $"{AllowedGear[i]}\n";
+            }
+            return slots;
+        }
+        public void AllowThisGear(GearType typeToAllow)
+        {
+            GearType[] temp = new GearType[AllowedGear.Length + 1];
+
+            for (int i = 0; i < AllowedGear.Length; i++)
+            {
+                temp[i] = AllowedGear[i];
+            }
+            temp[AllowedGear.Length] = typeToAllow;
+            AllowedGear = temp;
+        }
+        public bool CanPlaceInSlot(Gear _gear)
+        {
+            if(AllowedGear.Length == 0)
+            {
+                return true;
+            }
+            for (int i = 0; i < AllowedGear.Length; i++)
+            {
+                if(_gear.gearType == AllowedGear[i])
+                {
+                    return true;
+                }                
+            }
+            return false;
         }
     }
 }

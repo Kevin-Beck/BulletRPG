@@ -24,7 +24,7 @@ namespace BulletRPG.Items
 
         private void Awake()
         {
-            ItemType = GearType.Gear;
+            ItemType = GearType.Default;
         }
         public Gear CreateGearItem()
         {
@@ -33,9 +33,18 @@ namespace BulletRPG.Items
     }
     public enum GearType
     {
-        Pickup,
-        Gear,
-        Resource
+        Default,
+        Wand, // Hand weapon that fires a projectile
+        MajorFocus, // Effect on same position as Wand, enhances Wand
+        MinorFocus, // Effect on same postion as Wand, enhances wand
+        Helmet, // Head/hat that provides protection
+        Shield, // Provides protection
+        Alteration, // Magical shields/auras that provide areas of increased ability, speed increases
+        Conjuration, // summons physical barriers, allies to fight for you, Conjure ranged weapon if WandSlot available
+        Destruction, // damage spells
+        Illusion, // convert enemies to fight for you, invisibility, copy yourself
+        Mysticism, // teleport, absorb damage and reflect it, time slow
+        Restoration // passive healing/protection items
     }
     [System.Serializable]
     public class Gear

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43d63a12d2e552d4d8947e039df4e4f6, type: 3}
-  m_Name: 
+  m_Name: TestingInventory
   m_EditorClassIdentifier: 
   savePath: /playerinventory.save
   database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
@@ -23,6 +23,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -30,6 +31,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -37,6 +39,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -44,6 +47,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -51,6 +55,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -58,6 +63,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -65,6 +71,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -72,6 +79,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -79,6 +87,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -86,6 +95,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -93,6 +103,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -100,6 +111,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -107,6 +119,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -114,6 +127,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -121,6 +135,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -128,6 +143,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -135,6 +151,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -142,6 +159,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -149,6 +167,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -156,6 +175,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -163,3 +183,4 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 

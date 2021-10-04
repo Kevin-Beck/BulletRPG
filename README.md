@@ -31,7 +31,7 @@ Before entering a level the player may adjust their equipments and skills. After
 
 
 ## Todo List
- - Dropping stack creates only 1 object on ground
+ - Dropping stack creates only 1 object on ground, access lootable object and set the amount
  - Create utility that can get nearest point on navmesh for any class to use, allow users to drop items to a point on the map
  - Add hover icon to inventory buttons
 - Serialization on GameEvent on inventory object fails, if you use inventory, then close and restart, the UnityID for the event changes. Just use different delegate system instead of game events

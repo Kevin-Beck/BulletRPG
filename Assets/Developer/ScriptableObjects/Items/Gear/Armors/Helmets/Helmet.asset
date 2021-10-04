@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0556139ee71bc1249976ea57af9931f4, type: 3}
+  m_Name: Helmet
+  m_EditorClassIdentifier: 
+  Id: 2
+  ItemName: Blood Helm
+  ItemType: 4
+  ItemDescription: Helmet that does stuff
+  sprite: {fileID: 21300000, guid: 5fb4f14ca2fdb9f45bf56f238c395a96, type: 3}
+  Color: {r: 1, g: 0, b: 0, a: 1}
+  LootObject: {fileID: 7275185213758543362, guid: ce0944cbdb315f4408c116af7775d2b0,
+    type: 3}
+  Slot: 9
+  EquippedInGameObject: {fileID: 0}
+  Buffs: []

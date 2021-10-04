@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: EquipmentInventory
   m_EditorClassIdentifier: 
   savePath: 
-  database: {fileID: 0}
+  database: {fileID: 11400000, guid: d412ae856b319654f833f6053ca0de6a, type: 2}
   Container:
     inventorySlots:
     - gear:
-        Name: 
-        Description: 
-        Id: -1
-        gearType: 0
+        Name: MagmaHammer
+        Description: magma hammer text
+        Id: 0
+        gearType: 1
         buffs: []
-      amount: 0
+      amount: 1
+      AllowedGear: 01000000010000000100000001000000010000000100000001000000
     - gear:
         Name: 
         Description: 
@@ -30,6 +31,15 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 02000000020000000200000002000000020000000200000002000000
+    - gear:
+        Name: Blood Helm
+        Description: Helmet that does stuff
+        Id: 2
+        gearType: 4
+        buffs: []
+      amount: 2
+      AllowedGear: 04000000040000000400000004000000040000000400000004000000
     - gear:
         Name: 
         Description: 
@@ -37,6 +47,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 07000000070000000700000007000000070000000700000007000000
     - gear:
         Name: 
         Description: 
@@ -44,6 +55,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -51,6 +63,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -58,6 +71,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -65,6 +79,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -72,6 +87,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -79,6 +95,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -86,6 +103,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -93,6 +111,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -100,6 +119,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -107,6 +127,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -114,6 +135,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -121,6 +143,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -128,6 +151,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -135,6 +159,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -142,6 +167,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -149,6 +175,7 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
+      AllowedGear: 
     - gear:
         Name: 
         Description: 
@@ -156,10 +183,4 @@ MonoBehaviour:
         gearType: 0
         buffs: []
       amount: 0
-    - gear:
-        Name: 
-        Description: 
-        Id: -1
-        gearType: 0
-        buffs: []
-      amount: 0
+      AllowedGear: 

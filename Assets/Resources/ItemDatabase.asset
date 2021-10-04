@@ -15,3 +15,4 @@ MonoBehaviour:
   gearObjects:
   - {fileID: 11400000, guid: aad008c8d0be3814495e07edd934efaa, type: 2}
   - {fileID: 11400000, guid: 22e8fc6417fed67428546e9159556152, type: 2}
+  - {fileID: 11400000, guid: 6e7827fc0a0d83c4fa05129449ada993, type: 2}

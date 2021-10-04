@@ -10,7 +10,7 @@ namespace BulletRPG.UI
 {
     public abstract class UserInterface : MonoBehaviour
     {
-        public DragDropElement dragDropIcon = new DragDropElement();
+        public DragDropElement dragDropIcon = DragDropElement.Instance;
 
         public InventoryObject inventory;
         protected Dictionary<InventorySlotButton, InventorySlot> SlotMap = new Dictionary<InventorySlotButton, InventorySlot>();
@@ -74,8 +74,8 @@ namespace BulletRPG.UI
                     Debug.Log("Drag Started");
                     var dragMouseIcon = new GameObject();
                     var rect = dragMouseIcon.AddComponent<RectTransform>();
-                    rect.sizeDelta = new Vector2(50, 50);
-                    dragMouseIcon.transform.SetParent(transform);
+                    rect.sizeDelta = new Vector2(75, 75);
+                    dragMouseIcon.transform.SetParent(transform.root);
 
                     var image = dragMouseIcon.AddComponent<Image>();
                     image.sprite = inventory.database.GetGearObject[gearInSlot.Id].sprite;
@@ -106,17 +106,34 @@ namespace BulletRPG.UI
                     var fromParent = dragDropIcon.fromButton.inventoryGroupParent;
                     var toParent = endDragButton.inventoryGroupParent;
                     var fromSlot = SlotMap[dragDropIcon.fromButton];
-                    var toSlot = SlotMap[endDragButton];
-                    if (fromParent == toParent)
+                    var toSlot = toParent.SlotMap[endDragButton];
+
+                    if (toSlot.CanPlaceInSlot(fromSlot.gear))
                     {
-                        Debug.Log("Switching in same inventories");
-                        inventory.MoveItem(fromSlot, toSlot);
+                        if(fromSlot.CanPlaceInSlot(toSlot.gear) || toSlot.gear.Id < 0)
+                        {
+                            if (fromParent == toParent)
+                            {
+                                Debug.Log("Switching in same inventories");
+                                inventory.MoveItem(fromSlot, toSlot);
+                            }
+                            else
+                            {
+                                Debug.Log("Switching two different inventories");
+                                var tempGear = fromSlot.gear;
+                                var tempAmount = fromSlot.amount;
+                                fromParent.inventory.SetInventorySlot(fromSlot, toSlot.gear, toSlot.amount);
+                                toParent.inventory.SetInventorySlot(toSlot, tempGear, tempAmount);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log($"sending slot cannot hold gearType: {toSlot.gear.gearType}");
+                        }
                     }
                     else
                     {
-                        Debug.Log("Switching two different inventories");
-                        endDragButton.inventoryGroupParent.inventory.AddItem(fromSlot.gear, fromSlot.amount);
-                        inventory.RemoveItem(fromSlot.gear, fromSlot.amount);
+                        Debug.Log($"recipient slot cannot hold gearType: {fromSlot.gear.gearType}");
                     }
                 }
             }
@@ -130,10 +147,6 @@ namespace BulletRPG.UI
                     Instantiate(inventory.database.gearObjects[fromSlot.gear.Id].LootObject, Vector3.zero, Quaternion.identity);
                 }
                 inventory.RemoveItem(fromSlot.gear, fromSlot.amount);
-            }
-            else
-            {
-                Debug.Log("Default out of drag/drop");
             }
 
             Destroy(dragDropIcon.icon);
