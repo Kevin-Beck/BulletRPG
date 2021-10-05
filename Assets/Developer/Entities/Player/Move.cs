@@ -40,12 +40,9 @@ namespace BulletRPG.Characters.Player
         }
         private void Update()
         {
-            // Look Direction
-            Ray ray = Camera.main.ScreenPointToRay(playerInputActions.Player.MousePosition.ReadValue<Vector2>());
-            if (Physics.Raycast(ray, out RaycastHit hit, 100, playerLookLayer))
-            {
-                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-            }
+            // Look direction
+            Vector3 direction = Utilities.MouseOnPlane();
+            transform.LookAt(new Vector3(direction.x, transform.position.y, direction.z));
 
             // Get input from player, create a vector3
             Vector2 inputDirection = playerInputActions.Player.Movement.ReadValue<Vector2>();

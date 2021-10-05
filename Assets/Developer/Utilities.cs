@@ -1,12 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace BulletRPG
 {
-
     public static class Utilities
     {
+        private static Plane xzPlane = new Plane(Vector3.up, Vector3.zero);
+        private static readonly Camera main = Camera.main;
+        public static Vector3 MouseOnPlane()
+        {// calculates the intersection of a ray through the mouse pointer with a static x/z plane for example for movement etc, source: http://unifycommunity.com/wiki/index.php?title=Click_To_Move
+            Ray mouseray = main.ScreenPointToRay(Input.mousePosition);
+            if (xzPlane.Raycast(mouseray, out float hitdist))
+            {// check for the intersection point between ray and plane
+                return mouseray.GetPoint(hitdist);
+            }
+            if (hitdist < -1.0f)
+            {// when point is "behind" plane (hitdist != zero, fe for far away orthographic camera) simply switch sign https://docs.unity3d.com/ScriptReference/Plane.Raycast.html
+                return mouseray.GetPoint(-hitdist);
+            }
+            Debug.Log("ExtensionMethods_Camera.MouseOnPlane: plane is behind camera or ray is parallel to plane! " + hitdist);       // both are parallel or plane is behind camera so write a log and return zero vector
+            return Vector3.zero;
+        }
+        public static bool GetRandomPointOnNavMesh(Vector3 center, float radius, out Vector3 result)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                Vector3 randomPoint = center + Random.insideUnitSphere * radius;
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+                {
+                    result = hit.position;
+                    return true;
+                }
+            }
+            result = Vector3.zero;
+            return false;
+        }
         public static Transform RecursiveFindChild(Transform parent, string childName)
         {
             foreach (Transform child in parent)
