@@ -21,10 +21,23 @@ namespace BulletRPG.Items
                 {
                     Debug.LogWarning($"Amount set to 0 when adding {gear.gearObject}");
                 }
-                if (inventory.AddItem(new Gear(gear.gearObject), gear.amount))
+                if(gear.setGear.Id == -1)
                 {
-                    Destroy(other.gameObject);
+                    // roll a new gear
+                    if (inventory.AddItem(new Gear(gear.gearObject), gear.amount))
+                    {
+                        Destroy(other.gameObject);
+                    }
                 }
+                else
+                {
+                    // gear is set already
+                    if(inventory.AddItem(gear.setGear, gear.amount))
+                    {
+                        Destroy(other.gameObject);
+                    }
+                }
+
 
             }
         }

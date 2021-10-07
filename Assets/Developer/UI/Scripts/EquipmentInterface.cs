@@ -40,7 +40,7 @@ namespace BulletRPG.UI
                     var equipmentPoint = Utilities.RecursiveFindChild(player.transform, gearType.ToString());
                     if (equipmentPoint != null)
                     {
-                        equipments += gearType.ToString() + "\n";
+                        equipments += gearType.ToString() + " ";
                         var slot = Instantiate(equipmentSlotPrefab, contentPanel);
                         var text = Utilities.RecursiveFindChild(slot.transform, "SlotName");
                         text.GetComponent<TextMeshProUGUI>().text = gearType.ToString();
@@ -50,17 +50,16 @@ namespace BulletRPG.UI
                 InventorySlotButton[] buttons = GetComponentsInChildren<InventorySlotButton>();
                 for (int i = 0; i < buttons.Length; i++)
                 {
-                    Debug.Log(i);
                     inventory.Container.inventorySlots[i].AllowThisGear(types[i]);
                     SlotMap.Add(buttons[i], inventory.Container.inventorySlots[i]);                    
                     var buttonGameObject = buttons[i].gameObject;
-                    AddEvent(buttonGameObject, EventTriggerType.PointerEnter, delegate { OnEnter(buttonGameObject); });
-                    AddEvent(buttonGameObject, EventTriggerType.PointerExit, delegate { OnExit(buttonGameObject); });
-                    AddEvent(buttonGameObject, EventTriggerType.BeginDrag, delegate { OnDragStart(buttonGameObject); });
-                    AddEvent(buttonGameObject, EventTriggerType.EndDrag, delegate { OnDragEnd(buttonGameObject); });
-                    AddEvent(buttonGameObject, EventTriggerType.Drag, delegate { OnDrag(buttonGameObject); });
+                    Utilities.AddEvent(buttonGameObject, EventTriggerType.PointerEnter, delegate { OnEnter(buttonGameObject); });
+                    Utilities.AddEvent(buttonGameObject, EventTriggerType.PointerExit, delegate { OnExit(buttonGameObject); });
+                    Utilities.AddEvent(buttonGameObject, EventTriggerType.BeginDrag, delegate { OnDragStart(buttonGameObject); });
+                    Utilities.AddEvent(buttonGameObject, EventTriggerType.EndDrag, delegate { OnDragEnd(buttonGameObject); });
+                    Utilities.AddEvent(buttonGameObject, EventTriggerType.Drag, delegate { OnDrag(buttonGameObject); });
                 }
-                Debug.Log("Found Equipment: \n" + equipments);
+                Debug.Log("Equipment Interface Found Equipment Slots: (" + equipments.Trim() + ") in the character model");
             }
         }        
     }

@@ -1,10 +1,6 @@
-using BulletRPG.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
 
 namespace BulletRPG.Items
@@ -30,11 +26,9 @@ namespace BulletRPG.Items
         {
             Debug.Log("Adding gear in InventoryObject");
             // if the item is not stackable
-            if (gear.buffs.Length > 0)
+            if (!gear.IsStackable)
             {
-                AddToFirstEmptySlot(gear, _amount);
-                InventoryChanged.Invoke();
-                return true;
+                return AddToFirstEmptySlot(gear, _amount);
             }
 
             for (int i = 0; i < Container.inventorySlots.Length; i++)
@@ -46,10 +40,9 @@ namespace BulletRPG.Items
                     return true;
                 }
             }
-            AddToFirstEmptySlot(gear, _amount);
-            return true;
+            return AddToFirstEmptySlot(gear, _amount);
         }
-        private InventorySlot AddToFirstEmptySlot(Gear item, int amount)
+        private bool AddToFirstEmptySlot(Gear item, int amount)
         {
             for (int i = 0; i < Container.inventorySlots.Length; i++)
             {
@@ -58,12 +51,11 @@ namespace BulletRPG.Items
                     Container.inventorySlots[i].SetSlotData(item, amount);
                     Debug.Log($"Added {amount}x {item} to new stack");
                     InventoryChanged?.Invoke();
-                    return Container.inventorySlots[i];
+                    return true;
                 }
             }
             // full inventory here!
-            Debug.Log("Full Inventory not handled");
-            return null;
+            return false;
         }
         public void MoveItem(InventorySlot firstSlot, InventorySlot secondSlot)
         {
@@ -99,6 +91,32 @@ namespace BulletRPG.Items
             return false;
         }
 
+        public bool SplitStack(InventorySlot slot)
+        {
+            if(slot.amount < 2)
+            {
+                return false;
+            }
+            if(slot.amount % 2 == 0)
+            {
+                if (AddToFirstEmptySlot(slot.gear, slot.amount / 2))
+                {
+                    slot.amount = slot.amount / 2;
+                    InventoryChanged.Invoke();
+                    return true;
+                }
+            }
+            else
+            {
+                if(AddToFirstEmptySlot(slot.gear, slot.amount / 2))
+                {
+                    slot.amount = slot.amount / 2 + 1;
+                    InventoryChanged.Invoke();
+                    return true;
+                }
+            }
+            return false;
+        }
         [ContextMenu("Save")]
         public void Save()
         {

@@ -13,10 +13,13 @@ namespace BulletRPG.Items
         public void OnAfterDeserialize()
         {
             for(int i = 0; i < gearObjects.Length; i++)
-            {
-                Debug.Log("Database Saving: " + gearObjects[i].ItemName + " with id: " + i);
+            {                
                 gearObjects[i].Id = i;
                 GetGearObject.Add(i, gearObjects[i]);
+                if(i == gearObjects.Length - 1)
+                {
+                    Debug.Log("Database Saved " + gearObjects.Length + " total objects, the last being: " + gearObjects[gearObjects.Length-1].ItemName + " with id " + (gearObjects.Length-1));
+                }
             }
         }
 

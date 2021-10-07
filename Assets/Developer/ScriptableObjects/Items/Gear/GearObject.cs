@@ -11,6 +11,7 @@ namespace BulletRPG.Items
         public int Id = -1;
         public string ItemName;
         public GearType ItemType;
+        public bool IsStackable;
         [TextArea(5, 20)]
         public string ItemDescription;
         public Sprite sprite;
@@ -53,6 +54,7 @@ namespace BulletRPG.Items
         public string Description;
         public int Id = -1;
         public GearType gearType;
+        public bool IsStackable;
         public GearBuff[] buffs;
 
         public Gear()
@@ -65,6 +67,7 @@ namespace BulletRPG.Items
         public Gear(GearObject gearObject)
         {            
             gearType = gearObject.ItemType;
+            IsStackable = gearObject.IsStackable;
             Name = gearObject.ItemName;
             Description = gearObject.ItemDescription;
             Id = gearObject.Id;
@@ -94,7 +97,7 @@ namespace BulletRPG.Items
         }
         public void GenerateValue()
         {
-            buffValue = UnityEngine.Random.Range(minValue, maxValue);
+            buffValue = UnityEngine.Random.Range(minValue, maxValue + 1);
         }
         public string Stringify()
         {

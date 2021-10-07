@@ -25,35 +25,16 @@ namespace BulletRPG.UI
                 if (pair.Value.gear != null && pair.Value.gear.Id >= 0)
                 {
                     var referencedGearObject = inventory.database.gearObjects[pair.Value.gear.Id];
-                    pair.Key.SetToolTipEnabled(true);
-                    pair.Key.SetIconSpriteAndColor(referencedGearObject.sprite, referencedGearObject.Color);
-                    pair.Key.SetCounterText(pair.Value.amount.ToString("N0"));
-
-                    string buffDescriptions = "";
-                    foreach (GearBuff buff in pair.Value.gear.buffs)
-                    {
-                        buffDescriptions += buff.Stringify() + "\n";
-                    }
-
-                    pair.Key.SetToolTipTitleAndText(referencedGearObject.ItemName, $"{referencedGearObject.ItemDescription}\n\n{buffDescriptions}");
+                    pair.Key.SetInventorySlotUI(pair.Value, referencedGearObject);
                 }
                 else
                 {
-                    pair.Key.SetIconSpriteAndColor(null, Color.clear);
-                    pair.Key.SetCounterText("");
-                    pair.Key.SetToolTipTitleAndText("", "");
-                    pair.Key.SetToolTipEnabled(false);
+                    pair.Key.SetInventorySlotUI(null, null);
                 }
             }
         }
-        protected void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
-        {
-            EventTrigger trigger = button.GetComponent<EventTrigger>();
-            var eventTrigger = new EventTrigger.Entry();
-            eventTrigger.eventID = type;
-            eventTrigger.callback.AddListener(action);
-            trigger.triggers.Add(eventTrigger);
-        }
+
+
         public void OnEnter(GameObject obj)
         {
             dragDropIcon.hoveringOverObject = obj;
@@ -102,7 +83,6 @@ namespace BulletRPG.UI
 
                 if (endDragButton != null && dragDropIcon.fromButton != null)
                 {
-                    Debug.Log("Ended Drag over an InventorySlotButton");
                     var fromParent = dragDropIcon.fromButton.inventoryGroupParent;
                     var toParent = endDragButton.inventoryGroupParent;
                     var fromSlot = SlotMap[dragDropIcon.fromButton];
@@ -114,7 +94,7 @@ namespace BulletRPG.UI
                         {
                             if (fromParent == toParent)
                             {
-                                Debug.Log("Switching in same inventories");
+                                Debug.Log("Switching in same inventory");
                                 inventory.MoveItem(fromSlot, toSlot);
                             }
                             else
@@ -141,17 +121,25 @@ namespace BulletRPG.UI
             {
                 Debug.Log("Dropping Item");
                 var fromSlot = SlotMap[dragDropIcon.fromButton];
-                // TODO drop stacks of items, get the lootable element from the object and set the amount
-                for (int i = 0; i < fromSlot.amount; i++)
-                {
-                    Instantiate(inventory.database.gearObjects[fromSlot.gear.Id].LootObject, Vector3.zero, Quaternion.identity);
-                }
+                var droppedObject = Instantiate(inventory.database.gearObjects[fromSlot.gear.Id].LootObject, Utilities.MouseOnPlane(), Quaternion.identity);
+                var lootableData = droppedObject.GetComponent<LootableItem>();
+                lootableData.amount = fromSlot.amount;
+                lootableData.setGear = fromSlot.gear;
+
                 inventory.RemoveItem(fromSlot.gear, fromSlot.amount);
             }
 
             Destroy(dragDropIcon.icon);
             dragDropIcon.icon = null;
             dragDropIcon.fromButton = null;
+        }
+        public void SplitStack(GameObject button)
+        {
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            {
+                var uiSlotObject = button.GetComponent<InventorySlotButton>();
+                inventory.SplitStack(SlotMap[uiSlotObject]);
+            }
         }
         public void OnDrag(GameObject obj)
         {

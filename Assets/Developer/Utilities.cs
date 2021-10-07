@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace BulletRPG
 {
@@ -7,6 +9,15 @@ namespace BulletRPG
     {
         private static Plane xzPlane = new Plane(Vector3.up, Vector3.zero);
         private static readonly Camera main = Camera.main;
+
+        public static void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
+        {
+            EventTrigger trigger = button.GetComponent<EventTrigger>();
+            var eventTrigger = new EventTrigger.Entry();
+            eventTrigger.eventID = type;
+            eventTrigger.callback.AddListener(action);
+            trigger.triggers.Add(eventTrigger);
+        }
         public static Vector3 MouseOnPlane()
         {// calculates the intersection of a ray through the mouse pointer with a static x/z plane for example for movement etc, source: http://unifycommunity.com/wiki/index.php?title=Click_To_Move
             Ray mouseray = main.ScreenPointToRay(Input.mousePosition);
@@ -17,8 +28,7 @@ namespace BulletRPG
             if (hitdist < -1.0f)
             {// when point is "behind" plane (hitdist != zero, fe for far away orthographic camera) simply switch sign https://docs.unity3d.com/ScriptReference/Plane.Raycast.html
                 return mouseray.GetPoint(-hitdist);
-            }
-            Debug.Log("ExtensionMethods_Camera.MouseOnPlane: plane is behind camera or ray is parallel to plane! " + hitdist);       // both are parallel or plane is behind camera so write a log and return zero vector
+            }     // both are parallel or plane is behind camera so write a log and return zero vector
             return Vector3.zero;
         }
         public static bool GetRandomPointOnNavMesh(Vector3 center, float radius, out Vector3 result)
