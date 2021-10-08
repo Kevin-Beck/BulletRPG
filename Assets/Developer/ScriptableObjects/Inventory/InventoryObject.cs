@@ -5,38 +5,35 @@ using UnityEngine;
 
 namespace BulletRPG.Items
 {
-    public delegate void Notify();
-
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Item/InventoryObject")]
     public class InventoryObject : ScriptableObject
     {
         public string savePath;
         public GearDatabaseObject database;
-        public Inventory Container;
-
-        public event Notify InventoryChanged;
+        private Inventory Container;
+        public InventorySlot[] GetSlots { get { return Container.inventorySlots; } }
 
         public bool SetInventorySlot(InventorySlot slot, Gear gear, int amount)
         {
             slot.SetSlotData(gear, amount);
-            InventoryChanged.Invoke();
+             
             return true;
         }
         public bool AddItem(Gear gear, int _amount)
         {
-            Debug.Log("Adding gear in InventoryObject");
+            Debug.Log("Attempting to add gear in InventoryObject");
             // if the item is not stackable
             if (!gear.IsStackable)
             {
                 return AddToFirstEmptySlot(gear, _amount);
             }
 
-            for (int i = 0; i < Container.inventorySlots.Length; i++)
+            for (int i = 0; i < GetSlots.Length; i++)
             {
-                if (Container.inventorySlots[i].gear != null && Container.inventorySlots[i].gear.Id == gear.Id)
+                if (GetSlots[i].gear != null && GetSlots[i].gear.Id == gear.Id)
                 {
-                    Container.inventorySlots[i].AddAmount(_amount);
-                    InventoryChanged?.Invoke();
+                    GetSlots[i].AddAmount(_amount);
+                    
                     return true;
                 }
             }
@@ -44,13 +41,13 @@ namespace BulletRPG.Items
         }
         private bool AddToFirstEmptySlot(Gear item, int amount)
         {
-            for (int i = 0; i < Container.inventorySlots.Length; i++)
+            for (int i = 0; i < GetSlots.Length; i++)
             {
-                if (Container.inventorySlots[i].gear == null || Container.inventorySlots[i].gear.Id == -1)
+                if (GetSlots[i].gear == null || GetSlots[i].gear.Id == -1)
                 {
-                    Container.inventorySlots[i].SetSlotData(item, amount);
+                    GetSlots[i].SetSlotData(item, amount);
                     Debug.Log($"Added {amount}x {item} to new stack");
-                    InventoryChanged?.Invoke();
+                    
                     return true;
                 }
             }
@@ -62,21 +59,21 @@ namespace BulletRPG.Items
             InventorySlot temp = new InventorySlot (secondSlot.gear, secondSlot.amount);
             secondSlot.SetSlotData(firstSlot.gear, firstSlot.amount);
             firstSlot.SetSlotData(temp.gear, temp.amount);
-            InventoryChanged?.Invoke();
+            
         }
         public bool RemoveItem(Gear _gear, int amountToRemove)
         {
-            for (int i = 0; i < Container.inventorySlots.Length; i++)
+            for (int i = 0; i < GetSlots.Length; i++)
             {
                 if(_gear.Id > -1)
                 {
-                    if (Container.inventorySlots[i].gear == _gear)
+                    if (GetSlots[i].gear == _gear)
                     {
-                        var amountInSlot = Container.inventorySlots[i].amount;
+                        var amountInSlot = GetSlots[i].amount;
                         if( amountInSlot >= amountToRemove)
                         {
-                            Container.inventorySlots[i].SetSlotData(null, amountInSlot-amountToRemove);                        
-                            InventoryChanged?.Invoke();
+                            
+                            GetSlots[i].SetSlotData(new Gear(), amountInSlot-amountToRemove);                            
                             return true;
                         }
                         else
@@ -102,7 +99,7 @@ namespace BulletRPG.Items
                 if (AddToFirstEmptySlot(slot.gear, slot.amount / 2))
                 {
                     slot.amount = slot.amount / 2;
-                    InventoryChanged.Invoke();
+                     
                     return true;
                 }
             }
@@ -111,7 +108,7 @@ namespace BulletRPG.Items
                 if(AddToFirstEmptySlot(slot.gear, slot.amount / 2))
                 {
                     slot.amount = slot.amount / 2 + 1;
-                    InventoryChanged.Invoke();
+                     
                     return true;
                 }
             }
@@ -139,15 +136,14 @@ namespace BulletRPG.Items
                 file.Close();
 
                 Debug.Log($"Inventory: {name} loaded from: {savePath}");
-                database = Resources.Load<GearDatabaseObject>("ItemDatabase");
-                InventoryChanged.Invoke();
+                database = Resources.Load<GearDatabaseObject>("ItemDatabase");                 
             }
         }
         [ContextMenu("Clear")]
         public void Clear()
         {
             Container.Clear();
-            InventoryChanged.Invoke();
+             
         }
     }
     [System.Serializable]
@@ -162,47 +158,46 @@ namespace BulletRPG.Items
             }
         }
     }
+
+
+    public delegate void SlotUpdated(InventorySlot slot);
     [System.Serializable]
     public class InventorySlot
     {
         public Gear gear = null;
         public int amount;
         public GearType[] AllowedGear = new GearType[0];
+
+        [System.NonSerialized]
+        public SlotUpdated OnAfterUpdate;
+        [System.NonSerialized]
+        public SlotUpdated OnBeforeUpdate;
         public InventorySlot()
         {
-            gear = null;
-            amount = 0;
+            SetSlotData(null, 0);
         }
         public InventorySlot(Gear _gear, int _amount)
         {
-            gear = _gear;
-            amount = _amount;
+            SetSlotData(_gear, _amount);
         }
-        /// <summary>
-        /// Warning: Updating this does not trigger an UpdateDisplay call, use the InventoryObject.SetInventorySlot() instead
-        /// </summary>
-        /// <param name="_gear"></param>
-        /// <param name="_amount"></param>
         public void SetSlotData(Gear _gear, int _amount)
         {
+            OnBeforeUpdate?.Invoke(this);
             gear = _gear;
             amount = _amount;
+            OnAfterUpdate?.Invoke(this);
         }
         public void AddAmount(int value)
         {
-            amount += value;
+            SetSlotData(gear, amount += value);
         }
-        public string PrintAllowedSlots()
+        public void InitializeAllowedGear(GearType[] typesToAllow)
         {
-            string slots = $"AllowedGear.Length = {AllowedGear.Length}\n";
-            for (int i = 0; i < AllowedGear.Length; i++)
-            {
-                slots += $"{AllowedGear[i]}\n";
-            }
-            return slots;
+            AllowedGear = typesToAllow;
         }
         public void AllowThisGear(GearType typeToAllow)
         {
+            Debug.Log($"Adding {typeToAllow} to allowedGear on {this}");
             GearType[] temp = new GearType[AllowedGear.Length + 1];
 
             for (int i = 0; i < AllowedGear.Length; i++)

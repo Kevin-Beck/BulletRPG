@@ -24,7 +24,11 @@ MonoBehaviour:
   Slot: 0
   EquippedInGameObject: {fileID: 5574695480326562781, guid: 4bc3fc3e5e527c14696aaeb45ed25547,
     type: 3}
-  Buffs: []
+  Buffs:
+  - attribute: 1
+    buffValue: 0
+    minValue: 1
+    maxValue: 20
   Projectile: {fileID: 9102322668835006777, guid: 433a69d6ced70074b8e0a54250dcfbc7,
     type: 3}
   Cooldown: 5

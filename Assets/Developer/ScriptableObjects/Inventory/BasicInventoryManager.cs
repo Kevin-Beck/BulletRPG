@@ -37,13 +37,11 @@ namespace BulletRPG.Items
                         Destroy(other.gameObject);
                     }
                 }
-
-
             }
         }
         private void OnApplicationQuit()
         {
-            inventory.Container.Clear();
+            inventory.Clear();
         }
     }
 }

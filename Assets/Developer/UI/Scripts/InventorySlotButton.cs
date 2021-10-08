@@ -39,6 +39,10 @@ namespace BulletRPG.UI
             Utilities.AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { ShowToolTip(); });
             Utilities.AddEvent(gameObject, EventTriggerType.PointerExit, delegate { RemoveToolTip(); });
         }
+        private void Start()
+        {
+            UpdateSlotUI(slot.gear.Id < 0 ? null : inventoryGroupParent.inventory.database.gearObjects[slot.gear.Id]);
+        }
         protected void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
         {
             EventTrigger trigger = button.GetComponent<EventTrigger>();
@@ -49,7 +53,7 @@ namespace BulletRPG.UI
         }
         private void ShowToolTip()
         {
-            if(slot == null)
+            if(slot.amount == 0)
             {
                 return;
             }
@@ -74,11 +78,14 @@ namespace BulletRPG.UI
         {            
             icon.sprite = sprite;
             icon.color = color;
-        }        
-        public void SetInventorySlotUI(InventorySlot slotToRepresent, GearObject gearObject)
+        }
+        public void SetSlot(InventorySlot slotToRepresent)
         {
             slot = slotToRepresent;
-            if (slotToRepresent == null || gearObject == null)
+        }
+        public void UpdateSlotUI(GearObject gearObject)
+        {
+            if (slot == null || gearObject == null)
             {
                 SetCounterText("");
                 SetIconSpriteAndColor(null, Color.clear);
@@ -86,12 +93,12 @@ namespace BulletRPG.UI
                 tipTitle = "";
             }
             else
-            {               
+            {
                 SetCounterText(slot.amount == 1 || slot.amount == 0 ? "" : slot.amount.ToString());
                 SetIconSpriteAndColor(gearObject.sprite, gearObject.Color);
 
                 string buffDescriptions = "";
-                foreach (GearBuff buff in slotToRepresent.gear.buffs)
+                foreach (GearBuff buff in slot.gear.buffs)
                 {
                     buffDescriptions += buff.Stringify() + "\n";
                 }

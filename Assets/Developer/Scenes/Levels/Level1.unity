@@ -5203,7 +5203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160370917}
-  m_LocalRotation: {x: 0.44385576, y: 0.000000021805194, z: -0.000000010800559, w: 0.89609826}
+  m_LocalRotation: {x: 0.44385573, y: -0.000000021805203, z: 0.000000010800562, w: 0.89609826}
   m_LocalPosition: {x: 0, y: 16, z: -12.188599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6427,6 +6427,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: EquippedItems
+      value: 
+      objectReference: {fileID: 11400000, guid: db8e96ac901aa06439b118b90018a9b2,
+        type: 2}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[2].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[3].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[1].attribute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[2].attribute
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[3].attribute
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

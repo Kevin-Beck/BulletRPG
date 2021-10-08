@@ -16,25 +16,15 @@ namespace BulletRPG.UI
         protected Dictionary<InventorySlotButton, InventorySlot> SlotMap = new Dictionary<InventorySlotButton, InventorySlot>();
 
         public abstract void CreateSlots();
-        public abstract void CreateLinkToInventoryUpdateEvent();
-        public void UpdateDisplay()
+
+        public void LinkButtonToInventorySlot(InventorySlotButton button, InventorySlot slot)
         {
-            Debug.Log("UpdateDisplay Called");
-            foreach (KeyValuePair<InventorySlotButton, InventorySlot> pair in SlotMap)
-            {
-                if (pair.Value.gear != null && pair.Value.gear.Id >= 0)
-                {
-                    var referencedGearObject = inventory.database.gearObjects[pair.Value.gear.Id];
-                    pair.Key.SetInventorySlotUI(pair.Value, referencedGearObject);
-                }
-                else
-                {
-                    pair.Key.SetInventorySlotUI(null, null);
-                }
-            }
+            slot.OnAfterUpdate += delegate {
+                button.UpdateSlotUI(slot.gear?.Id < 0 ? null : inventory.database.gearObjects[slot.gear.Id]);
+            };
+            button.SetSlot(slot);
+            SlotMap.Add(button, slot);
         }
-
-
         public void OnEnter(GameObject obj)
         {
             dragDropIcon.hoveringOverObject = obj;
@@ -108,12 +98,12 @@ namespace BulletRPG.UI
                         }
                         else
                         {
-                            Debug.Log($"sending slot cannot hold gearType: {toSlot.gear.gearType}");
+                            Debug.Log($"Sending slot cannot hold gearType: {toSlot.gear.gearType}");
                         }
                     }
                     else
                     {
-                        Debug.Log($"recipient slot cannot hold gearType: {fromSlot.gear.gearType}");
+                        Debug.Log($"Receiving slot cannot hold gearType: {fromSlot.gear.gearType}");
                     }
                 }
             }

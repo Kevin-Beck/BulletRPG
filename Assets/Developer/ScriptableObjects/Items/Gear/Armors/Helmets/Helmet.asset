@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: 2
   ItemName: Blood Helm
   ItemType: 4
+  IsStackable: 0
   ItemDescription: Helmet that does stuff
   sprite: {fileID: 21300000, guid: 5fb4f14ca2fdb9f45bf56f238c395a96, type: 3}
   Color: {r: 1, g: 0, b: 0, a: 1}
@@ -22,4 +23,12 @@ MonoBehaviour:
     type: 3}
   Slot: 9
   EquippedInGameObject: {fileID: 0}
-  Buffs: []
+  Buffs:
+  - attribute: 3
+    buffValue: 0
+    minValue: 1
+    maxValue: 10
+  - attribute: 2
+    buffValue: 0
+    minValue: 1
+    maxValue: 10

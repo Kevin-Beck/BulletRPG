@@ -1,3 +1,4 @@
+using BulletRPG.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,21 +10,16 @@ namespace BulletRPG.UI
         void Awake()
         {
             CreateSlots();
-            CreateLinkToInventoryUpdateEvent();
         }
-        private void Start()
-        {
-            UpdateDisplay();
-        }
-        public override void CreateLinkToInventoryUpdateEvent() {
-            inventory.InventoryChanged += UpdateDisplay;
-        }
+
         public override void CreateSlots()
         {
             InventorySlotButton[] buttons = GetComponentsInChildren<InventorySlotButton>();
             for (int i = 0; i < buttons.Length; i++)
             {
-                SlotMap.Add(buttons[i], inventory.Container.inventorySlots[i]);
+                LinkButtonToInventorySlot(buttons[i], inventory.GetSlots[i]);
+
+                // Button Config for drag and drop functionality
                 var buttonGameObject = buttons[i].gameObject;
                 Utilities.AddEvent(buttonGameObject, EventTriggerType.PointerEnter, delegate { OnEnter(buttonGameObject); });
                 Utilities.AddEvent(buttonGameObject, EventTriggerType.PointerExit, delegate { OnExit(buttonGameObject); });

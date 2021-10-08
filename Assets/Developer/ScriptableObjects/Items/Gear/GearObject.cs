@@ -83,7 +83,7 @@ namespace BulletRPG.Items
     }
 
     [System.Serializable]
-    public class GearBuff
+    public class GearBuff : IModifier
     {
         public Attributes attribute;
         public int buffValue;
@@ -95,6 +95,12 @@ namespace BulletRPG.Items
             maxValue = max;
             GenerateValue();
         }
+
+        public void AddValue(ref int value)
+        {
+            value += buffValue;
+        }
+
         public void GenerateValue()
         {
             buffValue = UnityEngine.Random.Range(minValue, maxValue + 1);
