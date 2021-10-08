@@ -9,11 +9,11 @@ namespace BulletRPG.Items
     public class Attribute
     {
         [System.NonSerialized]
-        public PlayerStats parent;
-        public Attributes attribute;
+        public Player parent;
+        public AttributeType attributeType;
         public ModifiableInt value;
 
-        public void SetParent(PlayerStats _player)
+        public void SetParent(Player _player)
         {
             parent = _player;
             value = new ModifiableInt(AttributeModified);
@@ -23,6 +23,13 @@ namespace BulletRPG.Items
         {
             parent.AttributeModified(this);
         }
+    }
+    public enum AttributeType
+    {
+        Agility,
+        Intellect,
+        Stamina,
+        Strength,
     }
 }
 

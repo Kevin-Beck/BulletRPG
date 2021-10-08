@@ -442,7 +442,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff2a716cde869419d7d9a471a50e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Statblock: {fileID: 11400000, guid: bd272f5d763d7244699775cf09e46d8d, type: 2}
+  CharacterAttributes:
+  - attributeType: 0
+    value:
+      baseValue: 15
+      modifiedValue: 0
+  - attributeType: 1
+    value:
+      baseValue: 15
+      modifiedValue: 0
+  - attributeType: 2
+    value:
+      baseValue: 20
+      modifiedValue: 0
+  - attributeType: 3
+    value:
+      baseValue: 20
+      modifiedValue: 0
 --- !u!1 &2688855383638578653
 GameObject:
   m_ObjectHideFlags: 0

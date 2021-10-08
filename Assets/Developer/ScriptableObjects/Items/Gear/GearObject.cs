@@ -85,7 +85,7 @@ namespace BulletRPG.Items
     [System.Serializable]
     public class GearBuff : IModifier
     {
-        public Attributes attribute;
+        public AttributeType attribute;
         public int buffValue;
         public int minValue;
         public int maxValue;
@@ -109,13 +109,5 @@ namespace BulletRPG.Items
         {
             return $"{attribute}: {buffValue}"; 
         }
-    }
-
-    public enum Attributes
-    {
-        Agility,
-        Intellect,
-        Stamina,
-        Strength,
     }
 }

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
   m_Name: IceDagger
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   ItemName: IceDagger
   ItemType: 1
+  IsStackable: 0
   ItemDescription: This shoots sharp ice shards and deals 10 damage
   sprite: {fileID: 21300000, guid: 036e0a9856c214f478367a052def8fea, type: 3}
   Color: {r: 0, g: 0.8157754, b: 1, a: 1}
@@ -31,7 +32,7 @@ MonoBehaviour:
   - attribute: 0
     buffValue: 0
     minValue: 1
-    maxValue: 10
+    maxValue: 100
   Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
     type: 3}
   Cooldown: 5
