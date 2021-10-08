@@ -142,14 +142,26 @@ namespace BulletRPG.Items
         [ContextMenu("Clear")]
         public void Clear()
         {
-            Container.Clear();
-             
+            Container.Clear();             
+        }
+        public void SetSize(int size)
+        {
+            Container.SetSize(size);
         }
     }
     [System.Serializable]
     public class Inventory
     {
         public InventorySlot[] inventorySlots = new InventorySlot[21];
+        public void SetSize(int size)
+        {
+            inventorySlots = new InventorySlot[size];
+            for(int i = 0; i < inventorySlots.Length; i++)
+            {
+                inventorySlots[i] = new InventorySlot();
+                inventorySlots[i].SetSlotData(new Gear(), 0);
+            }
+        }
         public void Clear()
         {
             for (int i = 0; i < inventorySlots.Length; i++)

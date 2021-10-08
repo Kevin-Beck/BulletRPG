@@ -32,27 +32,18 @@ namespace BulletRPG.UI
             {
                 // Equipment slots are currently Retrieved from the character model by name by looping through all types of gear
                 // With this system in place each slot is only able to take a single type of object
-                List<GearType> types = new List<GearType>();
-                foreach (GearType gearType in (GearType[])Enum.GetValues(typeof(GearType)))
+
+                for (int i = 0; i < inventory.GetSlots.Length; i++)
                 {
-                    var equipmentPoint = Utilities.RecursiveFindChild(player.transform, gearType.ToString());
-                    if (equipmentPoint != null)
-                    {
-                        equipments += gearType.ToString() + " ";
-                        var slot = Instantiate(equipmentSlotPrefab, contentPanel);
-                        var text = Utilities.RecursiveFindChild(slot.transform, "SlotName");
-                        text.GetComponent<TextMeshProUGUI>().text = gearType.ToString();
-                        types.Add(gearType);
-                    }
+                    var slot = Instantiate(equipmentSlotPrefab, contentPanel);
+                    var text = Utilities.RecursiveFindChild(slot.transform, "SlotName");
+                    text.GetComponent<TextMeshProUGUI>().text = inventory.GetSlots[i].AllowedGear[0].ToString();
                 }
 
                 // After inventory buttons have been made, initialize each slot with the allowed gear for that slot                
                 InventorySlotButton[] buttons = GetComponentsInChildren<InventorySlotButton>();
                 for (int i = 0; i < buttons.Length; i++)
-                {                   
-                    // basic way to map each slot to a specific type of slot, this is where allowable items for each slot are set
-                    inventory.GetSlots[i].InitializeAllowedGear(new GearType[] { types[i] });
-
+                {   
                     LinkButtonToInventorySlot(buttons[i], inventory.GetSlots[i]);
 
                     // Add Drag and drop functionality to buttons by adding events to the game object

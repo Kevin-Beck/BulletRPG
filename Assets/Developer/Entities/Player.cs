@@ -1,4 +1,5 @@
 using BulletRPG.Items;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,6 +11,7 @@ namespace BulletRPG.Characters.Player
     public class Player : MonoBehaviour
     {
         public InventoryObject EquippedItems;
+        Dictionary<InventorySlot, Transform> EquipmentSlotPositionMap = new Dictionary<InventorySlot, Transform>();
 
         IMove movement;
         IHealth health;
@@ -19,13 +21,48 @@ namespace BulletRPG.Characters.Player
 
         private void Awake()
         {
+            // TODO find all the slots in the player model, set equipment length to that amount
+            // Set the equipment allowed objects to be what was found in the model
+            // Currently EquippedItems is hard coded to inventory size, it needs to be
+            // the length of the actual slots in our inventory
+            EquippedItems.Clear();
+            SetEquipmentSlots();
+            // When we set the allowed gear in the InventorySlot also add it to
+            // an equipmentslotmap that maps the InventorySlot to The equipmentLocation Transform
+            
+            // On Before SlotUpdate can Remove The children objects
+            // On after slot update can add the in game object using the inventory database to fetch
+            // the equipped game object
+
+            // Currently the Equipment slot's allowed gear is being set by the Equipment UI
+            // Remove that InitializeAllowedGear from that spot
+
             movement = GetComponent<IMove>();
             health = GetComponent<IHealth>();
             baseStats = GetComponentInChildren<CharacterStats>();
         }
+        private void SetEquipmentSlots()
+        {
+            int count = 0;
+            List<GearType> types = new List<GearType>();
+            foreach (GearType gearType in (GearType[])System.Enum.GetValues(typeof(GearType)))
+            {
+                var equipmentPoint = Utilities.RecursiveFindChild(transform, gearType.ToString());
+                if (equipmentPoint != null)
+                {
+                    types.Add(gearType);
+                    count++;
+                }
+            }
+            EquippedItems.SetSize(count);
+            for(int i = 0; i < EquippedItems.GetSlots.Length; i++)
+            {
+                EquippedItems.GetSlots[i].InitializeAllowedGear(new GearType[] { types[i] });
+                EquipmentSlotPositionMap.Add(EquippedItems.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
+            }
+        }
         private void Start()
         {
-
             for (int i = 0; i < attributes.Length; i++)
             {
                 attributes[i].SetParent(this);
@@ -36,16 +73,12 @@ namespace BulletRPG.Characters.Player
                 EquippedItems.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
             }
 
-
-            // TODO loop through base stats and set the base value of the attributes to base stats
             for (int i = 0; i < attributes.Length; i++)
             {
                 attributes[i].attributeType = baseStats.CharacterAttributes[i].attributeType;
                 attributes[i].value.BaseValue = baseStats.CharacterAttributes[i].value.BaseValue;
             }
             ChangeFeaturesToMatchStats();
-
-
         }
         private void ChangeFeaturesToMatchStats()
         {
@@ -78,6 +111,10 @@ namespace BulletRPG.Characters.Player
                 }
             }
             ChangeFeaturesToMatchStats();
+            foreach(Transform child in EquipmentSlotPositionMap[_slot])
+            {
+                Destroy(child.gameObject);
+            }
         }
         public void OnAfterSlotUpdate(InventorySlot _slot)
         {
@@ -97,6 +134,7 @@ namespace BulletRPG.Characters.Player
                 }
             }
             ChangeFeaturesToMatchStats();
+            Instantiate(EquippedItems.database.GetGearObject[_slot.gear.Id].EquippedInGameObject, EquipmentSlotPositionMap[_slot]);
         }
 
         public void AttributeModified(Attribute attribute)
