@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace BulletRPG.Characters
+namespace BulletRPG.Characters.Player
 {
     public class CharacterStats : MonoBehaviour
     {

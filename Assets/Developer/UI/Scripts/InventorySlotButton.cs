@@ -1,20 +1,17 @@
-using BulletRPG.Items;
+using BulletRPG.Gear;
 using Ricimi;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace BulletRPG.UI
+namespace BulletRPG.UI.Inventory
 {
     public class InventorySlotButton : MonoBehaviour
     {
         [System.NonSerialized]
-        public UserInterface inventoryGroupParent;
+        public InventoryUserInterface inventoryGroupParent;
         private InventorySlot slot;
 
         private Image icon;
@@ -35,7 +32,7 @@ namespace BulletRPG.UI
             counter = Utilities.RecursiveFindChild(transform, "Counter").GetComponent<TextMeshProUGUI>();
             tooltiptitle = Utilities.RecursiveFindChild(ToolTip.transform, "ToolTipTitle").GetComponent<TextMeshProUGUI>();
             tooltiptext = Utilities.RecursiveFindChild(ToolTip.transform, "ToolTipText").GetComponent<TextMeshProUGUI>();
-            inventoryGroupParent = GetComponentInParent<UserInterface>();
+            inventoryGroupParent = GetComponentInParent<InventoryUserInterface>();
             Utilities.AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { ShowToolTip(); });
             Utilities.AddEvent(gameObject, EventTriggerType.PointerExit, delegate { RemoveToolTip(); });
         }
