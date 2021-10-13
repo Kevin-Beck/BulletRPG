@@ -3,34 +3,23 @@ using UnityEngine;
 
 namespace BulletRPG.Gear
 {
-    public abstract class GearObject : ScriptableObject
-    {
-        [Header("ItemObject Data")]
-        public int Id = -1;
-        public string ItemName;
-        public GearType ItemType;
-        public bool IsStackable;
-        [TextArea(5, 20)]
-        public string ItemDescription;
-        public Sprite sprite;
-        public Color Color;
-        public GameObject LootObject;
-
+    public abstract class GearObject : ItemObject
+    {       
         [Header("Gear Data")]        
-        public GearType geartype;
+        public GearSlot gearSlot;
         public GameObject EquippedInGameObject;
         public GearBuff[] Buffs;
 
         private void Awake()
         {
-            ItemType = GearType.Default;
+            itemType = ItemType.Gear;
         }
         public Gear CreateGearItem()
         {
             return new Gear(this);
         }
     }
-    public enum GearType
+    public enum GearSlot
     {
         Default,
         Wand, // Ranged weapon
@@ -47,29 +36,22 @@ namespace BulletRPG.Gear
         Restoration // passive healing/protection items
     }
     [System.Serializable]
-    public class Gear
+    public class Gear : Item
     {
         public string Name;
         public string Description;
-        public int Id = -1;
-        public GearType gearType;
+        public GearSlot gearSlot;
         public bool IsStackable;
         public GearBuff[] buffs;
 
-        public Gear()
+        public Gear() : base()
         {
-            Name = "";
-            Description = "";
-            Id = -1;
+            gearSlot = GearSlot.Default;
             buffs = new GearBuff[0];
         }
-        public Gear(GearObject gearObject)
-        {            
-            gearType = gearObject.ItemType;
-            IsStackable = gearObject.IsStackable;
-            Name = gearObject.ItemName;
-            Description = gearObject.ItemDescription;
-            Id = gearObject.Id;
+        public Gear(GearObject gearObject) : base(gearObject)
+        {
+            gearSlot = gearObject.gearSlot;
             buffs = new GearBuff[gearObject.Buffs.Length];
             for(int i = 0; i < buffs.Length; i++)
             {

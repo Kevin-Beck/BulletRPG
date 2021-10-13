@@ -10,7 +10,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
     {
         private void Awake()
         {
-            geartype = GearType.Wand;
+            gearSlot = GearSlot.Wand;
         }
     }
 }

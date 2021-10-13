@@ -38,7 +38,7 @@ namespace BulletRPG.UI.Inventory
         }
         private void Start()
         {
-            UpdateSlotUI(slot.gear.Id < 0 ? null : inventoryGroupParent.inventory.database.gearObjects[slot.gear.Id]);
+            UpdateSlotUI(slot.item.Id < 0 ? null : inventoryGroupParent.inventory.database.itemObjects[slot.item.Id]);
         }
         protected void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
         {
@@ -80,9 +80,9 @@ namespace BulletRPG.UI.Inventory
         {
             slot = slotToRepresent;
         }
-        public void UpdateSlotUI(GearObject gearObject)
+        public void UpdateSlotUI(ItemObject itemObject)
         {
-            if (slot == null || gearObject == null)
+            if (slot == null || itemObject == null)
             {
                 SetCounterText("");
                 SetIconSpriteAndColor(null, Color.clear);
@@ -92,15 +92,28 @@ namespace BulletRPG.UI.Inventory
             else
             {
                 SetCounterText(slot.amount == 1 || slot.amount == 0 ? "" : slot.amount.ToString());
-                SetIconSpriteAndColor(gearObject.sprite, gearObject.Color);
+                SetIconSpriteAndColor(itemObject.sprite, itemObject.color);
 
                 string buffDescriptions = "";
-                foreach (GearBuff buff in slot.gear.buffs)
+
+                // TODO ADD/FIX gear descriptions, this can be where we get the description
+                // Description can be overwritten by classes
+
+                tipTitle = itemObject.itemName;
+
+                var gear = slot.item as Gear.Gear;
+                if(slot.item as Gear.Gear != null)
                 {
-                    buffDescriptions += buff.Stringify() + "\n";
+                    foreach (GearBuff buff in gear.buffs)
+                    {
+                        buffDescriptions += buff.Stringify() + "\n";
+                    }
+                    tipText = $"{itemObject.itemDescription}\n\n{buffDescriptions}";
                 }
-                tipTitle = gearObject.ItemName;
-                tipText = $"{gearObject.ItemDescription}\n\n{buffDescriptions}";
+                else
+                {
+                    tipText = itemObject.itemDescription;
+                }
             }
         }
     }

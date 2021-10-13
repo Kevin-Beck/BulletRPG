@@ -17,7 +17,7 @@ namespace BulletRPG.UI.Inventory
         public void LinkButtonToInventorySlot(InventorySlotButton button, InventorySlot slot)
         {
             slot.OnAfterUpdate += delegate {
-                button.UpdateSlotUI(slot.gear?.Id < 0 ? null : inventory.database.gearObjects[slot.gear.Id]);
+                button.UpdateSlotUI(slot.item?.Id < 0 ? null : inventory.database.itemObjects[slot.item.Id]);
             };
             button.SetSlot(slot);
             SlotMap.Add(button, slot);
@@ -36,7 +36,7 @@ namespace BulletRPG.UI.Inventory
             if (dragDropIcon.fromButton)
             {
                 // we have started to drag an inventory slot
-                var gearInSlot = SlotMap[dragDropIcon.fromButton].gear;
+                var gearInSlot = SlotMap[dragDropIcon.fromButton].item;
                 if (gearInSlot != null && gearInSlot.Id > -1)
                 {
                     Debug.Log("Drag Started");
@@ -46,8 +46,8 @@ namespace BulletRPG.UI.Inventory
                     dragMouseIcon.transform.SetParent(transform.root);
 
                     var image = dragMouseIcon.AddComponent<Image>();
-                    image.sprite = inventory.database.GetGearObject[gearInSlot.Id].sprite;
-                    image.color = inventory.database.GetGearObject[gearInSlot.Id].Color;
+                    image.sprite = inventory.database.GetItemObject[gearInSlot.Id].sprite;
+                    image.color = inventory.database.GetItemObject[gearInSlot.Id].color;
                     image.raycastTarget = false;
 
                     dragDropIcon.icon = dragMouseIcon;
@@ -75,9 +75,11 @@ namespace BulletRPG.UI.Inventory
                     var fromSlot = SlotMap[dragDropIcon.fromButton];
                     var toSlot = toParent.SlotMap[endDragButton];
 
-                    if (toSlot.CanPlaceInSlot(fromSlot.gear))
+                    var fromGear = fromSlot.item as Gear.Gear;
+                    var toGear = toSlot.item as Gear.Gear;
+                    if (toSlot.CanPlaceInSlot(fromGear))
                     {
-                        if(fromSlot.CanPlaceInSlot(toSlot.gear) || toSlot.gear.Id < 0)
+                        if(fromSlot.CanPlaceInSlot(toGear) || toSlot.item.Id < 0)
                         {
                             if (fromParent == toParent)
                             {
@@ -87,20 +89,20 @@ namespace BulletRPG.UI.Inventory
                             else
                             {
                                 Debug.Log("Switching two different inventories");
-                                var tempGear = fromSlot.gear;
+                                var tempItem = fromSlot.item;
                                 var tempAmount = fromSlot.amount;
-                                fromParent.inventory.SetInventorySlot(fromSlot, toSlot.gear, toSlot.amount);
-                                toParent.inventory.SetInventorySlot(toSlot, tempGear, tempAmount);
+                                fromParent.inventory.SetInventorySlot(fromSlot, toSlot.item, toSlot.amount);
+                                toParent.inventory.SetInventorySlot(toSlot, tempItem, tempAmount);
                             }
                         }
                         else
                         {
-                            Debug.Log($"Sending slot cannot hold gearType: {toSlot.gear.gearType}");
+                            Debug.Log($"Sending slot cannot hold gearType: {toGear.gearSlot}");
                         }
                     }
                     else
                     {
-                        Debug.Log($"Receiving slot cannot hold gearType: {fromSlot.gear.gearType}");
+                        Debug.Log($"Receiving slot cannot hold gearType: {fromGear.gearSlot}");
                     }
                 }
             }
@@ -108,12 +110,12 @@ namespace BulletRPG.UI.Inventory
             {
                 Debug.Log("Dropping Item");
                 var fromSlot = SlotMap[dragDropIcon.fromButton];
-                var droppedObject = Instantiate(inventory.database.gearObjects[fromSlot.gear.Id].LootObject, Utilities.MouseOnPlane(), Quaternion.identity);
+                var droppedObject = Instantiate(inventory.database.itemObjects[fromSlot.item.Id].lootObject, Utilities.MouseOnPlane(), Quaternion.identity);
                 var lootableData = droppedObject.GetComponent<LootableItem>();
                 lootableData.amount = fromSlot.amount;
-                lootableData.setGear = fromSlot.gear;
+                lootableData.setItem = fromSlot.item;
 
-                inventory.RemoveItem(fromSlot.gear, fromSlot.amount);
+                inventory.RemoveItem(fromSlot.item, fromSlot.amount);
             }
 
             Destroy(dragDropIcon.icon);

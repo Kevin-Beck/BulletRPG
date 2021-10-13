@@ -7,8 +7,8 @@ namespace BulletRPG.Gear
 {
     public class LootableItem : MonoBehaviour
     { 
-        public GearObject gearObject;
-        public Gear setGear;
+        public ItemObject itemObject;
+        public Item setItem;
         public int amount = 1;
     }
 }

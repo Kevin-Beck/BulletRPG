@@ -8,7 +8,7 @@ namespace BulletRPG.Gear.Armor
     {
         private void Awake()
         {
-            geartype = GearType.Helmet;
+            gearSlot = GearSlot.Helmet;
         }
     }
 }

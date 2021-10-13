@@ -24,7 +24,6 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
         public float projectileSpeed;
 
         public DamageGenerator damage;
-        public string description;
         public RangedWeapon() : base()
         { }
         public RangedWeapon(RangedWeaponObject rangedWeaponObject) : base(rangedWeaponObject)

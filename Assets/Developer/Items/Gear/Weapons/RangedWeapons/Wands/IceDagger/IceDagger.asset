@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
   m_Name: IceDagger
   m_EditorClassIdentifier: 
-  Id: 1
-  ItemName: IceDagger
-  ItemType: 1
-  IsStackable: 0
-  ItemDescription: This shoots sharp ice shards and deals 10 damage
+  Id: 0
+  itemName: Ice Dagger
+  itemType: 0
+  isStackable: 0
+  itemDescription: Ice dagger Description
   sprite: {fileID: 21300000, guid: 036e0a9856c214f478367a052def8fea, type: 3}
-  Color: {r: 0, g: 0.8157754, b: 1, a: 1}
-  LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
+  color: {r: 0, g: 0.8190596, b: 1, a: 1}
+  lootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
     type: 3}
-  geartype: 1
+  gearSlot: 1
   EquippedInGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
     type: 3}
   Buffs:

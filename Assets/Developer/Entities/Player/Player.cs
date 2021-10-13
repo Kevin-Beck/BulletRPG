@@ -11,7 +11,7 @@ namespace BulletRPG.Characters.Player
     /// </summary>
     public class Player : MonoBehaviour
     {
-        public InventoryObject EquippedItemSlots;
+        public InventoryObject EquippedGearSlots;
         Dictionary<InventorySlot, Transform> EquipmentSlotPositionMap = new Dictionary<InventorySlot, Transform>();
 
         IMove movement;
@@ -22,7 +22,7 @@ namespace BulletRPG.Characters.Player
 
         private void Awake()
         {
-            EquippedItemSlots.Clear();
+            EquippedGearSlots.Clear();
             SetEquipmentSlots();
 
             movement = GetComponent<IMove>();
@@ -32,8 +32,8 @@ namespace BulletRPG.Characters.Player
         private void SetEquipmentSlots()
         {
             int count = 0;
-            List<GearType> types = new List<GearType>();
-            foreach (GearType gearType in (GearType[])System.Enum.GetValues(typeof(GearType)))
+            List<GearSlot> types = new List<GearSlot>();
+            foreach (GearSlot gearType in (GearSlot[])System.Enum.GetValues(typeof(GearSlot)))
             {
                 var equipmentPoint = Utilities.RecursiveFindChild(transform, gearType.ToString());
                 if (equipmentPoint != null)
@@ -42,11 +42,11 @@ namespace BulletRPG.Characters.Player
                     count++;
                 }
             }
-            EquippedItemSlots.SetSize(count);
-            for(int i = 0; i < EquippedItemSlots.GetSlots.Length; i++)
+            EquippedGearSlots.SetSize(count);
+            for(int i = 0; i < EquippedGearSlots.GetSlots.Length; i++)
             {
-                EquippedItemSlots.GetSlots[i].InitializeAllowedGear(new GearType[] { types[i] });
-                EquipmentSlotPositionMap.Add(EquippedItemSlots.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
+                EquippedGearSlots.GetSlots[i].InitializeAllowedGear(new GearSlot[] { types[i] });
+                EquipmentSlotPositionMap.Add(EquippedGearSlots.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
             }
         }
         private void Start()
@@ -55,10 +55,10 @@ namespace BulletRPG.Characters.Player
             {
                 attributes[i].SetParent(this);
             }
-            for (int i = 0; i < EquippedItemSlots.GetSlots.Length; i++)
+            for (int i = 0; i < EquippedGearSlots.GetSlots.Length; i++)
             {
-                EquippedItemSlots.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
-                EquippedItemSlots.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+                EquippedGearSlots.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
+                EquippedGearSlots.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
             }
 
             for (int i = 0; i < attributes.Length; i++)
@@ -83,18 +83,19 @@ namespace BulletRPG.Characters.Player
         }
         public void OnBeforeSlotUpdate(InventorySlot _slot)
         {
-            if(_slot == null || _slot.gear == null || _slot.gear.Id < 0)
+            if(_slot == null || _slot.item == null || _slot.item.Id < 0)
             {
                 return;
             }
-            Debug.Log($"Removed {_slot.gear.Name} on slot that allows this many types: {string.Join(", ",_slot.AllowedGear)}");
-            for (int i = 0; i < _slot.gear.buffs.Length; i++)
+            Debug.Log($"Removed {_slot.item.name} on slot that allows these Types: {string.Join(", ",_slot.AllowedGear)}");
+            var gear = _slot.item as BulletRPG.Gear.Gear;
+            for (int i = 0; i < gear.buffs.Length; i++)
             {
                 for (int j = 0; j < attributes.Length; j++)
                 {
-                    if (attributes[j].attributeType == _slot.gear.buffs[i].attribute)
+                    if (attributes[j].attributeType == gear.buffs[i].attribute)
                     {
-                        attributes[j].value.RemoveModifier(_slot.gear.buffs[i]);
+                        attributes[j].value.RemoveModifier(gear.buffs[i]);
                     }
                 }
             }
@@ -106,27 +107,33 @@ namespace BulletRPG.Characters.Player
         }
         public void OnAfterSlotUpdate(InventorySlot _slot)
         {
-            if (_slot == null || _slot.gear == null || _slot.gear.Id < 0)
+            if (_slot == null || _slot.item == null || _slot.item.Id < 0)
             {
                 return;
             }
-            Debug.Log($"Placed {_slot.gear.Name} on slot that allows these types: {string.Join(", ", _slot.AllowedGear)}");
-            for(int i = 0; i < _slot.gear.buffs.Length; i++)
+            var gear = _slot.item as Gear.Gear;
+            Debug.Log($"Placed {gear.Name} on slot that allows these types: {string.Join(", ", _slot.AllowedGear)}");
+            for(int i = 0; i < gear.buffs.Length; i++)
             {
                 for (int j = 0; j < attributes.Length; j++)
                 {
-                    if(attributes[j].attributeType == _slot.gear.buffs[i].attribute)
+                    if(attributes[j].attributeType == gear.buffs[i].attribute)
                     {
-                        attributes[j].value.AddModifier(_slot.gear.buffs[i]);
+                        attributes[j].value.AddModifier(gear.buffs[i]);
                     }
                 }
             }
             ChangeFeaturesToMatchStats();
-            var equipment = Instantiate(EquippedItemSlots.database.GetGearObject[_slot.gear.Id].EquippedInGameObject, EquipmentSlotPositionMap[_slot]);
-            if(_slot.gear.gearType == GearType.Wand)
+            var gearObject = (GearObject)(EquippedGearSlots.database.GetItemObject[gear.Id]);
+            var inGameItem = gearObject.EquippedInGameObject;
+
+
+            // TODO equip all item slots like this
+            var equipment = Instantiate(inGameItem, EquipmentSlotPositionMap[_slot]);
+            if(gear.gearSlot == GearSlot.Wand)
             {
                 var weaponShoot = equipment.GetComponent<WeaponShoot>();
-                weaponShoot.SetWeapon((RangedWeapon)_slot.gear);
+                weaponShoot.SetWeapon((RangedWeapon)gear);
             }
         }
 
