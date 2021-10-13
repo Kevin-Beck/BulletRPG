@@ -4238,6 +4238,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2055153081067693688}
     m_Modifications:
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[4].attributeType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[5].attributeType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[6].attributeType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[4].value.baseValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[5].value.baseValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176200490614767006, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
+        type: 3}
+      propertyPath: CharacterAttributes.Array.data[6].value.baseValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2688855383638343425, guid: ab5f8c5bbaf7f5c4db33157cea9492aa,
         type: 3}
       propertyPath: m_RootOrder
@@ -5927,7 +5962,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726140186}
-  m_LocalRotation: {x: -0.003917491, y: 0.9958064, z: -0.051804274, w: -0.07530388}
+  m_LocalRotation: {x: -0.0039174915, y: 0.9958064, z: -0.051804278, w: -0.07530388}
   m_LocalPosition: {x: -39.841988, y: 261.3492, z: -33.316925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6271,8 +6306,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145357590}
-  m_LocalRotation: {x: -0.006423965, y: 0.99156964, z: -0.054202855, w: -0.117517956}
-  m_LocalPosition: {x: 145.47092, y: 68.241974, z: 605.0924}
+  m_LocalRotation: {x: -0.0039174915, y: 0.9958064, z: -0.051804278, w: -0.07530388}
+  m_LocalPosition: {x: 50.424232, y: 34.98172, z: 331.49448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6436,8 +6471,14 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
         type: 3}
+      propertyPath: EquippedItemSlots
+      value: 
+      objectReference: {fileID: 11400000, guid: db8e96ac901aa06439b118b90018a9b2,
+        type: 2}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
       propertyPath: attributes.Array.size
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
         type: 3}
@@ -6483,6 +6524,21 @@ PrefabInstance:
         type: 3}
       propertyPath: attributes.Array.data[3].attributeType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[4].attributeType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[5].attributeType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672162848600631206, guid: 3219e76616e298d42a103ff0f028d624,
+        type: 3}
+      propertyPath: attributes.Array.data[6].attributeType
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

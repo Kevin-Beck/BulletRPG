@@ -21,7 +21,7 @@ MonoBehaviour:
   Color: {r: 0, g: 0.8157754, b: 1, a: 1}
   LootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
     type: 3}
-  geartype: 0
+  geartype: 1
   EquippedInGameObject: {fileID: 1528671846000010203, guid: f5bee7dcc431a6141959efba835b158e,
     type: 3}
   Buffs:
@@ -36,5 +36,8 @@ MonoBehaviour:
   Projectile: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
     type: 3}
   Cooldown: 1
-  Speed: 5
-  DamageMultiplier: 5
+  ProjectileSpeed: 5
+  MinDamageBottom: 1
+  MinDamageTop: 4
+  DamageRange: 2
+  damageTypes: 02000000

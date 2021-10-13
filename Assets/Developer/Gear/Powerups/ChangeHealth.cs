@@ -1,7 +1,7 @@
 using BulletRPG.Characters;
 using UnityEngine;
 
-namespace BulletRPG.Items.Powerups
+namespace BulletRPG.Gear
 {
     public class ChangeHealth : Interactable
     {

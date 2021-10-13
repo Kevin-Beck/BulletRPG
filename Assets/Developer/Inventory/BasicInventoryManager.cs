@@ -1,3 +1,4 @@
+using BulletRPG.Gear.Weapons.RangedWeapons;
 using UnityEngine;
 
 namespace BulletRPG.Gear
@@ -22,7 +23,14 @@ namespace BulletRPG.Gear
                 if(gear.setGear.Id == -1)
                 {
                     // roll a new gear
-                    if (inventory.AddItem(new Gear(gear.gearObject), gear.amount))
+                    if (gear.gearObject.ItemType == GearType.Wand)
+                    {
+                        if (inventory.AddItem(new RangedWeapon((RangedWeaponObject)gear.gearObject), 1))
+                        {
+                            Destroy(other.gameObject);
+                        }
+                    }
+                    else if (inventory.AddItem(new Gear(gear.gearObject), gear.amount))
                     {
                         Destroy(other.gameObject);
                     }
@@ -30,7 +38,7 @@ namespace BulletRPG.Gear
                 else
                 {
                     // gear is set already
-                    if(inventory.AddItem(gear.setGear, gear.amount))
+                    if (inventory.AddItem(gear.setGear, gear.amount))
                     {
                         Destroy(other.gameObject);
                     }

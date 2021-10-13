@@ -26,10 +26,13 @@ namespace BulletRPG.Characters.Player
     }
     public enum AttributeType
     {
-        Agility,
-        Intellect,
-        Stamina,
+        Endurance,
         Strength,
+        Agility,
+        Speed,
+        Charm,
+        Intelligence,
+        Willpower,
     }
 }
 

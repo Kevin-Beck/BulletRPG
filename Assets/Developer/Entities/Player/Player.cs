@@ -1,4 +1,5 @@
 using BulletRPG.Gear;
+using BulletRPG.Gear.Weapons.RangedWeapons;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,32 +11,19 @@ namespace BulletRPG.Characters.Player
     /// </summary>
     public class Player : MonoBehaviour
     {
-        public InventoryObject EquippedItems;
+        public InventoryObject EquippedItemSlots;
         Dictionary<InventorySlot, Transform> EquipmentSlotPositionMap = new Dictionary<InventorySlot, Transform>();
 
         IMove movement;
         IHealth health;
 
         public Attribute[] attributes;
-        CharacterStats baseStats; // stats based on this character
+        CharacterStats baseStats; // stats based on the Selected Character
 
         private void Awake()
         {
-            // TODO find all the slots in the player model, set equipment length to that amount
-            // Set the equipment allowed objects to be what was found in the model
-            // Currently EquippedItems is hard coded to inventory size, it needs to be
-            // the length of the actual slots in our inventory
-            EquippedItems.Clear();
+            EquippedItemSlots.Clear();
             SetEquipmentSlots();
-            // When we set the allowed gear in the InventorySlot also add it to
-            // an equipmentslotmap that maps the InventorySlot to The equipmentLocation Transform
-            
-            // On Before SlotUpdate can Remove The children objects
-            // On after slot update can add the in game object using the inventory database to fetch
-            // the equipped game object
-
-            // Currently the Equipment slot's allowed gear is being set by the Equipment UI
-            // Remove that InitializeAllowedGear from that spot
 
             movement = GetComponent<IMove>();
             health = GetComponent<IHealth>();
@@ -54,11 +42,11 @@ namespace BulletRPG.Characters.Player
                     count++;
                 }
             }
-            EquippedItems.SetSize(count);
-            for(int i = 0; i < EquippedItems.GetSlots.Length; i++)
+            EquippedItemSlots.SetSize(count);
+            for(int i = 0; i < EquippedItemSlots.GetSlots.Length; i++)
             {
-                EquippedItems.GetSlots[i].InitializeAllowedGear(new GearType[] { types[i] });
-                EquipmentSlotPositionMap.Add(EquippedItems.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
+                EquippedItemSlots.GetSlots[i].InitializeAllowedGear(new GearType[] { types[i] });
+                EquipmentSlotPositionMap.Add(EquippedItemSlots.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
             }
         }
         private void Start()
@@ -67,10 +55,10 @@ namespace BulletRPG.Characters.Player
             {
                 attributes[i].SetParent(this);
             }
-            for (int i = 0; i < EquippedItems.GetSlots.Length; i++)
+            for (int i = 0; i < EquippedItemSlots.GetSlots.Length; i++)
             {
-                EquippedItems.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
-                EquippedItems.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+                EquippedItemSlots.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
+                EquippedItemSlots.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
             }
 
             for (int i = 0; i < attributes.Length; i++)
@@ -87,7 +75,7 @@ namespace BulletRPG.Characters.Player
                 if(attribute.attributeType == AttributeType.Agility)
                 {
                     movement.SetSpeedAndAcceleration(attribute.value.ModifiedValue, attribute.value.ModifiedValue);
-                }else if(attribute.attributeType == AttributeType.Stamina)
+                }else if(attribute.attributeType == AttributeType.Endurance)
                 {
                     health.SetCurrentAndMaxHealth(attribute.value.ModifiedValue, attribute.value.ModifiedValue);
                 }
@@ -134,7 +122,12 @@ namespace BulletRPG.Characters.Player
                 }
             }
             ChangeFeaturesToMatchStats();
-            Instantiate(EquippedItems.database.GetGearObject[_slot.gear.Id].EquippedInGameObject, EquipmentSlotPositionMap[_slot]);
+            var equipment = Instantiate(EquippedItemSlots.database.GetGearObject[_slot.gear.Id].EquippedInGameObject, EquipmentSlotPositionMap[_slot]);
+            if(_slot.gear.gearType == GearType.Wand)
+            {
+                var weaponShoot = equipment.GetComponent<WeaponShoot>();
+                weaponShoot.SetWeapon((RangedWeapon)_slot.gear);
+            }
         }
 
         public void AttributeModified(Attribute attribute)

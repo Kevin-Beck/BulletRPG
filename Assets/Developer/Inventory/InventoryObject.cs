@@ -10,7 +10,7 @@ namespace BulletRPG.Gear
     {
         public string savePath;
         public GearDatabaseObject database;
-        private Inventory Container;
+        [SerializeField] private Inventory Container;
         public InventorySlot[] GetSlots { get { return Container.inventorySlots; } }
 
         public bool SetInventorySlot(InventorySlot slot, Gear gear, int amount)
@@ -124,6 +124,8 @@ namespace BulletRPG.Gear
             file.Close();
 
             Debug.Log($"Inventory: {name} saved to: {savePath}");
+
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/save.json", saveData);
         }
         [ContextMenu("Load")]
         public void Load()
@@ -136,7 +138,11 @@ namespace BulletRPG.Gear
                 file.Close();
 
                 Debug.Log($"Inventory: {name} loaded from: {savePath}");
-                database = Resources.Load<GearDatabaseObject>("ItemDatabase");                 
+                database = Resources.Load<GearDatabaseObject>("ItemDatabase");    
+                foreach(InventorySlot slot in Container.inventorySlots)
+                {
+                    slot.SetSlotData(slot.gear, slot.amount);
+                }
             }
         }
         [ContextMenu("Clear")]

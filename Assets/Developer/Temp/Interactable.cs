@@ -1,7 +1,7 @@
 using BulletRPG.Characters;
 using UnityEngine;
 
-namespace BulletRPG.Items
+namespace BulletRPG.Gear
 {
     [RequireComponent(typeof(Collider))]
     public class Interactable : MonoBehaviour

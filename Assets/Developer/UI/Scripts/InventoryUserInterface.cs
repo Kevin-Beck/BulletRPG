@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using BulletRPG.Items;
 using UnityEngine.UI;
 using BulletRPG.Gear;
 

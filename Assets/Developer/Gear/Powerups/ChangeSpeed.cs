@@ -1,10 +1,7 @@
 using BulletRPG.Characters;
-using BulletRPG.Items;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace BulletRPG.Items.Powerups
+namespace BulletRPG.Gear.Powerups
 {
     public class ChangeSpeed : Interactable
     {

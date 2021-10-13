@@ -33,9 +33,10 @@ namespace BulletRPG.Gear
     public enum GearType
     {
         Default,
-        Wand, // Hand weapon that fires a projectile
-        MajorFocus, // Effect on same position as Wand, enhances Wand
-        MinorFocus, // Effect on same postion as Wand, enhances wand
+        Wand, // Ranged weapon
+        Bow, // Ranged weapon
+        Javelin, // Ranged weapon
+        Focus, // Enhances ranged weapon position
         Helmet, // Head/hat that provides protection
         Shield, // Provides protection
         Alteration, // Magical shields/auras that provide areas of increased ability, speed increases

@@ -1,4 +1,4 @@
-using BulletRPG.Items;
+using BulletRPG.Gear;
 using UnityEngine;
 
 namespace BulletRPG.Characters
