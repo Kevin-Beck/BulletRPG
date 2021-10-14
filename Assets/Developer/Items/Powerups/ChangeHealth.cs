@@ -14,9 +14,11 @@ namespace BulletRPG.Gear
             {
                 case HealType.Flat:
                     health.HealFlatAmount(healAmount);
+                    Debug.Log("TODO");
                     break;
                 case HealType.Percentage:
                     health.HealPercentage(healAmount);
+                    Debug.Log("TODO");
                     break;
                 default:
                     Debug.LogWarning("Fell out of HealTypeSwitch");

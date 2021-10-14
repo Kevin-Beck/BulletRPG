@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BulletRPG.Gear.Weapons;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BulletRPG.Characters.NPC
@@ -101,6 +103,16 @@ namespace BulletRPG.Characters.NPC
         }
 
         public Tuple<float, float> GetCurrentAndMaxHealth()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ProcessDamage(Damage damage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddDamageMitigators(List<DamageMitigator> mitigators)
         {
             throw new NotImplementedException();
         }

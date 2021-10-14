@@ -38,11 +38,10 @@ namespace BulletRPG.Gear
     [System.Serializable]
     public class Gear : Item
     {
-        public string Name;
-        public string Description;
         public GearSlot gearSlot;
         public bool IsStackable;
         public GearBuff[] buffs;
+        private string gearDescription;
 
         public Gear() : base()
         {

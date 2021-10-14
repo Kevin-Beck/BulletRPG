@@ -1,7 +1,7 @@
 
 namespace BulletRPG.Gear
 {
-    public enum DamageTypes
+    public enum DamageType
     {
         Regular,
         Poison,

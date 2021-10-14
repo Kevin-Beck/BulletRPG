@@ -79,6 +79,7 @@ namespace BulletRPG.UI.Inventory
         public void SetSlot(InventorySlot slotToRepresent)
         {
             slot = slotToRepresent;
+            slot.AllowThisGearType(GearSlot.Default);
         }
         public void UpdateSlotUI(ItemObject itemObject)
         {
@@ -99,21 +100,10 @@ namespace BulletRPG.UI.Inventory
                 // TODO ADD/FIX gear descriptions, this can be where we get the description
                 // Description can be overwritten by classes
 
-                tipTitle = itemObject.itemName;
+                tipTitle = slot.item.name;
+                tipText = slot.item.description;
 
-                var gear = slot.item as Gear.Gear;
-                if(slot.item as Gear.Gear != null)
-                {
-                    foreach (GearBuff buff in gear.buffs)
-                    {
-                        buffDescriptions += buff.Stringify() + "\n";
-                    }
-                    tipText = $"{itemObject.itemDescription}\n\n{buffDescriptions}";
-                }
-                else
-                {
-                    tipText = itemObject.itemDescription;
-                }
+                
             }
         }
     }

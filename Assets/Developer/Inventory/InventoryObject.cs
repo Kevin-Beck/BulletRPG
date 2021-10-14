@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace BulletRPG.Gear
         }
         public bool AddItem(Item item, int _amount)
         {
-            Debug.Log("Attempting to add gear in InventoryObject");
+            Debug.Log("Attempting to add item in InventoryObject");
             // if the item is not stackable
             if (!item.isStackable)
             {
@@ -50,12 +51,10 @@ namespace BulletRPG.Gear
                 if (GetSlots[i].item == null || GetSlots[i].item.Id == -1)
                 {
                     GetSlots[i].SetSlotData(item, amount);
-                    Debug.Log($"Added {amount}x {item.name} to new stack");
-                    
+                    Debug.Log($"Added {amount}x {item.name} to new stack");                    
                     return true;
                 }
             }
-
             // full inventory here!
             return false;
         }
@@ -75,10 +74,14 @@ namespace BulletRPG.Gear
                     if (GetSlots[i].item == _item)
                     {
                         var amountInSlot = GetSlots[i].amount;
-                        if( amountInSlot >= amountToRemove)
+                        if( amountInSlot > amountToRemove)
                         {
                             
                             GetSlots[i].SetSlotData(_item, amountInSlot-amountToRemove);                            
+                            return true;
+                        }else if(amountInSlot == amountToRemove)
+                        {
+                            GetSlots[i].SetSlotData(null, 0);
                             return true;
                         }
                         else
@@ -192,7 +195,8 @@ namespace BulletRPG.Gear
     {
         public Item item = null;
         public int amount;
-        public GearSlot[] AllowedGear = new GearSlot[0];
+        public HashSet<GearSlot> AllowedGearTypes = new HashSet<GearSlot>();
+        public HashSet<ItemType> AllowedItemTypes = new HashSet<ItemType>();
 
         [System.NonSerialized]
         public SlotUpdated OnAfterUpdate;
@@ -209,52 +213,63 @@ namespace BulletRPG.Gear
         public void SetSlotData(Item _item, int _amount)
         {
             OnBeforeUpdate?.Invoke(this);
-            //if(OnBeforeUpdate == null)
-            //{
-            //    Debug.Log("NULL BEFORE UPDATE");
-            //}
             item = _item;
             amount = _amount;
             OnAfterUpdate?.Invoke(this);
-            //if (OnAfterUpdate == null)
-            //{
-            //    Debug.Log("NULL After UPDATE");
-            //}
         }
         public void AddAmount(int value)
         {
             SetSlotData(item, amount += value);
         }
-        public void InitializeAllowedGear(GearSlot[] typesToAllow)
+        public void InitializeAllowedItemTypes(ItemType[] itemsToAllow)
         {
-            AllowedGear = typesToAllow;
-        }
-        public void AllowThisGear(GearSlot typeToAllow)
-        {
-            Debug.Log($"Adding {typeToAllow} to allowedGear on {this}");
-            GearSlot[] temp = new GearSlot[AllowedGear.Length + 1];
-
-            for (int i = 0; i < AllowedGear.Length; i++)
+            foreach(ItemType type in itemsToAllow)
             {
-                temp[i] = AllowedGear[i];
+                AllowedItemTypes.Add(type);
             }
-            temp[AllowedGear.Length] = typeToAllow;
-            AllowedGear = temp;
         }
-        public bool CanPlaceInSlot(Gear _gear)
-        {            
-            if(AllowedGear.Length == 0)
+        public void InitializeAllowedGearTypes(GearSlot[] typesToAllow)
+        {
+            foreach(GearSlot slot in typesToAllow)
+            {
+                AllowedGearTypes.Add(slot);
+            }
+        }
+        public void AllowThisItemType(ItemType itemType)
+        {
+            AllowedItemTypes.Add(itemType);
+        }
+        public void AllowThisGearType(GearSlot typeToAllow)
+        {
+            AllowedItemTypes.Add(ItemType.Gear);
+            AllowedGearTypes.Add(typeToAllow);
+        }
+        public bool CanPlaceInSlot(Item item)
+        {
+            if (AllowedItemTypes.Contains(ItemType.All))
             {
                 return true;
             }
-            for (int i = 0; i < AllowedGear.Length; i++)
+            if(item == null)
             {
-                if(_gear.gearSlot == AllowedGear[i])
-                {
-                    return true;
-                }                
+                return true;
             }
-            return false;
+
+            if (!AllowedItemTypes.Contains(item.itemType))
+            {
+                Debug.Log("Does not containType in allowedItemtypes");
+                return false;
+            }
+
+            if(item.itemType == ItemType.Gear)
+            {
+                if(!AllowedGearTypes.Contains((item as Gear).gearSlot))
+                {
+                    Debug.Log("Does not contain GearType in allowed gearTypes");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

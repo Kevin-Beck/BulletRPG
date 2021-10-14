@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace BulletRPG.Gear.Weapons.RangedWeapons
 {
-    [CreateAssetMenu(fileName = "Wand", menuName = "Gear/Ranged Weapon/Wand")]
+    [CreateAssetMenu(fileName = "newWand", menuName = "Item/Gear/Wand")]
     public class WandObject : RangedWeaponObject
     {
         private void Awake()
         {
             gearSlot = GearSlot.Wand;
+            itemType = ItemType.Gear;
         }
     }
 }

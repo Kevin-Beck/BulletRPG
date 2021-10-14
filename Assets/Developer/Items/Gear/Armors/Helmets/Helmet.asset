@@ -12,24 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0556139ee71bc1249976ea57af9931f4, type: 3}
   m_Name: Helmet
   m_EditorClassIdentifier: 
-  Id: 2
-  ItemName: Blood Helm
-  ItemType: 4
-  IsStackable: 0
-  ItemDescription: Helmet that does stuff
-  sprite: {fileID: 21300000, guid: 5fb4f14ca2fdb9f45bf56f238c395a96, type: 3}
-  Color: {r: 1, g: 0, b: 0, a: 1}
-  LootObject: {fileID: 7275185213758543362, guid: ce0944cbdb315f4408c116af7775d2b0,
+  Id: 1
+  itemName: Testing Helmet
+  itemType: 1
+  isStackable: 0
+  itemDescription: This is a testing helmet
+  sprite: {fileID: 21300000, guid: e3f314c7f2de7c242aa69598955274fa, type: 3}
+  color: {r: 1, g: 0.92293096, b: 0, a: 1}
+  lootObject: {fileID: 7275185213758543362, guid: ce0944cbdb315f4408c116af7775d2b0,
     type: 3}
-  geartype: 0
-  EquippedInGameObject: {fileID: 1338544516898974, guid: b5c98dc41a9411a49af6f7d4f3d75dcf,
+  gearSlot: 5
+  EquippedInGameObject: {fileID: 6288418021575193388, guid: 89e37bccfa841924d9d18b1de0fcea4c,
     type: 3}
   Buffs:
-  - attribute: 3
+  - attribute: 0
     buffValue: 0
-    minValue: 1
+    minValue: 5
     maxValue: 10
-  - attribute: 2
+  - attribute: 1
     buffValue: 0
-    minValue: 1
-    maxValue: 10
+    minValue: 10
+    maxValue: 20
+  PossibleDamageMitigations:
+  - damageType: 0
+    percentRemoved: 0
+    minRemoved: 10
+    maxRemoved: 40
+  - damageType: 1
+    percentRemoved: 0
+    minRemoved: 20
+    maxRemoved: 30

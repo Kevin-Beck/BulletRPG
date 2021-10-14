@@ -17,7 +17,14 @@ namespace BulletRPG.UI.Inventory
         public void LinkButtonToInventorySlot(InventorySlotButton button, InventorySlot slot)
         {
             slot.OnAfterUpdate += delegate {
-                button.UpdateSlotUI(slot.item?.Id < 0 ? null : inventory.database.itemObjects[slot.item.Id]);
+                if(slot.item == null)
+                {
+                    button.UpdateSlotUI(null);
+                }
+                else
+                {
+                    button.UpdateSlotUI(slot.item.Id < 0 ? null : inventory.database.itemObjects[slot.item.Id]);
+                }                
             };
             button.SetSlot(slot);
             SlotMap.Add(button, slot);
@@ -103,6 +110,7 @@ namespace BulletRPG.UI.Inventory
                     else
                     {
                         Debug.Log($"Receiving slot cannot hold gearType: {fromGear.gearSlot}");
+                        Debug.Log($"Receiving slot can hold ItemTypes: {string.Join(", ", toSlot.AllowedItemTypes)} and GearSlots: {string.Join(", ", toSlot.AllowedGearTypes)}");
                     }
                 }
             }

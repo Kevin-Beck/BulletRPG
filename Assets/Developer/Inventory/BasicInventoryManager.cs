@@ -1,3 +1,4 @@
+using BulletRPG.Gear.Armor;
 using BulletRPG.Gear.Weapons.RangedWeapons;
 using UnityEngine;
 
@@ -20,23 +21,37 @@ namespace BulletRPG.Gear
                 {
                     Debug.LogWarning($"Amount set to 0 when adding {lootableItem.itemObject}");
                 }
-                if(lootableItem.setItem.Id == -1)
+                if(lootableItem.setItem.Id < 0)
                 {
                     // roll a new gear TODO 
                     // This should be able to just return a specific type of any object
                     // item.GetObject() can maybe return us any type of object based on the itemObject
                     // a base function that is overwritten by the sub-classes
                     var gearObject = lootableItem.itemObject as GearObject;
-                    if (gearObject != null && gearObject.gearSlot == GearSlot.Wand)
+                    if (gearObject != null)
                     {
-                        if (inventory.AddItem(new RangedWeapon((RangedWeaponObject)lootableItem.itemObject), 1))
+                        if(gearObject.gearSlot == GearSlot.Wand)
                         {
-                            Destroy(other.gameObject);
+                            if (inventory.AddItem(new RangedWeapon((RangedWeaponObject)lootableItem.itemObject), 1))
+                            {
+                                Destroy(other.gameObject);
+                                return;
+                            }
+                        }else if(gearObject.gearSlot == GearSlot.Helmet)
+                        {
+                            Debug.Log("Making a helmet");
+                            if (inventory.AddItem(new Armor.Armor((ArmorObject)lootableItem.itemObject), 1))
+                            {
+                                Destroy(other.gameObject);
+                                return;
+                            }
                         }
+                        Debug.Log("FALLING THROUGH GEAR OBJECT IN BASIC INVENTORY");
                     }
                     else if (inventory.AddItem(new Item(lootableItem.itemObject), lootableItem.amount))
                     {
                         Destroy(other.gameObject);
+                        return;
                     }
                 }
                 else

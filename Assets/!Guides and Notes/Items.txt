@@ -1,0 +1,64 @@
+Items are the base class for all elements in the game.
+Inventories hold items.
+The UI displays items.
+
+ItemObject is an object that holds the core data for an object.
+A sword is an item. it exists in the world. but a sword will refer to the SwordItemObject for some elements.
+The icon shown in the inventory UI is pulled from the ItemObject, that data is not stored on the in game sword.
+
+ItemType is an enum used to designate a broad category of an Item. Below are the descriptions
+
+All: used by inventory slot as a signal to accept any type of item in the inventory slot, items should generally not have this type
+
+Gear: equipable gear, can be used on a GearSlot
+->Armor: Provides a DamageMitigation of some kind
+->->Helmet
+->RangedWeapon: gives the player an object with WeaponShoot script on it
+->->Wand
+->->Bow
+->->Javelin
+
+PowerUp: items that instantly trigger a positive effect on collision
+//TODO
+
+Consumable: items that are put on an action bar, used during gameplay for effect
+-> items that can be dropped on the field
+-> Potion provide a boost to character
+
+Egg: Special item that is used to unlock new characters, other egg objects may be used to enhance eggs
+
+Resource: used to purchase/powerup different in game options
+-> Gold
+-> Gems
+
+Quest: Any item used by a quest of some sort
+--------------
+Making a new Ranged weapon in code:
+Use the WandObject as a template.
+Ensure the CreateAssetMenu is set, set the gearSlot and itemType in the awake of the object.
+Inherit from RangedWeaponObject.
+
+Making a new Instance of a ranged weapon in the project:
+Return to the project and create a folder for your weapon in the appropriate place.
+Right click and add new item/gear/<yourweapon>
+Set the Name, and ItemType
+Type a description for the object but do not describe its damage or stats.
+Select a sprite and color, set the alpha to the color to ensure its not transparent.
+
+The loot object is the object that will be created if the item is dropped.
+Create a model for the object in game and save it as a prefab with this itemObject Script
+Ensure the ingameprefab has the LootableItem Script and set the item data to this object.
+
+The equipped in game item is another model. Create it and save it as a prefab with this object in the folder.
+Buffs are bonuses to the player's attributes when equipped.
+The itemobject will not have a value, but it will have a min and max. The instances generated will use these to create their own buff values.
+
+Add the projectile object to the itemObject, this is the bullet. It must have a BulletMonobehavior Script on it.
+set the cooldown, projectile speed and damages.
+
+The instances created from this itemObject will get a random damage minimum from top and bottom.
+It will then add range to that number to create its own damage range. It will select a damage type from the list so add in any possible damage types this weapon should be able to create.
+
+Go to the Resources folder in the project. Add your item to the item database.
+
+You can test it by dragging a lootable object from the folder to the scene. When you collide with it you should be able to pick it up and equip it.

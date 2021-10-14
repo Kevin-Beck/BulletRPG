@@ -21,6 +21,7 @@ public class ItemObject : ScriptableObject
 public class Item
 {
     public int Id = -1;
+    public ItemType itemType;
     public bool isStackable;
     public string name;
     public string description;
@@ -30,7 +31,12 @@ public class Item
     }
     public Item(ItemObject itemObject)
     {
+        if(itemObject == null)
+        {
+            Debug.Log("ItemObject is null");
+        }
         Id = itemObject.Id;
+        itemType = itemObject.itemType;
         isStackable = itemObject.isStackable;
         name = itemObject.itemName;
         description = itemObject.itemDescription;
@@ -38,9 +44,10 @@ public class Item
 }
 public enum ItemType
 {
+    All,
     Gear,
-    PowerUp,
-    Potion,
+    Consumable,
     Egg,
     Gold,
+    Quest,
 }

@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc974f5381cf0834e95d3ae960ea96a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gearObject: {fileID: 11400000, guid: 6e7827fc0a0d83c4fa05129449ada993, type: 2}
+  itemObject: {fileID: 11400000, guid: 6e7827fc0a0d83c4fa05129449ada993, type: 2}
+  setItem:
+    Id: -1
+    itemType: 0
+    isStackable: 0
+    name: 
+    description: 
   amount: 1
 --- !u!65 &6738205827996365541
 BoxCollider:
@@ -140,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49714a2bae428c24497851ccdd5ea6d0, type: 2}
+  - {fileID: 2100000, guid: 7f92feb24ace0694d942da604da9a0f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

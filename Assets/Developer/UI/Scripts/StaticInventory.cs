@@ -14,6 +14,7 @@ namespace BulletRPG.UI.Inventory
             for (int i = 0; i < buttons.Length; i++)
             {
                 LinkButtonToInventorySlot(buttons[i], inventory.GetSlots[i]);
+                inventory.GetSlots[i].AllowedItemTypes.Add(ItemType.All);
 
                 // Button Config for drag and drop functionality
                 var buttonGameObject = buttons[i].gameObject;

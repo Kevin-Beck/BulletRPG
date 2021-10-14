@@ -1,3 +1,5 @@
+using BulletRPG.Gear.Armor;
+using BulletRPG.Gear.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,12 +9,12 @@ namespace BulletRPG.Characters.Player
 {
     public class Health : MonoBehaviour, IHealth
     {
-        [SerializeField] FloatVariable MaxHealth;
-        [SerializeField] FloatVariable CurrentHealth;
-        [SerializeField] bool destroyOnDeath = true;
-        [SerializeField] GameEvent deathEvent;
-        [SerializeField] GameEvent healthChangedEvent;
-        [SerializeField] IHealthBar healthBar;
+        public FloatVariable MaxHealth;
+        public FloatVariable CurrentHealth;
+        public GameEvent deathEvent;
+        public GameEvent healthChangedEvent;
+        public IHealthBar healthBar;
+        public List<DamageMitigator> damageMitigators = new List<DamageMitigator>();
 
         private void Start()
         {
@@ -20,6 +22,7 @@ namespace BulletRPG.Characters.Player
             if (healthChangedEvent != null)
             {
                 healthChangedEvent.Raise();
+
             }
         }
         public void SetCurrentAndMaxHealth(float currentHealth, float maxHealth)
@@ -52,10 +55,6 @@ namespace BulletRPG.Characters.Player
                 {
                     Debug.Log("Player deathEvent is null");
                 }
-                if (destroyOnDeath)
-                {
-                    Destroy(gameObject);
-                }
             }
             if (CurrentHealth.Value > MaxHealth.Value)
             {
@@ -66,6 +65,31 @@ namespace BulletRPG.Characters.Player
                 healthBar.UpdateHealthBar(CurrentHealth.Value / MaxHealth.Value);
             }
         }
+
+        public void AddHealthBar(IHealthBar bar)
+        {
+            healthBar = bar;
+        }
+
+        public void ProcessDamage(Damage damage)
+        {
+            float reductionPercentage = 0;
+            for (int i = 0; i < damageMitigators.Count; i++)
+            {
+                if(damageMitigators[i].damageType == damage.damageType)
+                {
+                    reductionPercentage += damageMitigators[i].percentRemoved;
+                }
+            }
+            // Enough damage reduction will roll it over to healing
+            float healthChange = damage.amount * (1f - reductionPercentage) * -1;
+            ChangeHealth(healthChange);
+        }
+
+        public void AddDamageMitigators(List<DamageMitigator> mitigators)
+        {
+            damageMitigators.AddRange(mitigators);
+        }
         public void HealFlatAmount(float amount)
         {
             if (amount < 0)
@@ -75,10 +99,6 @@ namespace BulletRPG.Characters.Player
             }
             ChangeHealth(amount);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="percentage">0 to 100</param>
         public void HealPercentage(float percentage)
         {
             if (percentage < 0)
@@ -90,37 +110,7 @@ namespace BulletRPG.Characters.Player
             {
                 percentage = 100;
             }
-            ChangeHealth(MaxHealth.Value * (percentage/100));
-        }
-        public void TakeDamageAmount(float amount)
-        {
-            if (amount < 0)
-            {
-                Debug.Log("Cannot damage for less than 0");
-                return;
-            }
-            ChangeHealth(-1 * amount);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="percentage">0 to 100</param>
-        public void TakeDamagePercentage(float percentage)
-        {
-            if (percentage < 0f)
-            {
-                Debug.Log("Cannot damage with percent less than 0");
-                return;
-            }
-            if (percentage > 100f)
-            {
-                percentage = 100f;
-            }
-            ChangeHealth(MaxHealth.Value * (percentage/100f) * -1);
-        }
-        public void AddHealthBar(IHealthBar bar)
-        {
-            healthBar = bar;
+            ChangeHealth(MaxHealth.Value * (percentage / 100));
         }
     }
 }

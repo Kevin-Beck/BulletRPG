@@ -13,19 +13,20 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
         public float MinDamageBottom;
         public float MinDamageTop;
         public float DamageRange;
-        public DamageTypes[] damageTypes;
+        public DamageType[] damageTypes;
     }
     [System.Serializable]
     public class RangedWeapon : Gear
     {
         // TODO do we need these three things pass into the instance (i think so, but idk)
+        // Could make cooldown and projectile speed a range and pass that to the instance
+        // Could maek projectile match damageGenerator.
+
         public GameObject projectile;
         public float coolDown;
         public float projectileSpeed;
 
         public DamageGenerator damage;
-        public RangedWeapon() : base()
-        { }
         public RangedWeapon(RangedWeaponObject rangedWeaponObject) : base(rangedWeaponObject)
         {
             projectile = rangedWeaponObject.Projectile;
@@ -36,6 +37,10 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
             var maxDamage = minDamage + rangedWeaponObject.DamageRange;
             var type = rangedWeaponObject.damageTypes[UnityEngine.Random.Range(0, rangedWeaponObject.damageTypes.Length)];
             damage = new DamageGenerator(minDamage, maxDamage, type);
+
+            var getNameAndDesc = Utilities.NameAndDescribe(this);
+            name = getNameAndDesc.Item1;
+            description = getNameAndDesc.Item2;
         }
     }
 }

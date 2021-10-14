@@ -31,8 +31,8 @@ Before entering a level the player may adjust their equipments and skills. After
 
 
 ## Todo List
-- Reimplement ItemObject and replace all Inventory related objects with Items instead of gear
-- Create utility that can get nearest point on navmesh for any class to use, allow users to drop items to a point on the map
+
+- Create utility that can get nearest point on navmesh for any class to use
 - Tile system
 - Add UI element for shoot timer cooldown
 - UI elements for picking skills/equipments/boosts
@@ -44,10 +44,11 @@ Before entering a level the player may adjust their equipments and skills. After
 - Build Characters
 - Add Other collectible resources (gold, gems etc)
 - Figure out player preferences for saving data
-- Figure out loading and saving with player+equipments
 
-
- - ~~Dropping stack creates only 1 object on ground, access lootable object and set the amount~~
+- ~~allow users to drop items to a point on the map~~
+- ~~Figure out loading and saving with player+equipments~~
+- ~~Reimplement ItemObject and replace all Inventory related objects with Items instead of gear~~
+- ~~Dropping stack creates only 1 object on ground, access lootable object and set the amount~~
 - ~~Fix Inventory from rotating when equipping, (only delete the spot that was equipped, leave the rest alone)~~
 - ~~Serialization on GameEvent on inventory object fails, if you use inventory, then close and restart, the UnityID for the event changes. Just use different delegate system instead of game events~~
 - ~~Build enemy animations and attacks~~ always needing more
@@ -56,7 +57,7 @@ Before entering a level the player may adjust their equipments and skills. After
 - ~~Create integration for those item structures~~
 - ~~Objects for player character stats~~
 - ~~UI elements for equipped objects~~
-- ~~TODO DECIDE ON INVENTORY SIZE AND SUCH TO CLEAN UP INVENTORY FUNCTIONALITY~~
+- ~~Decide on inventory size and such to clean up inventory functionality~~
 - ~~Fix bug where if you switch weapons before animation function call occurs you get the projectile from the previous weapon (BIG BUG TODO)~~   
 - ~~Fix Ice Dagger shooting, original Prefab orientation incorrect~~
 - ~~UI elements for inventory~~

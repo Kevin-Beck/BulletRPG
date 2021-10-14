@@ -42,10 +42,12 @@ namespace BulletRPG.Characters.Player
                     count++;
                 }
             }
+            Debug.Log("Player found " + count + " equipment slots on the character model");
             EquippedGearSlots.SetSize(count);
             for(int i = 0; i < EquippedGearSlots.GetSlots.Length; i++)
             {
-                EquippedGearSlots.GetSlots[i].InitializeAllowedGear(new GearSlot[] { types[i] });
+                EquippedGearSlots.GetSlots[i].InitializeAllowedItemTypes(new ItemType[] { ItemType.Gear });
+                EquippedGearSlots.GetSlots[i].InitializeAllowedGearTypes(new GearSlot[] { types[i] });
                 EquipmentSlotPositionMap.Add(EquippedGearSlots.GetSlots[i], Utilities.RecursiveFindChild(transform, types[i].ToString()));
             }
         }
@@ -87,7 +89,7 @@ namespace BulletRPG.Characters.Player
             {
                 return;
             }
-            Debug.Log($"Removed {_slot.item.name} on slot that allows these Types: {string.Join(", ",_slot.AllowedGear)}");
+            Debug.Log($"Removed {_slot.item.name} on slot that allows these GearTypes: {string.Join(", ",_slot.AllowedGearTypes)} and these ItemTypes: {string.Join(", ", _slot.AllowedItemTypes)}");
             var gear = _slot.item as BulletRPG.Gear.Gear;
             for (int i = 0; i < gear.buffs.Length; i++)
             {
@@ -112,7 +114,7 @@ namespace BulletRPG.Characters.Player
                 return;
             }
             var gear = _slot.item as Gear.Gear;
-            Debug.Log($"Placed {gear.Name} on slot that allows these types: {string.Join(", ", _slot.AllowedGear)}");
+            Debug.Log($"Placed {gear.name} on slot that allows these gear types: {string.Join(", ", _slot.AllowedGearTypes)}");
             for(int i = 0; i < gear.buffs.Length; i++)
             {
                 for (int j = 0; j < attributes.Length; j++)
