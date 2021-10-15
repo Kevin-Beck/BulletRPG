@@ -95,15 +95,8 @@ namespace BulletRPG.UI.Inventory
                 SetCounterText(slot.amount == 1 || slot.amount == 0 ? "" : slot.amount.ToString());
                 SetIconSpriteAndColor(itemObject.sprite, itemObject.color);
 
-                string buffDescriptions = "";
-
-                // TODO ADD/FIX gear descriptions, this can be where we get the description
-                // Description can be overwritten by classes
-
                 tipTitle = slot.item.name;
-                tipText = slot.item.description;
-
-                
+                tipText = slot.item.description;                
             }
         }
     }

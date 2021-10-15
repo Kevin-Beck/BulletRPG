@@ -193,7 +193,7 @@ namespace BulletRPG.Gear
     [System.Serializable]
     public class InventorySlot
     {
-        public Item item = null;
+        [SerializeReference] public Item item = null;
         public int amount;
         public HashSet<GearSlot> AllowedGearTypes = new HashSet<GearSlot>();
         public HashSet<ItemType> AllowedItemTypes = new HashSet<ItemType>();

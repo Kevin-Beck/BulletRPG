@@ -14646,7 +14646,7 @@ GameObject:
   - component: {fileID: 9205403459345599621}
   - component: {fileID: -2107535118467017478}
   m_Layer: 0
-  m_Name: MagmaHammerMissile
+  m_Name: SmolderBoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

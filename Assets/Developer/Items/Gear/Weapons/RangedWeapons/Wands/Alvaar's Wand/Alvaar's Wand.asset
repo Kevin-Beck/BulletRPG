@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
-  m_Name: IceDagger
+  m_Name: Alvaar's Wand
   m_EditorClassIdentifier: 
   Id: 0
-  itemName: Ice Dagger
+  itemName: Alvaar's Wand
   itemType: 1
   isStackable: 0
-  itemDescription: Ice dagger Description
+  itemDescription: 'Made by the legendary
+
+    crafter Alvaar.'
   sprite: {fileID: 21300000, guid: 036e0a9856c214f478367a052def8fea, type: 3}
   color: {r: 0, g: 0.8190596, b: 1, a: 1}
   lootObject: {fileID: 2331048578627986244, guid: 312d525e7c940fa4389cd5fd3c46a62f,
@@ -40,4 +42,23 @@ MonoBehaviour:
   MinDamageBottom: 1
   MinDamageTop: 4
   DamageRange: 2
-  damageTypes: 02000000
+  damageTypes: 0200000005000000
+  projectileSet:
+  - damageType: 5
+    damageProjectilePrefab: {fileID: 7147153445871101824, guid: b28c6587675f5be40b9748e71f613591,
+      type: 3}
+  - damageType: 2
+    damageProjectilePrefab: {fileID: 9102322668835006777, guid: 433a69d6ced70074b8e0a54250dcfbc7,
+      type: 3}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 0}

@@ -23,9 +23,35 @@ namespace BulletRPG.Gear.Armor
             float mitigationAmount = UnityEngine.Random.Range(armorObject.PossibleDamageMitigations[mitigatorIndex].minRemoved, armorObject.PossibleDamageMitigations[mitigatorIndex].maxRemoved);
             damageMitigators.Add(new DamageMitigator(armorObject.PossibleDamageMitigations[mitigatorIndex].damageType, mitigationAmount));
 
-            var getNameAndDesc = Utilities.NameAndDescribe(this);
-            name = getNameAndDesc.Item1;
-            description = getNameAndDesc.Item2;
+            name = StringifyName();
+            description = StringifyDescription();
+        }
+        public override string StringifyName()
+        {
+            // TODO name different combos of damage reduction
+            string nameFromArmor = "";
+            if (damageMitigators.Count > 0)
+            {
+                if(damageMitigators[0].damageType != DamageType.Regular)
+                {
+                    nameFromArmor = $" of {damageMitigators[0].damageType}";
+                }
+                else
+                {
+                    nameFromArmor = $" of Protection";
+                }                    
+
+            }
+            return base.StringifyName() + nameFromArmor;
+        }
+        public override string StringifyDescription()
+        {
+            string desc = "";
+            foreach(DamageMitigator dm in damageMitigators)
+            {
+                desc += $"\n\n{dm.Stringify()}";
+            }
+            return base.StringifyDescription() + desc;
         }
     }
 }

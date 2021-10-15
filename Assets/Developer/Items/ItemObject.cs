@@ -41,6 +41,14 @@ public class Item
         name = itemObject.itemName;
         description = itemObject.itemDescription;
     }
+    public virtual string StringifyName()
+    {
+        return name;
+    }
+    public virtual string StringifyDescription()
+    {
+        return description;
+    }
 }
 public enum ItemType
 {

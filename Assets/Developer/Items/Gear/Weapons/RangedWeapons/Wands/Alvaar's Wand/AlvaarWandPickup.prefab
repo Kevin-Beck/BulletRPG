@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 2331048578627986242}
   - component: {fileID: 2331048578627986245}
   m_Layer: 0
-  m_Name: IceDaggerPickup
+  m_Name: AlvaarWandPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

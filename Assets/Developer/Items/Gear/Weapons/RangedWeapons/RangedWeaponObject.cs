@@ -38,9 +38,20 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
             var type = rangedWeaponObject.damageTypes[UnityEngine.Random.Range(0, rangedWeaponObject.damageTypes.Length)];
             damage = new DamageGenerator(minDamage, maxDamage, type);
 
-            var getNameAndDesc = Utilities.NameAndDescribe(this);
-            name = getNameAndDesc.Item1;
-            description = getNameAndDesc.Item2;
+            name = StringifyName();
+            description = StringifyDescription();
+        }
+        public override string StringifyName()
+        {
+            
+            return base.StringifyName() + (damage.type == DamageType.Regular ? "" : $" of {damage.type}");
+        }
+        public override string StringifyDescription()
+        {
+            string desc = "";
+            desc += $"\n\nReload Time: {coolDown}\nBullet Speed: {projectileSpeed}\n";
+            desc += $"\n{damage.Stringify()}";
+            return base.StringifyDescription() + desc;
         }
     }
 }

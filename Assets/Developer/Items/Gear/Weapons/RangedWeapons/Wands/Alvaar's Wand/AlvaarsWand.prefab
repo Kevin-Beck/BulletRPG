@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1528671845993897057}
   - component: {fileID: 5723027263490172810}
   m_Layer: 0
-  m_Name: IceDagger
+  m_Name: AlvaarsWand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -32,7 +32,7 @@ namespace BulletRPG.Gear
                     {
                         if(gearObject.gearSlot == GearSlot.Wand)
                         {
-                            if (inventory.AddItem(new RangedWeapon((RangedWeaponObject)lootableItem.itemObject), 1))
+                            if (inventory.AddItem(new Wand((WandObject)lootableItem.itemObject), 1))
                             {
                                 Destroy(other.gameObject);
                                 return;

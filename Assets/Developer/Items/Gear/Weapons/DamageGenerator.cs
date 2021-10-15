@@ -1,3 +1,5 @@
+using System;
+
 namespace BulletRPG.Gear.Weapons
 {
     [System.Serializable]
@@ -18,7 +20,7 @@ namespace BulletRPG.Gear.Weapons
         }
         public string Stringify()
         {
-            return $"Damage\nType: {type}\nRange: {min.ToString("F2")}-{max:F2}";
+            return $"Damage\n{type}: {min:F1}-{max:F1}";
         }
     }
 
@@ -43,11 +45,11 @@ namespace BulletRPG.Gear.Weapons
         public DamageMitigator(DamageType type, float percentageReduced)
         {
             damageType = type;
-            percentRemoved = percentageReduced;
+            percentRemoved = (float)Math.Round(percentageReduced);
         }
         public string Stringify()
         {
-            return $"Resistance\nType: {damageType}\nPercentage: {percentRemoved:F2}";
+            return $"Resistance\n{damageType}:  {percentRemoved:F0}%";
         }
     }
 }

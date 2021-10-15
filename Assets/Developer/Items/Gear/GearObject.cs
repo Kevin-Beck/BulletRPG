@@ -39,9 +39,7 @@ namespace BulletRPG.Gear
     public class Gear : Item
     {
         public GearSlot gearSlot;
-        public bool IsStackable;
         public GearBuff[] buffs;
-        private string gearDescription;
 
         public Gear() : base()
         {
@@ -59,6 +57,19 @@ namespace BulletRPG.Gear
                     attribute = gearObject.Buffs[i].attribute
                 };
             }
+        }
+        public override string StringifyName()
+        {
+            return base.StringifyName();
+        }
+        public override string StringifyDescription()
+        {
+            string desc = "";
+            foreach (GearBuff buff in buffs)
+            {
+                desc += buff.Stringify() + "\n";
+            }
+            return (base.StringifyDescription() + $"\n\n{desc}").Trim();
         }
     }
 

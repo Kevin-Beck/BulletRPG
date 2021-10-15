@@ -69,46 +69,6 @@ namespace BulletRPG
                 }
             }
             return null;
-        }
-        public static Tuple<string, string> NameAndDescribe(Item item)
-        {
-            string description = item.description;
-            string name = item.name;
-
-            var gear = item as Gear.Gear;
-            string buffDescriptions = "";
-
-            if (gear != null)
-            {
-                foreach (GearBuff buff in gear.buffs)
-                {
-                    buffDescriptions += buff.Stringify() + "\n";
-                }
-                description += $"\n\n{buffDescriptions}";
-
-                if(gear.gearSlot == GearSlot.Wand || gear.gearSlot == GearSlot.Javelin || gear.gearSlot == GearSlot.Bow)
-                {
-                    var rangedWeapon = item as RangedWeapon;
-                    if(rangedWeapon != null)
-                    {
-                        description += $"\nReload Time: {rangedWeapon.coolDown}\nBullet Speed: {rangedWeapon.projectileSpeed}\n";
-                        description += $"\n{rangedWeapon.damage.Stringify()}";
-                        name += $" of {rangedWeapon.damage.type}";
-                    }
-                }
-
-                if(gear.gearSlot == GearSlot.Helmet)
-                {
-                    var armor = item as Armor;
-                    foreach(DamageMitigator dm in armor.damageMitigators)
-                    {
-                        description += $"\n{dm.Stringify()}";
-                        name += $" of {dm.damageType} Protection";
-                    }
-                }
-            }
-
-            return new Tuple<string, string>(name, description);
-        }
+        }        
     }
 }
