@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6516822916180396670}
   - component: {fileID: 7567073063753206930}
+  - component: {fileID: 5272477997474522276}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 0
+--- !u!135 &5272477997474522276
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120042124398086711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6593286516413574070
 GameObject:
   m_ObjectHideFlags: 0

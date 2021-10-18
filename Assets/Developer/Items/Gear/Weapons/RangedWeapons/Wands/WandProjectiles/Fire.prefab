@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3976072925362230477}
   - component: {fileID: -2636750314051761956}
+  - component: {fileID: 5356794684183234384}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 0
+--- !u!135 &5356794684183234384
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084621292800676996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &543164741836396912
 PrefabInstance:
   m_ObjectHideFlags: 0

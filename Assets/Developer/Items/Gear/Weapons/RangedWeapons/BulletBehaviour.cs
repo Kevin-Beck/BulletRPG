@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BulletRPG.Gear.Weapons.RangedWeapons
 {
+    [RequireComponent(typeof(Collider))]
     public class BulletBehaviour : MonoBehaviour
     {
         [HideInInspector] public float BulletSpeed;
