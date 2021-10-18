@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c2cb2e8e4c30a46a6de1c507cfe51b, type: 3}
+  m_Name: WandProjectilePool
+  m_EditorClassIdentifier: 
+  projectileSet:
+  - damageType: 0
+    damageProjectilePrefab: {fileID: 3166997034876916765, guid: 7f75f8d9c0997444fac2057d0d8578da,
+      type: 3}
+  - damageType: 1
+    damageProjectilePrefab: {fileID: 5532336503452555625, guid: fbc3fc42e7cb6ce44a559e5c4faa889e,
+      type: 3}
+  - damageType: 2
+    damageProjectilePrefab: {fileID: 6084621292800676996, guid: 300f3f7039f4b1747b669fd0ef729ba5,
+      type: 3}
+  - damageType: 3
+    damageProjectilePrefab: {fileID: 4120042124398086711, guid: d962e3997844939448fc8ec821818df5,
+      type: 3}
+  - damageType: 4
+    damageProjectilePrefab: {fileID: 5081223669405588219, guid: a45e12401dd58dd4c9af9836c97f9e8f,
+      type: 3}
+  - damageType: 5
+    damageProjectilePrefab: {fileID: 5839571388723922633, guid: 16c0465cad902b44189248c83338cfab,
+      type: 3}
+  - damageType: 6
+    damageProjectilePrefab: {fileID: 7812793964900809465, guid: f90d29007c304a34980929c19f0709c1,
+      type: 3}

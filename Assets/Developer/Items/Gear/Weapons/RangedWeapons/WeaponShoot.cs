@@ -15,7 +15,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
         private void Awake()
         {
             canShoot = false;
-            Invoke("CooldownReset", rangedWeapon.coolDown);
+            Invoke("CooldownReset", rangedWeapon.reloadTime);
 
             animator = GetComponentInParent<Animator>();
             playerInputActions = new PlayerInputActions();
@@ -35,7 +35,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
             {
                 gearPlaceholder = rangedWeapon;
                 canShoot = false;
-                Invoke("CooldownReset", rangedWeapon.coolDown);
+                Invoke("CooldownReset", rangedWeapon.reloadTime);
                 Debug.Log("Attack");
                 animator.SetTrigger("Default Attack");
             }
@@ -61,7 +61,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
                 return;
             }
             Debug.Log("Firing Projectile");
-            var bullet = Instantiate(rangedWeapon.projectile, transform.position, Quaternion.identity);
+            var bullet = Instantiate(rangedWeapon.projectile, transform.position + transform.up, Quaternion.identity);
             bullet.transform.rotation = Quaternion.identity;
             var bulletSettings = bullet.GetComponent<BulletBehaviour>();
             bulletSettings.BulletSpeed = rangedWeapon.projectileSpeed;

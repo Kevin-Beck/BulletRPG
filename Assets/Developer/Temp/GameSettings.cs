@@ -10,6 +10,7 @@ namespace BulletRPG.Temp
         [SerializeField] int targetFrameRate;
         public InventoryObject playerInventory;
         PlayerInputActions playerInputActions;
+
         private void Awake()
         {
             playerInputActions = new PlayerInputActions();

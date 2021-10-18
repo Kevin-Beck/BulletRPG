@@ -4,11 +4,11 @@ using UnityEngine;
 namespace BulletRPG.Gear
 {
     public abstract class GearObject : ItemObject
-    {       
-        [Header("Gear Data")]        
+    {
+        [Header("Gear Data")]
+        public Rarity rarity;
         public GearSlot gearSlot;
         public GameObject EquippedInGameObject;
-        public GearBuff[] Buffs;
 
         private void Awake()
         {
@@ -40,23 +40,19 @@ namespace BulletRPG.Gear
     {
         public GearSlot gearSlot;
         public GearBuff[] buffs;
+        public Rarity rarity;
 
         public Gear() : base()
         {
             gearSlot = GearSlot.Default;
             buffs = new GearBuff[0];
+            rarity = Rarity.Artefact;            
         }
         public Gear(GearObject gearObject) : base(gearObject)
         {
+            buffs = GetBuffs(gearObject.rarity);
             gearSlot = gearObject.gearSlot;
-            buffs = new GearBuff[gearObject.Buffs.Length];
-            for(int i = 0; i < buffs.Length; i++)
-            {
-                buffs[i] = new GearBuff(gearObject.Buffs[i].minValue, gearObject.Buffs[i].maxValue)
-                {
-                    attribute = gearObject.Buffs[i].attribute
-                };
-            }
+            rarity = gearObject.rarity;
         }
         public override string StringifyName()
         {
@@ -71,6 +67,34 @@ namespace BulletRPG.Gear
             }
             return (base.StringifyDescription() + $"\n\n{desc}").Trim();
         }
+        private GearBuff[] GetBuffs(Rarity rarity)
+        {
+            buffs = new GearBuff[GetBuffCount(rarity)];
+            for (int i = 0; i < buffs.Length; i++)
+            {
+                buffs[i] = new GearBuff(rarity);
+            }
+            return buffs;
+        }
+        public int GetBuffCount(Rarity rarity) => rarity switch
+        {
+            Rarity.Common => 1,
+            Rarity.Uncommon => 2,
+            Rarity.Rare => 2,
+            Rarity.Epic => 3,
+            Rarity.Legendary => 3,
+            Rarity.Artefact => 4,
+            _ => -1,
+        };
+    }
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Epic,
+        Legendary,
+        Artefact,
     }
 
     [System.Serializable]
@@ -78,13 +102,11 @@ namespace BulletRPG.Gear
     {
         public AttributeType attribute;
         public int buffValue;
-        public int minValue;
-        public int maxValue;
-        public GearBuff(int min, int max)
+        public GearBuff(Rarity rarity)
         {
-            minValue = min;
-            maxValue = max;
-            GenerateValue();
+            attribute = (AttributeType)Random.Range(0, (int)AttributeType.COUNT);
+            var minmax = GetMinMaxValues(rarity);
+            GenerateValue(minmax);
         }
 
         public void AddValue(ref int value)
@@ -92,13 +114,23 @@ namespace BulletRPG.Gear
             value += buffValue;
         }
 
-        public void GenerateValue()
-        {
-            buffValue = UnityEngine.Random.Range(minValue, maxValue + 1);
+        public void GenerateValue((int,int) values)
+        {            
+            buffValue = UnityEngine.Random.Range(values.Item1, values.Item2+1);
         }
         public string Stringify()
         {
             return $"{attribute}: {buffValue}"; 
         }
+        public static (int, int) GetMinMaxValues(Rarity rarity) => rarity switch
+        {
+            Rarity.Common => (1, 3),
+            Rarity.Uncommon => (1, 3),
+            Rarity.Rare => (3, 5),
+            Rarity.Epic => (3, 5),
+            Rarity.Legendary => (5, 10),
+            Rarity.Artefact => (10, 10),
+            _ => (-1, -1),
+        };
     }
 }

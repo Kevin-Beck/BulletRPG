@@ -33,6 +33,7 @@ namespace BulletRPG.Characters.Player
         Charm,
         Intelligence,
         Willpower,
+        COUNT
     }
 }
 

@@ -23,7 +23,7 @@ namespace BulletRPG.UI.Inventory
                 }
                 else
                 {
-                    button.UpdateSlotUI(slot.item.Id < 0 ? null : inventory.database.itemObjects[slot.item.Id]);
+                    button.UpdateSlotUI(slot.item.Id < 0 ? null : slot.item);
                 }                
             };
             button.SetSlot(slot);
@@ -54,7 +54,7 @@ namespace BulletRPG.UI.Inventory
 
                     var image = dragMouseIcon.AddComponent<Image>();
                     image.sprite = inventory.database.GetItemObject[gearInSlot.Id].sprite;
-                    image.color = inventory.database.GetItemObject[gearInSlot.Id].color;
+                    image.color = Color.black;
                     image.raycastTarget = false;
 
                     dragDropIcon.icon = dragMouseIcon;
@@ -118,7 +118,8 @@ namespace BulletRPG.UI.Inventory
             {
                 Debug.Log("Dropping Item");
                 var fromSlot = SlotMap[dragDropIcon.fromButton];
-                var droppedObject = Instantiate(inventory.database.itemObjects[fromSlot.item.Id].lootObject, Utilities.MouseOnPlane(), Quaternion.identity);
+                var button = obj.GetComponent<InventorySlotButton>();
+                var droppedObject = Instantiate(button.itemSettings.lootableItems.lootableItemMap[fromSlot.item.itemType], Utilities.MouseOnPlane(), Quaternion.identity);
                 var lootableData = droppedObject.GetComponent<LootableItem>();
                 lootableData.amount = fromSlot.amount;
                 lootableData.setItem = fromSlot.item;

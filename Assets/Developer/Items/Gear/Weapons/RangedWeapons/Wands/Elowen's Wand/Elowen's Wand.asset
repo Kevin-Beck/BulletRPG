@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
+  m_Name: Elowen's Wand
+  m_EditorClassIdentifier: 
+  Id: 0
+  itemName: Elowen's Wand
+  itemType: 1
+  isStackable: 0
+  itemDescription: Whispers in the forest.
+  sprite: {fileID: 21300000, guid: 6a99b8e1259674a4aae24a2aa5489ae5, type: 3}
+  lootObject: {fileID: 2331048578627986244, guid: 750c8524cd1fb1b4fb1e12f54221816d,
+    type: 3}
+  rarity: 0
+  gearSlot: 1
+  EquippedInGameObject: {fileID: 7169944901382187478, guid: 3b031454c0f53f34c80332873b30f473,
+    type: 3}
+  rarityColors: {fileID: 11400000, guid: 11dd8d168a302334bb3d48c4f3c79ee9, type: 2}
+  Cooldown: 1.5
+  ProjectileSpeed: 12
+  MinDamage: 1
+  MaxDamage: 6
+  damageTypes: 00000000010000000200000003000000040000000500000006000000
+  damageTypeColors: {fileID: 11400000, guid: c8d5a933c2072124ba8282a445113147, type: 2}
+  projectiles: {fileID: 11400000, guid: d0bebdb989462124a80f049a10482fe1, type: 2}

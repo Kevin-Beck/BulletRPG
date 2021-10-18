@@ -129,7 +129,6 @@ namespace BulletRPG.Characters.Player
             var gearObject = (GearObject)(EquippedGearSlots.database.GetItemObject[gear.Id]);
             var inGameItem = gearObject.EquippedInGameObject;
 
-
             // TODO equip all item slots like this
             var equipment = Instantiate(inGameItem, EquipmentSlotPositionMap[_slot]);
             if(gear.gearSlot == GearSlot.Wand)

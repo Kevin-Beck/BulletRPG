@@ -459,6 +459,18 @@ MonoBehaviour:
     value:
       baseValue: 20
       modifiedValue: 0
+  - attributeType: 4
+    value:
+      baseValue: 20
+      modifiedValue: 0
+  - attributeType: 5
+    value:
+      baseValue: 20
+      modifiedValue: 0
+  - attributeType: 6
+    value:
+      baseValue: 20
+      modifiedValue: 0
 --- !u!1 &2688855383638578653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,13 +5937,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4167489295349089558}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.3, y: 0, z: -0}
+  m_LocalRotation: {x: 0.62324315, y: -0, z: 0.000000029802326, w: -0.78202814}
+  m_LocalPosition: {x: -0.14, y: -0.093, z: 0.666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2688855383638363553}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 282.893, y: 0, z: 0}
 --- !u!1 &4167489296388866742
 GameObject:
   m_ObjectHideFlags: 0

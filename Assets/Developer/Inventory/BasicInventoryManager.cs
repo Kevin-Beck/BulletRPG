@@ -1,5 +1,5 @@
 using BulletRPG.Gear.Armor;
-using BulletRPG.Gear.Weapons.RangedWeapons;
+using BulletRPG.Gear.Weapons.RangedWeapons.Wands;
 using UnityEngine;
 
 namespace BulletRPG.Gear

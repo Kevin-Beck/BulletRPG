@@ -1,4 +1,6 @@
 using BulletRPG.Gear;
+using BulletRPG.Gear.Weapons.RangedWeapons;
+using BulletRPG.Items;
 using Ricimi;
 using TMPro;
 using UnityEngine;
@@ -12,9 +14,14 @@ namespace BulletRPG.UI.Inventory
     {
         [System.NonSerialized]
         public InventoryUserInterface inventoryGroupParent;
+
+        public ItemSettings itemSettings;
+
         private InventorySlot slot;
 
         private Image icon;
+        private Image border;
+        private Image background;
         private TextMeshProUGUI counter;
         private TextMeshProUGUI tooltiptitle;
         private TextMeshProUGUI tooltiptext;
@@ -30,6 +37,8 @@ namespace BulletRPG.UI.Inventory
 
             icon = Utilities.RecursiveFindChild(transform, "Icon").GetComponent<Image>();
             counter = Utilities.RecursiveFindChild(transform, "Counter").GetComponent<TextMeshProUGUI>();
+            border = Utilities.RecursiveFindChild(transform, "Border").GetComponent<Image>();
+            background = Utilities.RecursiveFindChild(transform, "Background").GetComponent<Image>();
             tooltiptitle = Utilities.RecursiveFindChild(ToolTip.transform, "ToolTipTitle").GetComponent<TextMeshProUGUI>();
             tooltiptext = Utilities.RecursiveFindChild(ToolTip.transform, "ToolTipText").GetComponent<TextMeshProUGUI>();
             inventoryGroupParent = GetComponentInParent<InventoryUserInterface>();
@@ -38,7 +47,7 @@ namespace BulletRPG.UI.Inventory
         }
         private void Start()
         {
-            UpdateSlotUI(slot.item.Id < 0 ? null : inventoryGroupParent.inventory.database.itemObjects[slot.item.Id]);
+            UpdateSlotUI(slot.item.Id < 0 ? null : slot.item);
         }
         protected void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
         {
@@ -76,24 +85,46 @@ namespace BulletRPG.UI.Inventory
             icon.sprite = sprite;
             icon.color = color;
         }
+        private void SetBackgroundColor(Color color)
+        {
+            background.color = color;
+        }
+        private void SetBorderColor(Color color)
+        {
+            border.color = color;
+        }
         public void SetSlot(InventorySlot slotToRepresent)
         {
             slot = slotToRepresent;
             slot.AllowThisGearType(GearSlot.Default);
         }
-        public void UpdateSlotUI(ItemObject itemObject)
+        public void UpdateSlotUI(Item item)
         {
-            if (slot == null || itemObject == null)
+            if (slot == null || item == null)
             {
                 SetCounterText("");
                 SetIconSpriteAndColor(null, Color.clear);
+                SetBorderColor(Color.clear);
+                SetBackgroundColor(Color.clear);
                 tipText = "";
                 tipTitle = "";
             }
             else
             {
                 SetCounterText(slot.amount == 1 || slot.amount == 0 ? "" : slot.amount.ToString());
-                SetIconSpriteAndColor(itemObject.sprite, itemObject.color);
+                if (item.itemType == ItemType.Gear)
+                {
+                    var sprite = inventoryGroupParent.inventory.database.GetItemObject[item.Id].sprite;
+                    SetIconSpriteAndColor(sprite, Color.black);
+
+                    var rangeWeapon = (RangedWeapon)item;
+                    if(rangeWeapon != null)
+                    {
+                        SetBorderColor(itemSettings.damageTypeColors.DamageColorMap[rangeWeapon.damage.type]);
+                        var rarity = ((Gear.Gear)item).rarity;
+                        SetBackgroundColor(itemSettings.rarityColors.RarityColorMap[rarity]);
+                    }
+                }
 
                 tipTitle = slot.item.name;
                 tipText = slot.item.description;                

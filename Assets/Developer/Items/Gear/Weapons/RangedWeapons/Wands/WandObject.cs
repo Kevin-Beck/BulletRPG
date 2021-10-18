@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
-namespace BulletRPG.Gear.Weapons.RangedWeapons
+namespace BulletRPG.Gear.Weapons.RangedWeapons.Wands
 {
-    [CreateAssetMenu(fileName = "newWand", menuName = "Gear/Wand")]
+    [CreateAssetMenu(fileName = "newWand", menuName = "Item/Gear/Wand")]
     public class WandObject : RangedWeaponObject
     {
         [Header("WandObject Data")]
-        public List<WandProjectile> projectileSet = new List<WandProjectile>();
+        public WandProjectiles projectiles;
         private void Awake()
         {
             gearSlot = GearSlot.Wand;
@@ -20,24 +16,13 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
             return new Wand(wandObject);
         }
     }
-    [System.Serializable]
-    public class WandProjectile
-    {
-        public DamageType damageType;
-        public GameObject damageProjectilePrefab;
-    }
+
     [System.Serializable]
     public class Wand : RangedWeapon
-    {
+    {        
         public Wand(WandObject wandObject) : base(wandObject)
-        {
-            for(int i = 0; i < wandObject.projectileSet.Count; i++)
-            {
-                if(damage.type == wandObject.projectileSet[i].damageType)
-                {
-                    projectile = wandObject.projectileSet[i].damageProjectilePrefab;
-                }
-            }
-        }
-    }
+        {            
+            projectile = wandObject.projectiles.projectileMap[damage.type];
+        }            
+    }   
 }
