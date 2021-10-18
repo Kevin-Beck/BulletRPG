@@ -53,7 +53,7 @@ namespace BulletRPG.UI.Inventory
                     dragMouseIcon.transform.SetParent(transform.root);
 
                     var image = dragMouseIcon.AddComponent<Image>();
-                    image.sprite = inventory.database.GetItemObject[gearInSlot.Id].sprite;
+                    image.sprite = inventory.database.GetItemObject[gearInSlot.Id].config.sprite;
                     image.color = Color.black;
                     image.raycastTarget = false;
 

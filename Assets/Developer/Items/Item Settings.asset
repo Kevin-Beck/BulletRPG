@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92b9d500d70b142bac0a771acb73a5, type: 3}
   m_Name: Item Settings
   m_EditorClassIdentifier: 
+  rarityColors: {fileID: 11400000, guid: 11dd8d168a302334bb3d48c4f3c79ee9, type: 2}
+  damageTypeColors: {fileID: 11400000, guid: c8d5a933c2072124ba8282a445113147, type: 2}
+  lootableItems: {fileID: 11400000, guid: 506da0a124e971d438bf8ec2e3c15bda, type: 2}

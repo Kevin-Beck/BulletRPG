@@ -9,7 +9,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons.Wands
         private void Awake()
         {
             gearSlot = GearSlot.Wand;
-            itemType = ItemType.Gear;
+            config.itemType = ItemType.Gear;
         }
         public Wand CreateInstance(WandObject wandObject)
         {

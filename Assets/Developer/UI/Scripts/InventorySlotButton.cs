@@ -114,7 +114,7 @@ namespace BulletRPG.UI.Inventory
                 SetCounterText(slot.amount == 1 || slot.amount == 0 ? "" : slot.amount.ToString());
                 if (item.itemType == ItemType.Gear)
                 {
-                    var sprite = inventoryGroupParent.inventory.database.GetItemObject[item.Id].sprite;
+                    var sprite = inventoryGroupParent.inventory.database.GetItemObject[item.Id].config.sprite;
                     SetIconSpriteAndColor(sprite, Color.black);
 
                     var rangeWeapon = (RangedWeapon)item;

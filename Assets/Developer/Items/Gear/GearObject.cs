@@ -12,7 +12,7 @@ namespace BulletRPG.Gear
 
         private void Awake()
         {
-            itemType = ItemType.Gear;
+            config.itemType = ItemType.Gear;
         }
         public Gear CreateGearItem()
         {

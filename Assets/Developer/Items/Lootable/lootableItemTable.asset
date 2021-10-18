@@ -16,7 +16,8 @@ MonoBehaviour:
   - itemType: 0
     lootableObject: {fileID: 0}
   - itemType: 1
-    lootableObject: {fileID: 0}
+    lootableObject: {fileID: 339988973068339160, guid: 190b17fa7b1d27642a8ac7ab0304b300,
+      type: 3}
   - itemType: 2
     lootableObject: {fileID: 0}
   - itemType: 3

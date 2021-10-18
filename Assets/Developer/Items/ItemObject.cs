@@ -8,13 +8,7 @@ public class ItemObject : ScriptableObject
     [Header("Item Data")]
     [HideInInspector]
     public int Id = -1;
-    public string itemName;
-    public ItemType itemType;
-    public bool isStackable;
-    [TextArea(5, 20)]
-    public string itemDescription;
-    public Sprite sprite;
-
+    public ItemObjectConfig config;
 }
 
 [System.Serializable]
@@ -37,10 +31,10 @@ public class Item
             Debug.Log("ItemObject is null");
         }
         Id = itemObject.Id;
-        itemType = itemObject.itemType;
-        isStackable = itemObject.isStackable;
-        name = itemObject.itemName;
-        description = itemObject.itemDescription;
+        itemType = itemObject.config.itemType;
+        isStackable = itemObject.config.isStackable;
+        name = itemObject.config.itemName;
+        description = itemObject.config.itemDescription;
     }
     public virtual string StringifyName()
     {

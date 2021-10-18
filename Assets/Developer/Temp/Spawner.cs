@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
         if(Utilities.GetRandomPointOnNavMesh(transform.position, range, out position))
         {
             var itemObject = items[Random.Range(0, items.Count)];
-            var item = Instantiate(lootables.lootableItemMap[itemObject.itemType], position+Vector3.up*0.5f, Quaternion.identity);
+            var item = Instantiate(lootables.lootableItemMap[itemObject.config.itemType], position+Vector3.up*0.5f, Quaternion.identity);
             var lootable = item.GetComponent<LootableItem>();
             lootable.itemObject = itemObject;
             lootable.amount = 1;

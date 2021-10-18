@@ -39,8 +39,7 @@ namespace BulletRPG.Gear.Armor
                 else
                 {
                     nameFromArmor = $" of Protection";
-                }                    
-
+                }
             }
             return base.StringifyName() + nameFromArmor;
         }
