@@ -12,8 +12,6 @@ namespace BulletRPG.UI.Inventory
 {
     public class InventorySlotButton : MonoBehaviour
     {
-        [System.NonSerialized]
-        public InventoryUserInterface inventoryGroupParent;
 
         public ItemSettings itemSettings;
 

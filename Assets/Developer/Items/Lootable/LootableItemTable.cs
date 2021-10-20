@@ -10,7 +10,6 @@ namespace BulletRPG.Items
     public class LootableItemTable : ScriptableObject, ISerializationCallbackReceiver
     {
         public Dictionary<ItemType, GameObject> lootableItemMap = new Dictionary<ItemType, GameObject>();
-        [SerializeField] private List<ItemLootables> lootables = new List<ItemLootables>();
         public void OnBeforeSerialize()
         {
 

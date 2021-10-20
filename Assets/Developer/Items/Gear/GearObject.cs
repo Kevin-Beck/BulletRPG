@@ -101,7 +101,6 @@ namespace BulletRPG.Gear
     public class GearBuff : IModifier
     {
         public AttributeType attribute;
-        public int buffValue;
         public GearBuff(Rarity rarity)
         {
             attribute = (AttributeType)Random.Range(0, (int)AttributeType.COUNT);

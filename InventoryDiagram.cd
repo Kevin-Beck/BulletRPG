@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BulletRPG.Gear.InventoryObject">
+    <Position X="13.75" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="database" Type="BulletRPG.Gear.ItemDatabaseObject">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.391" Y="0.013" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgYYAAAAAAABAAAAIAAFAiAABAAAEAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Developer\Inventory\InventoryObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Container" />
+      <Field Name="database" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.Inventory">
+    <Position X="13.75" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="inventorySlots" Type="BulletRPG.Gear.InventorySlot">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.091" Y="0.282" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Developer\Inventory\InventoryObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="inventorySlots" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.InventorySlot">
+    <Position X="13" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="item" Type="Item" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.25" Y="4.5" />
+        <Point X="13.25" Y="4" />
+        <Point X="10.5" Y="4" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAIIAAAgEAEAAQAQABAAAAAgAAAAAAAAEgAAAQ=</HashCode>
+      <FileName>Assets\Developer\Inventory\InventoryObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="item" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.ItemDatabaseObject">
+    <Position X="2.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Developer\Inventory\ItemDatabaseObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="itemObjects" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Bottom" Position="0.153" Collapsed="true" />
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="8.5" Y="3.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Id" Type="System.Int32" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="4.125" />
+        <Point X="6.75" Y="4.125" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.346" Y="0.154" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAIAAgAAAAAAAEAAAAAAACAAAABAA=</HashCode>
+      <FileName>Assets\Developer\Items\ItemObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Id" />
+      <Field Name="itemType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ItemObject" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <AssociationLine Name="Id" Type="System.Int32">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.369" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\ItemObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Id" />
+      <Field Name="config" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ItemObjectConfig" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAABAAAAAAAAAAAABAEAAAAAgACAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\ItemObjectConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.UI.Inventory.InventorySlotButton">
+    <Position X="13.75" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="slot" Type="BulletRPG.Gear.InventorySlot">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.215" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAKCABAABBACAAAAjABgAEAoEAAQACAABAIUA=</HashCode>
+      <FileName>Assets\Developer\UI\Scripts\InventorySlotButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="itemSettings" />
+      <Field Name="slot" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Items.ItemSettings">
+    <Position X="13.75" Y="8" Width="1.5" />
+    <AssociationLine Name="damageTypeColors" Type="BulletRPG.Gear.DamageTypeColors">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.27" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\ItemSettings.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="damageTypeColors" />
+      <Field Name="rarityColors" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.UI.Inventory.InventoryUserInterface">
+    <Position X="17" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAEAAIABAEAAAAABAAAEAAAAQAAACAIAAAAAAEAA=</HashCode>
+      <FileName>Assets\Developer\UI\Scripts\InventoryUserInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="dragDropIcon" />
+      <Field Name="inventory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.UI.Inventory.EquipmentInventory">
+    <Position X="16" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAEAAQAAAAAAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\UI\Scripts\EquipmentInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.UI.Inventory.StaticInventory" Collapsed="true">
+    <Position X="17.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\UI\Scripts\StaticInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.UI.Inventory.DragDropElement" Collapsed="true">
+    <Position X="19.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAgAAABAAAAABAAAAAQQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\UI\Scripts\DragDropElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Characters.Player.CharacterStats" Collapsed="true">
+    <Position X="15" Y="14.5" Width="1.5" />
+    <AssociationLine Name="CharacterAttributes" Type="BulletRPG.Characters.Player.Attribute">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.459" Y="1.082" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Entities\CharacterStats.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CharacterAttributes" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Characters.Player.Attribute">
+    <Position X="11.5" Y="11.25" Width="1.5" />
+    <AssociationLine Name="attributeType" Type="BulletRPG.Characters.Player.AttributeType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="1.054" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAABAAAAAAAAAAAAAACAAIEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Entities\Player\Attributes\Attribute.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="attributeType" />
+      <Field Name="parent" />
+      <Field Name="value" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Characters.Player.ModifiableInt" Collapsed="true">
+    <Position X="10.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAwAACAAAIAAAACAAAQBAAAEAAAAEAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\Developer\Entities\Player\Attributes\ModifiableInt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Characters.Player.Player">
+    <Position X="15" Y="10.75" Width="1.5" />
+    <AssociationLine Name="EquippedGearSlots" Type="BulletRPG.Gear.InventoryObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="10.75" />
+        <Point X="15.5" Y="1.934" />
+        <Point X="15.25" Y="1.934" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACCEAAAAAAAAAAAAEAAQEAIBAAAAIAAABEg=</HashCode>
+      <FileName>Assets\Developer\Entities\Player\Player.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="attributes" />
+      <Field Name="EquippedGearSlots" />
+      <Field Name="baseStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Characters.Interactor" Collapsed="true">
+    <Position X="5.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Temp\Interactor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.GearObject" Collapsed="true">
+    <Position X="3.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAEQAAAAAAEAAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\GearObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Gear">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="buffs" Type="BulletRPG.Gear.GearBuff">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.391" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="rarity" Type="BulletRPG.Gear.Rarity">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.473" Y="0.165" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gearSlot" Type="BulletRPG.Gear.GearSlot">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.255" Y="0.27" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAABAAAAAAAACAAAAAAgAAAAAEAAAAAAAEAAAAAABAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\GearObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gearSlot" />
+      <Field Name="buffs" />
+      <Field Name="rarity" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.GearBuff" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAwAAAAAAAAAAAAgAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\GearObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="attribute" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BulletRPG.Gear.RarityColors" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAEAAAAABAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\RarityColors.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BulletRPG.Gear.DamageTypeColors" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAABAAAhAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\DamageTypeColors.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BulletRPG.Gear.LootableItem" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAEAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Lootable\LootableItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="itemObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.ChangeHealth" Collapsed="true">
+    <Position X="2.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAEQAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Powerups\ChangeHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Interactable" Collapsed="true">
+    <Position X="3.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\Temp\Interactable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spawner" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAKAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Developer\Temp\Spawner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="lootables" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.Armor.ArmorObject" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Armors\ArmorObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Armor.Armor" Collapsed="true">
+    <Position X="7.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAAAAABAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Armors\ArmorObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Armor.HelmetObject" Collapsed="true">
+    <Position X="3.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Armors\Helmets\HelmetObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Weapons.RangedWeapons.RangedWeaponObject" Collapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAkAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\RangedWeapons\RangedWeaponObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Weapons.RangedWeapons.RangedWeapon" Collapsed="true">
+    <Position X="9.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAgBAAAAAgAAAAAAAAAAIAAAAAAAAABAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\RangedWeapons\RangedWeaponObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Weapons.RangedWeapons.Wands.WandObject">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\RangedWeapons\Wands\WandObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="projectiles" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BulletRPG.Gear.Weapons.RangedWeapons.Wands.Wand" Collapsed="true">
+    <Position X="9.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\RangedWeapons\Wands\WandObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletRPG.Gear.Weapons.RangedWeapons.Wands.WandProjectiles" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAABAAAAAAAABAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\Weapons\RangedWeapons\Wands\WandProjectiles\WandProjectiles.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BulletRPG.Items.LootableItemTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Lootable\LootableItemTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BulletRPG.Gear.Powerups.ChangeSpeed" Collapsed="true">
+    <Position X="4.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAJBAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Powerups\ChangeSpeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="System.Int32" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Enum Name="ItemType" Collapsed="true">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAIAAAAAAAQE=</HashCode>
+      <FileName>Assets\Developer\Items\ItemObject.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BulletRPG.Characters.Player.AttributeType" Collapsed="true">
+    <Position X="11.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAABCAAAAAABAEBAAAAAAAAAAAAAACQ=</HashCode>
+      <FileName>Assets\Developer\Entities\Player\Attributes\Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BulletRPG.Gear.GearSlot" Collapsed="true">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAIAIAEAEAAEAAAAIAAAAAIABEAAAAAAAAAAAAo=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\GearObject.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BulletRPG.Gear.Rarity" Collapsed="true">
+    <Position X="11.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAQAAAAAAAQAAIAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Items\Gear\GearObject.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="BulletRPG.Gear.SlotUpdated">
+    <Position X="11.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Developer\Inventory\InventoryObject.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

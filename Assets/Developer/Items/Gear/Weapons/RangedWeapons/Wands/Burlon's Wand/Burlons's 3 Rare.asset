@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   config: {fileID: 11400000, guid: b280ab452942bf7459aef9be77abdb8a, type: 2}
-  rarity: 0
+  rarity: 2
   gearSlot: 1
   EquippedInGameObject: {fileID: 5574695480326562781, guid: 4bc3fc3e5e527c14696aaeb45ed25547,
     type: 3}
