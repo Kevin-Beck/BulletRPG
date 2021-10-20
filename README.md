@@ -32,6 +32,12 @@ Before entering a level the player may adjust their equipments and skills. After
 
 ## Todo List
 
+- Remake UML for inventory system
+- Make more items/gear classes to flesh out the structure
+- Make UML for items and their structure
+- Make Health/Movement interfaces to be used by the damage class to pass damage effects to
+- Make UML for combat/health/effects/movement
+
 - Create utility that can get nearest point on navmesh for any class to use
 - Tile system
 - Add UI element for shoot timer cooldown
