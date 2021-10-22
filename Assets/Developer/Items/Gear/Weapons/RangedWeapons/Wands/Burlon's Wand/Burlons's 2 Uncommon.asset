@@ -22,5 +22,6 @@ MonoBehaviour:
   ProjectileSpeed: 2.4
   MinDamage: 8
   MaxDamage: 12
-  damageTypes: 02000000
+  damageTypes:
+  - {fileID: 11400000, guid: 0b4869498e1f680478347e2e75125b0b, type: 2}
   projectiles: {fileID: 11400000, guid: d0bebdb989462124a80f049a10482fe1, type: 2}

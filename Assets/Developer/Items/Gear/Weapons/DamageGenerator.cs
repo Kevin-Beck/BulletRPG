@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace BulletRPG.Gear.Weapons
 {
@@ -20,7 +21,7 @@ namespace BulletRPG.Gear.Weapons
         }
         public string Stringify()
         {
-            return $"Damage\n{type}: {min:F1}-{max:F1}";
+            return $"Damage\n{type.DamageName}: {min:F1}-{max:F1}";
         }
     }
 
@@ -39,18 +40,32 @@ namespace BulletRPG.Gear.Weapons
     public class DamageMitigator
     {
         public DamageType damageType;
-        public float percentRemoved;
-        public float minRemoved;
-        public float maxRemoved;
-        public DamageMitigator(DamageType type, float percentageReduced)
+        public ImmunityLevels protectionLevel;
+        public float PercentReduced { get=> (float)Math.Round((float)(int)protectionLevel / 100f, 2); }
+        public DamageMitigator(DamageType type, ImmunityLevels protectionLevel)
         {
             damageType = type;
-            percentRemoved = (float)Math.Round(percentageReduced);
+            
+        }
+        public Damage MitigateDamage(Damage incoming)
+        {
+            if (incoming.damageType == damageType)
+            {
+                incoming.amount -= incoming.amount * PercentReduced;
+            }
+            Debug.Log("Percent Removed: " + PercentReduced);
+            return incoming;
         }
         public string Stringify()
         {
-            return $"Resistance\n{damageType}:  {percentRemoved:F0}%";
+            return $"Resistance\n{damageType.DamageName}:  {PercentReduced:F0}%";
         }
+    }
+    [Serializable]
+    public enum ImmunityLevels
+    {
+        resistance = 50,
+        immunity = 100,
     }
 }
 

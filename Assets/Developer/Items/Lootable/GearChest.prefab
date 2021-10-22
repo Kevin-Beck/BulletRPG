@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 749765582644360205}
   - component: {fileID: 705287051487993648}
   - component: {fileID: -1647978961769492749}
+  - component: {fileID: 6730050744433906478}
   m_Layer: 0
   m_Name: GearChest
   m_TagString: Untagged
@@ -66,6 +67,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!95 &6730050744433906478
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339988973068339160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95707dd778758bd4d884311e9c0abc5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2292623422145049584
 GameObject:
   m_ObjectHideFlags: 0

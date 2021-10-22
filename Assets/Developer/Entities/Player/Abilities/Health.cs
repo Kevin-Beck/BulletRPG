@@ -78,7 +78,7 @@ namespace BulletRPG.Characters.Player
             {
                 if(damageMitigators[i].damageType == damage.damageType)
                 {
-                    reductionPercentage += damageMitigators[i].percentRemoved;
+                    reductionPercentage += damageMitigators[i].PercentReduced;
                 }
             }
             // Enough damage reduction will roll it over to healing

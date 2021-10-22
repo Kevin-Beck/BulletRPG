@@ -11,7 +11,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons.Wands
             gearSlot = GearSlot.Wand;
             config.itemType = ItemType.Gear;
         }
-        public Wand CreateInstance(WandObject wandObject)
+        public Wand CreateWand(WandObject wandObject)
         {
             return new Wand(wandObject);
         }

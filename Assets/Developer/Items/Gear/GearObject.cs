@@ -14,10 +14,6 @@ namespace BulletRPG.Gear
         {
             config.itemType = ItemType.Gear;
         }
-        public Gear CreateGearItem()
-        {
-            return new Gear(this);
-        }
     }
     public enum GearSlot
     {

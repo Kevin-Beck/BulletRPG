@@ -9,6 +9,7 @@ public class ItemObject : ScriptableObject
     [HideInInspector]
     public int Id = -1;
     public ItemObjectConfig config;
+
 }
 
 [System.Serializable]

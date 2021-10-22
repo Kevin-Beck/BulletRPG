@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorgroup:
   - color: {r: 0, g: 0, b: 0, a: 1}
-    damageType: 0
+    damageType: {fileID: 11400000, guid: 501a4c93bc71b494d83c980933027524, type: 2}
   - color: {r: 0.034178626, g: 0.6415094, b: 0, a: 1}
-    damageType: 1
+    damageType: {fileID: 11400000, guid: 159d5d808b333cf46806ce0a614e5ab7, type: 2}
   - color: {r: 0.8470589, g: 0.23137257, b: 0.03529412, a: 1}
-    damageType: 2
+    damageType: {fileID: 11400000, guid: 0b4869498e1f680478347e2e75125b0b, type: 2}
   - color: {r: 0.9921569, g: 0.81568635, b: 0.13725491, a: 1}
-    damageType: 3
-  - color: {r: 1, g: 0, b: 0.7387657, a: 1}
-    damageType: 4
+    damageType: {fileID: 11400000, guid: 668b87c356a2af648826e1834ff7a8cf, type: 2}
+  - color: {r: 0.6888422, g: 0.33285868, b: 0.8301887, a: 1}
+    damageType: {fileID: 11400000, guid: 45eda144f50b94545bbea0ec43acb380, type: 2}
   - color: {r: 0, g: 1, b: 0.8585174, a: 1}
-    damageType: 5
-  - color: {r: 0.33517218, g: 0, b: 1, a: 1}
-    damageType: 6
+    damageType: {fileID: 11400000, guid: e50e49b499e3a144dba45604654e79ac, type: 2}
+  - color: {r: 0.20452838, g: 0, b: 0.6792453, a: 1}
+    damageType: {fileID: 11400000, guid: 6e1a969083780e141b8312ac8a365179, type: 2}

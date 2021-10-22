@@ -1,5 +1,7 @@
 ﻿using BulletRPG.Gear.Weapons;
+using BulletRPG.Temp;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +10,33 @@ namespace BulletRPG.Characters.NPC
     [RequireComponent(typeof(Collider))]
     public class NPCHealth : MonoBehaviour, IHealth
     {
+        private Animator animator;
         [SerializeField] public float startingHealth;
-        [SerializeField] bool destroyOnDeath = true;
         [SerializeField] GameEvent destroyedEvent;
+
+        CooldownTimer destroyTimer;
+        CooldownTimer lowerTimer;
+
         private IHealthBar healthBar;
         public float currentHealth;
 
+        public List<DamageMitigator> mitigators = new List<DamageMitigator>();
+
+        private void Awake()
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+        private void Update()
+        {
+            if(destroyTimer != null)
+            {
+                destroyTimer.Update(Time.deltaTime);
+            }
+            if(lowerTimer != null)
+            {
+                lowerTimer.Update(Time.deltaTime);
+            }
+        }
         private void Start()
         {
             if (startingHealth == 0)
@@ -27,23 +50,48 @@ namespace BulletRPG.Characters.NPC
             }
         }
 
-        public void ChangeHealth(float amount)
+        private void ChangeHealth(float amount)
         {
             currentHealth += amount;
             if (healthBar != null)
             {
                 healthBar.UpdateHealthBar(currentHealth / startingHealth);
             }
-            if (destroyOnDeath && currentHealth <= 0)
+            if (currentHealth <= 0)
             {
+                animator.SetBool("Die", true);
                 if (destroyedEvent != null)
                 {
                     destroyedEvent.Raise();
                 }
-                Destroy(gameObject);
+                DeathSequence();
             }
         }
+        private void DeathSequence()
+        {
+            lowerTimer = new CooldownTimer(1.8f);
+            lowerTimer.TimerCompleteEvent += () => StartCoroutine(LowerUnderground());
+            lowerTimer.Start();
 
+            destroyTimer = new CooldownTimer(3.6f);
+            destroyTimer.TimerCompleteEvent += () => Destroy(gameObject);
+            destroyTimer.Start();
+            
+        }
+        public IEnumerator LowerUnderground()
+        {
+            float timeElapsed = 0;
+            Vector3 start = transform.position;
+            Vector3 end = transform.position - transform.up * 3;
+            Debug.Log("Called the function LowerUnderground");
+            while (true)
+            {
+                transform.position = Vector3.Lerp(start, end, timeElapsed / 1.8f);
+                timeElapsed += Time.deltaTime;
+
+                yield return null;
+            }
+        }
         public void HealFlatAmount(float amount)
         {
             if(amount < 0)
@@ -68,7 +116,7 @@ namespace BulletRPG.Characters.NPC
             ChangeHealth(startingHealth * (percentage/100));
         }
 
-        public void TakeDamageAmount(float amount)
+        private void TakeDamageAmount(float amount)
         {
             if(amount < 0)
             {
@@ -109,7 +157,17 @@ namespace BulletRPG.Characters.NPC
 
         public void ProcessDamage(Damage damage)
         {
-            throw new NotImplementedException();
+            Damage damageToTake = damage;
+            for (int i = 0; i < mitigators.Count; i++)
+            {
+                if(damage.damageType == mitigators[i].damageType)
+                {
+                    damageToTake = mitigators[i].MitigateDamage(damage);
+                }
+            }
+            TakeDamageAmount(damageToTake.amount);
+
+            // TODO apply other damage affects here
         }
 
         public void AddDamageMitigators(List<DamageMitigator> mitigators)

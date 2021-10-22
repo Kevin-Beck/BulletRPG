@@ -16,7 +16,7 @@ namespace BulletRPG.Gear
             {                
                 itemObjects[i].Id = i;
                 GetItemObject.Add(i, itemObjects[i]);
-                Debug.Log("Items Database Set");
+                //Debug.Log("Items Database Set");
             }
         }
 

@@ -1,3 +1,4 @@
+using BulletRPG.Characters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,13 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("NOT SET UP");
+
+            var health = other.GetComponent<IHealth>();
+            if(health != null)
+            {
+                health.ProcessDamage(damage);
+                Destroy(gameObject);
+            }
         }
         void Update()
         {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f2672d7960ad43b501eddce57b7c1, type: 3}
   m_Name: Burlons's 3 Rare
   m_EditorClassIdentifier: 
-  Id: 2
+  Id: 3
   config: {fileID: 11400000, guid: b280ab452942bf7459aef9be77abdb8a, type: 2}
   rarity: 2
   gearSlot: 1
@@ -22,5 +22,6 @@ MonoBehaviour:
   ProjectileSpeed: 2.4
   MinDamage: 8
   MaxDamage: 12
-  damageTypes: 02000000
+  damageTypes:
+  - {fileID: 11400000, guid: 0b4869498e1f680478347e2e75125b0b, type: 2}
   projectiles: {fileID: 11400000, guid: d0bebdb989462124a80f049a10482fe1, type: 2}

@@ -16,9 +16,12 @@ namespace BulletRPG.Gear
         }
         public void OnAfterDeserialize()
         {
-            foreach (DamageColorGroup dcg in colorgroup)
+            if(colorgroup.Count > 0)
             {
-                DamageColorMap.Add(dcg.damageType, dcg.color);
+                foreach (DamageColorGroup dcg in colorgroup)
+                {
+                    DamageColorMap.Add(dcg.damageType, dcg.color);
+                }
             }
         }
     }

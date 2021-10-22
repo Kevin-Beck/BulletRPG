@@ -20,8 +20,8 @@ namespace BulletRPG.Gear.Armor
         {
             damageMitigators = new List<DamageMitigator>();
             int mitigatorIndex = UnityEngine.Random.Range(0, armorObject.PossibleDamageMitigations.Count);
-            float mitigationAmount = UnityEngine.Random.Range(armorObject.PossibleDamageMitigations[mitigatorIndex].minRemoved, armorObject.PossibleDamageMitigations[mitigatorIndex].maxRemoved);
-            damageMitigators.Add(new DamageMitigator(armorObject.PossibleDamageMitigations[mitigatorIndex].damageType, mitigationAmount));
+            ImmunityLevels immunityLevel = armorObject.PossibleDamageMitigations[mitigatorIndex].protectionLevel;
+            damageMitigators.Add(new DamageMitigator(armorObject.PossibleDamageMitigations[mitigatorIndex].damageType, immunityLevel));
 
             name = StringifyName();
             description = StringifyDescription();
@@ -32,14 +32,15 @@ namespace BulletRPG.Gear.Armor
             string nameFromArmor = "";
             if (damageMitigators.Count > 0)
             {
-                if(damageMitigators[0].damageType != DamageType.Regular)
-                {
-                    nameFromArmor = $" of {damageMitigators[0].damageType}";
-                }
-                else
-                {
-                    nameFromArmor = $" of Protection";
-                }
+                // TODO rebuild damage resistance into a class
+                //if(damageMitigators[0].damageType != DamageType.Regular)
+                //{
+                //    nameFromArmor = $" of {damageMitigators[0].damageType}";
+                //}
+                //else
+                //{
+                //    nameFromArmor = $" of Protection";
+                //}
             }
             return base.StringifyName() + nameFromArmor;
         }
