@@ -12,7 +12,6 @@ namespace BulletRPG.Characters.NPC
     {
         private Animator animator;
         [SerializeField] public float startingHealth;
-        [SerializeField] GameEvent destroyedEvent;
 
         CooldownTimer destroyTimer;
         CooldownTimer lowerTimer;
@@ -59,11 +58,9 @@ namespace BulletRPG.Characters.NPC
             }
             if (currentHealth <= 0)
             {
-                animator.SetBool("Die", true);
-                if (destroyedEvent != null)
-                {
-                    destroyedEvent.Raise();
-                }
+                animator.SetBool("die", true);
+                animator.SetBool("moving", false);
+                GetComponent<NPCMove>().Die();
                 DeathSequence();
             }
         }
@@ -166,7 +163,7 @@ namespace BulletRPG.Characters.NPC
                 }
             }
             TakeDamageAmount(damageToTake.amount);
-
+            Debug.Log("Processing npc damage");
             // TODO apply other damage affects here
         }
 

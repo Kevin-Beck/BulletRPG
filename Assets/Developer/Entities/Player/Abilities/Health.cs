@@ -81,6 +81,7 @@ namespace BulletRPG.Characters.Player
                     reductionPercentage += damageMitigators[i].PercentReduced;
                 }
             }
+            Debug.Log("Processing Damage");
             // Enough damage reduction will roll it over to healing
             float healthChange = damage.amount * (1f - reductionPercentage) * -1;
             ChangeHealth(healthChange);

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8635258955664641506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3666373031531703657}
   - component: {fileID: -5735506264131004540}
   - component: {fileID: 6145431009564748261}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Frost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,9 +114,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8635258955664641506}
     m_Modifications:
+    - target: {fileID: 1148351829394104, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1278067673019330, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
       propertyPath: m_Name
       value: IceMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278067673019330, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532794438537706, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576351018709242, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4743200706115866, guid: 112f3db1547c11e4fadfba32f6df1cec, type: 3}
       propertyPath: m_RootOrder

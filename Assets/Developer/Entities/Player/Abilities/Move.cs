@@ -51,17 +51,12 @@ namespace BulletRPG.Characters.Player
             // Set destination
             navMeshAgent.destination = transform.position + moveDirection * 2f;
 
-            if (animator != null)
-            {
-                // Adjust vector based on current rotation to create correct animation
-                moveDirection = transform.InverseTransformDirection(moveDirection);
-                animator.SetFloat(animationRightAxisName, moveDirection.x);
-                animator.SetFloat(animationForwardAxisName, moveDirection.z);
-            }
-            else
-            {
-                Debug.LogWarning($"Animator is null on {name}");
-            }
+
+            // Adjust vector based on current rotation to create correct animation
+            moveDirection = transform.InverseTransformDirection(moveDirection);
+            animator.SetFloat(animationRightAxisName, moveDirection.x);
+            animator.SetFloat(animationForwardAxisName, moveDirection.z);
+
         }
         public void SetSpeedMultiplier(float speedMultiplier, float revertAfterSeconds)
         {
@@ -83,6 +78,11 @@ namespace BulletRPG.Characters.Player
             yield return new WaitForSeconds(timeDelay);
             navMeshAgent.speed = speedValue;
             navMeshAgent.acceleration = accelerationValue;
+        }
+
+        public void MoveTowardsRandomPositions(float time)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

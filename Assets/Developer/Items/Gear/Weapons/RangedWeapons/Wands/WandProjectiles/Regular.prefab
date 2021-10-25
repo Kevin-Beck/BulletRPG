@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5195094463430901693}
   - component: {fileID: -2252433098862056496}
   - component: {fileID: -1724636912071556264}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Regular
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950161114246127414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,10 +114,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 950161114246127414}
     m_Modifications:
+    - target: {fileID: 260033437621869486, guid: 6903062059233e2468230fa6d454ab18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179588433614222026, guid: 6903062059233e2468230fa6d454ab18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6179731430944818096, guid: 6903062059233e2468230fa6d454ab18,
         type: 3}
       propertyPath: m_Name
       value: StoneMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179731430944818096, guid: 6903062059233e2468230fa6d454ab18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179997746887164040, guid: 6903062059233e2468230fa6d454ab18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6185275661813401960, guid: 6903062059233e2468230fa6d454ab18,
         type: 3}

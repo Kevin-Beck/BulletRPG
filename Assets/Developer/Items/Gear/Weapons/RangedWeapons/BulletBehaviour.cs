@@ -13,7 +13,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
 
         private void OnTriggerEnter(Collider other)
         {
-
+            Debug.Log("Collided");
             var health = other.GetComponent<IHealth>();
             if(health != null)
             {

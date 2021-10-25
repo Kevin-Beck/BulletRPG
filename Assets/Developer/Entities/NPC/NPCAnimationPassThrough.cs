@@ -1,3 +1,4 @@
+using BulletRPG.Characters.NPC;
 using UnityEngine;
 
 namespace BulletRPG.Gear
@@ -7,18 +8,30 @@ namespace BulletRPG.Gear
     /// The animation of the character will trigger a called event that will call "FireAttack" on this script.
     /// This script will then search the children transforms for a script of type IAttack. Which will then fire the triggered attack.
     /// </summary>
-    public class AnimationFunctionPassthrough : MonoBehaviour
+    public class NPCAnimationPassThrough : MonoBehaviour
     {
-        IAttack attackScript;
+        NPCShoot shootScript;
         public void FireAttack()
         {
             Debug.Log("firingfrom AnimationFunctionPassthrough");
-            attackScript = GetComponentInChildren<IAttack>();
-
-            if (attackScript != null)
+            if(shootScript == null)
             {
-                attackScript.FireAttack();
+                shootScript = GetComponentInChildren<NPCShoot>();
             }
+
+            if (shootScript != null)
+            {
+                shootScript.FireAttack();
+            }
+            else
+            {
+                Debug.Log("ShootScript was not found");
+            }
+        }
+        public void Continue()
+        {
+            Debug.Log("Calling Continue");
+            GetComponentInParent<NPC>().Continue();
         }
     }
 }

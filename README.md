@@ -31,7 +31,8 @@ Before entering a level the player may adjust their equipments and skills. After
 
 
 ## Todo List
-
+- Make Utilities function take in a game object and search for slots, returns an array of gearslots available.
+- Make Utilities function that returns the location in a model, input gearslot.type output, the gameobject that is the slot for it
 - Remake UML for inventory system
 - Make more items/gear classes to flesh out the structure
 - Make UML for items and their structure

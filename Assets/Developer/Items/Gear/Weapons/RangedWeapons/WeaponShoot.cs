@@ -37,7 +37,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
                 canShoot = false;
                 Invoke("CooldownReset", rangedWeapon.reloadTime);
                 Debug.Log("Attack");
-                animator.SetTrigger("Default Attack");
+                animator.SetTrigger("baseattack");
             }
         }
         public void SetWeapon(RangedWeapon weapon)

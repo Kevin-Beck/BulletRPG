@@ -32,18 +32,10 @@ namespace BulletRPG.Characters.Player
         private void SetEquipmentSlots()
         {
             int count = 0;
-            List<GearSlot> types = new List<GearSlot>();
-            foreach (GearSlot gearType in (GearSlot[])System.Enum.GetValues(typeof(GearSlot)))
-            {
-                var equipmentPoint = Utilities.RecursiveFindChild(transform, gearType.ToString());
-                if (equipmentPoint != null)
-                {
-                    types.Add(gearType);
-                    count++;
-                }
-            }
+            List<GearSlot> types = Utilities.GetCharactersGearSlots(transform);
+            
             Debug.Log("Player found " + count + " equipment slots on the character model");
-            EquippedGearSlots.SetSize(count);
+            EquippedGearSlots.SetSize(types.Count);
             for(int i = 0; i < EquippedGearSlots.GetSlots.Length; i++)
             {
                 EquippedGearSlots.GetSlots[i].InitializeAllowedItemTypes(new ItemType[] { ItemType.Gear });

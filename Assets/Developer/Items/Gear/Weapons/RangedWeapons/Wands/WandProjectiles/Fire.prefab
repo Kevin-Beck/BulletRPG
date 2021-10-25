@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8263018629984149423}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -2636750314051761956}
   - component: {fileID: 5356794684183234384}
   - component: {fileID: -4833984090414834432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8263018629984149423}
     m_Modifications:
+    - target: {fileID: 2124637316166480941, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5324527810449936917, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -129,10 +134,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5414499228013833995, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5414797451196427315, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
         type: 3}
       propertyPath: m_Name
       value: VolcanicMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414797451196427315, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414918406819847497, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5418228482205902571, guid: 5d1cb8c72ac9dee4a8826b66a63f0d86,
         type: 3}

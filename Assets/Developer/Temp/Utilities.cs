@@ -3,6 +3,7 @@ using BulletRPG.Gear.Armor;
 using BulletRPG.Gear.Weapons;
 using BulletRPG.Gear.Weapons.RangedWeapons;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -50,6 +51,19 @@ namespace BulletRPG
             }
             result = Vector3.zero;
             return false;
+        }
+        public static List<GearSlot> GetCharactersGearSlots(Transform characterRoot)
+        {
+            List<GearSlot> types = new List<GearSlot>();
+            foreach (GearSlot gearType in (GearSlot[])System.Enum.GetValues(typeof(GearSlot)))
+            {
+                var equipmentPoint = RecursiveFindChild(characterRoot, gearType.ToString());
+                if (equipmentPoint != null)
+                {
+                    types.Add(gearType);
+                }
+            }
+            return types;
         }
         public static Transform RecursiveFindChild(Transform parent, string childName)
         {

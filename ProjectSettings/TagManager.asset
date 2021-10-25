@@ -17,14 +17,14 @@ TagManager:
   - Mines
   - Platform
   - Player
-  - Projectile
-  - Tile
-  - TileChanger
-  - Contagion
-  - PowerUps
+  - PlayerProjectile
+  - NPCProjectile
+  - 
+  - 
+  - 
   - PlayerLookPlane
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 

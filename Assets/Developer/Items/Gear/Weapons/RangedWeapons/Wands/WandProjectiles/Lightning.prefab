@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7567073063753206930}
   - component: {fileID: 5272477997474522276}
   - component: {fileID: -600115151200701093}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2301793518339653916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,9 +114,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2301793518339653916}
     m_Modifications:
+    - target: {fileID: 1067319132429092, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1087735863748986, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
       propertyPath: m_Name
       value: LightningMissileYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087735863748986, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218020014819856, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583137675329164, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670715513093082, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4393378630228482, guid: 660bca27e39afd24d84c2cef775d1fce, type: 3}
       propertyPath: m_RootOrder

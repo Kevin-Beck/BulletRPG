@@ -8,6 +8,7 @@ namespace BulletRPG.Characters
     {
         public void SetSpeedMultiplier(float speedMultiplier, float timeUntilReversion);
         public void SetSpeedAndAcceleration(float speed, float acceleration);
+        public void MoveTowardsRandomPositions(float time);
     }
 }
 

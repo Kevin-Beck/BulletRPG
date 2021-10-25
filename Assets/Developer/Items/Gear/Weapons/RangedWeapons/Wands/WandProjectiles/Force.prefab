@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5381898098319569362}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3509718541385379910}
   - component: {fileID: 7169740773883499569}
   - component: {fileID: 622478540870174897}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Force
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,10 +114,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5381898098319569362}
     m_Modifications:
+    - target: {fileID: 4629745584881253278, guid: 0a7e25547de88d54fb21f3049a78cb73,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4629901740647369444, guid: 0a7e25547de88d54fb21f3049a78cb73,
         type: 3}
       propertyPath: m_Name
       value: DarkMissile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629901740647369444, guid: 0a7e25547de88d54fb21f3049a78cb73,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630163113077574108, guid: 0a7e25547de88d54fb21f3049a78cb73,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4635581247164661820, guid: 0a7e25547de88d54fb21f3049a78cb73,
         type: 3}
