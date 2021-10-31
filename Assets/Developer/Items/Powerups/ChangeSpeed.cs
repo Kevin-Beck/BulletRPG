@@ -12,7 +12,7 @@ namespace BulletRPG.Gear.Powerups
 
         public override void Interact(Interactor agent)
         {
-            agent.GetComponent<IMove>().SetSpeedMultiplier(speedMultiplier, timeUntilReset);
+            agent.GetComponent<INPCMove>().SetSpeedMultiplier(speedMultiplier, timeUntilReset);
             Destroy(gameObject);
         }
     }

@@ -1,27 +1,23 @@
 using BulletRPG;
 using BulletRPG.Characters;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class NPCMove : MonoBehaviour, IMove
+public class BaseMovement : MonoBehaviour, INPCMove
 {
+    [SerializeField] MovementType movementType;
+    private Transform targetTransform;
+
     [HideInInspector] public NavMeshAgent navMeshAgent;
     private Animator animator;
-    private Rigidbody rigidB;
 
     private float baseSpeed;
     private float baseAcceleration;
     private Coroutine speedChange = null;
-
-    private bool _moveAtRandom = false;
-    private bool _moveToPosition = false;
-    private bool _isMoving = false;
-    public bool MoveAtRandom { get => _moveAtRandom; set => _moveAtRandom = value; }
-    public bool MoveToPosition { get => _moveToPosition; set => _moveToPosition = value; }
-    public bool IsMoving { get => _isMoving; }
 
     private Vector3 previousPosition;
     private Vector3 currentPostition;
@@ -29,11 +25,10 @@ public class NPCMove : MonoBehaviour, IMove
 
     private void Awake()
     {
-        rigidB = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
     }
-    public void Start()
+    private void Start()
     {
         navMeshAgent.updatePosition = true;
         navMeshAgent.updateRotation = false;
@@ -41,39 +36,52 @@ public class NPCMove : MonoBehaviour, IMove
         currentPostition = transform.position;
         changeInPosition = Vector3.zero;
         previousPosition = transform.position;
+
+        targetTransform = Utilities.GetPlayerTransform();
     }
-    public void Update()
+    private void OnDisable()
     {
-        if (navMeshAgent.destination != null && IsMoving)
+        Stop();
+    }
+
+    public void Move()
+    {
+        if (!enabled)
         {
-            previousPosition = currentPostition;
-            currentPostition = transform.position;
-            changeInPosition = currentPostition - previousPosition;
-            changeInPosition = transform.InverseTransformDirection(changeInPosition);
-            
-            animator.SetFloat("velocityx", changeInPosition.normalized.x);
-            animator.SetFloat("velocityz", changeInPosition.normalized.z);
+            return;
+        }
+        GetMovement(movementType)();
+        Animate();       
+    }
+    private Action GetMovement(MovementType movementType) => movementType switch
+    {
+        MovementType.RandomPositions => () => RandomPositions(),
+        MovementType.FollowPlayer => () => FollowPlayer(),
+        _ => () => { Debug.LogWarning("Action not defined for Movement type"); },
+    };
+    private void Animate()
+    {
+        previousPosition = currentPostition;
+        currentPostition = transform.position;
+        changeInPosition = currentPostition - previousPosition;
+        changeInPosition = transform.InverseTransformDirection(changeInPosition);
 
-            transform.LookAt(navMeshAgent.destination);
-
-            if (pathComplete())
-            {
-                if (_moveAtRandom)
-                {
-                    navMeshAgent.destination = GetRandomDestination();
-                }
-                else
-                {
-                    Stop();
-                }
-            }
+        animator.SetFloat("velocityx", changeInPosition.normalized.x);
+        animator.SetFloat("velocityz", changeInPosition.normalized.z);
+    }
+    private void FollowPlayer()
+    {
+        navMeshAgent.destination = targetTransform.position;
+    }
+    private void RandomPositions()
+    {
+        if (PathComplete() || navMeshAgent.destination == null)
+        {
+            navMeshAgent.destination = GetRandomDestination();
         }
     }
-    public void Die()
-    {
-        _isMoving = false;
-    }
-    protected bool pathComplete()
+
+    protected bool PathComplete()
     {
         if (Vector3.Distance(navMeshAgent.destination, navMeshAgent.transform.position) <= navMeshAgent.stoppingDistance)
         {
@@ -84,25 +92,10 @@ public class NPCMove : MonoBehaviour, IMove
         }
         return false;
     }
-    private void Stop()
+    public void Stop()
     {
-        _isMoving = false;
         animator.SetBool("moving", false);
-    }
-    public void MoveTowardsRandomPositions(float time)
-    {
-        _moveAtRandom = true;
-        Invoke("Stop", time);
-        navMeshAgent.destination = GetRandomDestination();
-        _isMoving = true;
-        animator.SetBool("moving", true);
-    }
-    public void MoveToRandomPosition()
-    {
-        _moveToPosition = true;
-        navMeshAgent.destination = GetRandomDestination();
-        _isMoving = true;
-        animator.SetBool("moving", true);
+        navMeshAgent.destination = transform.position;
     }
     public void SetSpeedAndAcceleration(float speed, float acceleration)
     {
@@ -147,4 +140,10 @@ public class NPCMove : MonoBehaviour, IMove
         }
         return position;
     }
+}
+
+public enum MovementType
+{
+    FollowPlayer,
+    RandomPositions
 }

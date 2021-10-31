@@ -6,7 +6,7 @@ namespace BulletRPG.Characters
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(IHealth))]
-    [RequireComponent(typeof(IMove))]
+    [RequireComponent(typeof(INPCMove))]
     public class Interactor : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)

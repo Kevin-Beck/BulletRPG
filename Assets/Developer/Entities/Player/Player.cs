@@ -14,8 +14,8 @@ namespace BulletRPG.Characters.Player
         public InventoryObject EquippedGearSlots;
         Dictionary<InventorySlot, Transform> EquipmentSlotPositionMap = new Dictionary<InventorySlot, Transform>();
 
-        IMove movement;
         IHealth health;
+        IMove movement;
 
         public Attribute[] attributes;
         CharacterStats baseStats; // stats based on the Selected Character
@@ -26,15 +26,15 @@ namespace BulletRPG.Characters.Player
             SetEquipmentSlots();
 
             movement = GetComponent<IMove>();
+
             health = GetComponent<IHealth>();
             baseStats = GetComponentInChildren<CharacterStats>();
         }
         private void SetEquipmentSlots()
         {
-            int count = 0;
             List<GearSlot> types = Utilities.GetCharactersGearSlots(transform);
             
-            Debug.Log("Player found " + count + " equipment slots on the character model");
+            Debug.Log("Player found " + types.Count + " equipment slots on the character model");
             EquippedGearSlots.SetSize(types.Count);
             for(int i = 0; i < EquippedGearSlots.GetSlots.Length; i++)
             {
@@ -132,7 +132,7 @@ namespace BulletRPG.Characters.Player
 
         public void AttributeModified(Attribute attribute)
         {
-            Debug.Log("Attribute was updated: " + attribute.attributeType + ": " + attribute.value.ModifiedValue);
+            //Debug.Log("Attribute was updated: " + attribute.attributeType + ": " + attribute.value.ModifiedValue);
         }       
     }
 }

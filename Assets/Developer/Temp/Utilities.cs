@@ -65,6 +65,11 @@ namespace BulletRPG
             }
             return types;
         }
+        public static Transform GetPlayerTransform()
+        {
+            Transform position = GameObject.FindGameObjectWithTag("Player").transform;
+            return position;
+        }
         public static Transform RecursiveFindChild(Transform parent, string childName)
         {
             foreach (Transform child in parent)

@@ -10,49 +10,32 @@ using UnityEngine.InputSystem;
 public class NPCShoot : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] Vector3 SpawnPointOffset;
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
     [SerializeField] DamageGenerator generator;
+    private NPC myNPC;
 
     private void Awake()
     {
-        animator = GetComponentInParent<Animator>();
+        myNPC = GetComponent<NPC>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void StartAttackAnimation()
     {
-        // TODO clean up this mess, Kevin
         Debug.Log("Starting Animation");
-        if(animator == null)
-        {
-            Debug.Log("null animator1");
-            animator = GetComponentInParent<Animator>();
-        }
-
-        if(animator != null)
-        {            
-            animator.SetTrigger("baseattack");
-        }
-        else
-        {
-            Debug.Log("null animator2");
-        }
+        animator.SetTrigger("shoot");
     }
 
     public void FireAttack()
     {
         Debug.Log("ActuallyFiring");
-        var bullet = Instantiate(projectile, transform.position + SpawnPointOffset, Quaternion.identity);
+        var bullet = Instantiate(projectile, transform.position + transform.forward + Vector3.up, Quaternion.identity);
         bullet.transform.rotation = Quaternion.identity;
         var settings = bullet.GetComponent<BulletBehaviour>();
         settings.BulletSpeed = projectileSpeed;
         settings.damage = generator.GetDamage();
-
         bullet.transform.rotation = GetComponentInParent<Rigidbody>().transform.rotation;
-    }
-    public void Continue()
-    {
-        //me.Continue();
+        
     }
 }

@@ -10,6 +10,7 @@ namespace BulletRPG.Characters.NPC
     [RequireComponent(typeof(Collider))]
     public class NPCHealth : MonoBehaviour, IHealth
     {
+        private NPC npc;
         private Animator animator;
         [SerializeField] public float startingHealth;
 
@@ -23,6 +24,7 @@ namespace BulletRPG.Characters.NPC
 
         private void Awake()
         {
+            npc = GetComponent<NPC>();
             animator = GetComponentInChildren<Animator>();
         }
         private void Update()
@@ -59,10 +61,10 @@ namespace BulletRPG.Characters.NPC
             if (currentHealth <= 0)
             {
                 animator.SetBool("die", true);
-                animator.SetBool("moving", false);
-                GetComponent<NPCMove>().Die();
                 DeathSequence();
             }
+            DeathSequence();
+            npc.Die();
         }
         private void DeathSequence()
         {
@@ -72,8 +74,7 @@ namespace BulletRPG.Characters.NPC
 
             destroyTimer = new CooldownTimer(3.6f);
             destroyTimer.TimerCompleteEvent += () => Destroy(gameObject);
-            destroyTimer.Start();
-            
+            destroyTimer.Start();            
         }
         public IEnumerator LowerUnderground()
         {
