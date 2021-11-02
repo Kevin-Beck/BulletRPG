@@ -15,6 +15,7 @@ namespace BulletRPG
     {
         private static Plane xzPlane = new Plane(Vector3.up, Vector3.zero);
         private static readonly Camera main = Camera.main;
+        private static int UILayer = LayerMask.NameToLayer("UI");
 
         public static void AddEvent(GameObject button, EventTriggerType type, UnityAction<BaseEventData> action)
         {
@@ -23,6 +24,30 @@ namespace BulletRPG
             eventTrigger.eventID = type;
             eventTrigger.callback.AddListener(action);
             trigger.triggers.Add(eventTrigger);
+        }
+        public static bool IsPointerOverUIElement()
+        {
+            return IsPointerOverUIElement(GetEventSystemRaycastResults());
+        }
+        private static bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+        {
+            for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+            {
+                RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+                if (curRaysastResult.gameObject.layer == UILayer)
+                    return true;
+            }
+            return false;
+        }
+
+        //Gets all event system raycast results of current mouse or touch position.
+        static List<RaycastResult> GetEventSystemRaycastResults()
+        {
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            eventData.position = Input.mousePosition;
+            List<RaycastResult> raysastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, raysastResults);
+            return raysastResults;
         }
         public static Vector3 MouseOnPlane()
         {// calculates the intersection of a ray through the mouse pointer with a static x/z plane for example for movement etc, source: http://unifycommunity.com/wiki/index.php?title=Click_To_Move

@@ -31,7 +31,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
         }
         public void StartAttackAnimation()
         {
-            if (canShoot)
+            if (canShoot && !Utilities.IsPointerOverUIElement())
             {
                 gearPlaceholder = rangedWeapon;
                 canShoot = false;

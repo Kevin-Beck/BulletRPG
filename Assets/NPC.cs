@@ -11,7 +11,7 @@ namespace BulletRPG.Characters.NPC
     {
         public FiniteStateMachine behaviorStateMachine;
         [SerializeField] LookDirection lookDirection;
-
+        Animator animator;
 
         private NPCHealth myHealth;
         private INPCMove myMove;        
@@ -24,6 +24,7 @@ namespace BulletRPG.Characters.NPC
 
         private void Awake()
         {
+            animator = GetComponentInChildren<Animator>();
             navAgent = GetComponent<NavMeshAgent>();
             myHealth = GetComponent<NPCHealth>();
             myMove = GetComponent<INPCMove>();
@@ -137,7 +138,7 @@ namespace BulletRPG.Characters.NPC
             // Add a text message to the OnEnter and OnExit delegates.
             state.OnEnterDelegate += delegate ()
             {
-                Debug.Log("OnEnter - DIE");
+
             };
             state.OnExitDelegate += delegate ()
             {
@@ -176,7 +177,7 @@ namespace BulletRPG.Characters.NPC
             // Add a text message to the OnEnter and OnExit delegates.
             state.OnEnterDelegate += delegate ()
             {
-                Debug.Log("OnEnter - Move");
+                animator.SetBool("moving", true);
             };
             state.OnExitDelegate += delegate ()
             {

@@ -19,6 +19,9 @@ namespace BulletRPG.Characters.NPC
 
         private IHealthBar healthBar;
         public float currentHealth;
+        private bool _isDead = false;
+        public bool IsDead { get => _isDead; }
+
 
         public List<DamageMitigator> mitigators = new List<DamageMitigator>();
 
@@ -53,6 +56,10 @@ namespace BulletRPG.Characters.NPC
 
         private void ChangeHealth(float amount)
         {
+            if (_isDead)
+            {
+                return;
+            }
             currentHealth += amount;
             if (healthBar != null)
             {
@@ -61,6 +68,7 @@ namespace BulletRPG.Characters.NPC
             if (currentHealth <= 0)
             {
                 animator.SetBool("die", true);
+                _isDead = true;
                 DeathSequence();
             }
             DeathSequence();

@@ -39,18 +39,11 @@ public class BaseMovement : MonoBehaviour, INPCMove
 
         targetTransform = Utilities.GetPlayerTransform();
     }
-    private void OnDisable()
-    {
-        Stop();
-    }
 
     public void Move()
-    {
-        if (!enabled)
-        {
-            return;
-        }
-        GetMovement(movementType)();
+    {     
+        var movement = GetMovement(movementType);
+        movement();
         Animate();       
     }
     private Action GetMovement(MovementType movementType) => movementType switch
@@ -94,8 +87,8 @@ public class BaseMovement : MonoBehaviour, INPCMove
     }
     public void Stop()
     {
-        animator.SetBool("moving", false);
         navMeshAgent.destination = transform.position;
+        animator.SetBool("moving", false);
     }
     public void SetSpeedAndAcceleration(float speed, float acceleration)
     {
