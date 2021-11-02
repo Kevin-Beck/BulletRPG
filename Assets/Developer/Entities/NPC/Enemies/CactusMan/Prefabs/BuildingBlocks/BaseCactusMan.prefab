@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8017303080721786464}
   - component: {fileID: 8017303080721786466}
   - component: {fileID: 3726668300577016408}
+  - component: {fileID: 5351734580018697372}
   m_Layer: 17
   m_Name: BaseCactusMan
   m_TagString: Untagged
@@ -159,3 +160,15 @@ MonoBehaviour:
     min: 3
     max: 5
     type: {fileID: 11400000, guid: 6e1a969083780e141b8312ac8a365179, type: 2}
+--- !u!114 &5351734580018697372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017303080721786468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e04b627e43a6444ab1a014b61ead504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

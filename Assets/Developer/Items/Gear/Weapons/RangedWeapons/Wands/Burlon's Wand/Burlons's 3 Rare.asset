@@ -19,7 +19,7 @@ MonoBehaviour:
   EquippedInGameObject: {fileID: 5574695480326562781, guid: 4bc3fc3e5e527c14696aaeb45ed25547,
     type: 3}
   Cooldown: 5
-  ProjectileSpeed: 2.4
+  ProjectileSpeed: 5
   MinDamage: 8
   MaxDamage: 12
   damageTypes:

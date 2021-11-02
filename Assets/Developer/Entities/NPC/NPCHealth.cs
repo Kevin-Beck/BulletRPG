@@ -70,9 +70,9 @@ namespace BulletRPG.Characters.NPC
                 animator.SetBool("die", true);
                 _isDead = true;
                 DeathSequence();
+                npc.Die();
             }
-            DeathSequence();
-            npc.Die();
+
         }
         private void DeathSequence()
         {
@@ -172,6 +172,7 @@ namespace BulletRPG.Characters.NPC
                 }
             }
             TakeDamageAmount(damageToTake.amount);
+            DamagePopup.Create(transform.position + transform.up * 4f, damageToTake);
             Debug.Log("Processing npc damage");
             // TODO apply other damage affects here
         }
