@@ -6,9 +6,10 @@ using UnityEngine;
 public class DamagePopup : MonoBehaviour
 {
     private TextMeshPro text;
-    public static DamagePopup Create(Vector3 position, Damage damage)
+    public static DamagePopup Create(Transform followTransform, Vector3 position, Damage damage)
     {        
         Transform popupTransform = Instantiate(GameAssets.i.damagePopupText, position, Quaternion.identity);
+        popupTransform.SetParent(followTransform);
         DamagePopup popup = popupTransform.GetComponent<DamagePopup>();
         popup.Setup(damage);
         return popup;

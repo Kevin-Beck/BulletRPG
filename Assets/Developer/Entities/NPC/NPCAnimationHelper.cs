@@ -12,12 +12,12 @@ public class NPCAnimationHelper : MonoBehaviour
     }
     public void Shoot()
     {
-        var shoot = GetComponentInParent<NPCShoot>();
+        var shoot = GetComponentInParent<BaseNPCShoot>();
         shoot.FireAttack();
     }
-    public void Continue()
+    public void AttackFinished()
     {
-        //myNPC.Continue();
+        myNPC.AttackFinished();
     }
 
 }

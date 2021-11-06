@@ -172,7 +172,7 @@ namespace BulletRPG.Characters.NPC
                 }
             }
             TakeDamageAmount(damageToTake.amount);
-            DamagePopup.Create(transform.position + transform.up * 4f, damageToTake);
+            DamagePopup.Create(transform, transform.position + transform.up * 4f, damageToTake);
             Debug.Log("Processing npc damage");
             // TODO apply other damage affects here
         }

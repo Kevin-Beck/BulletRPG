@@ -1,7 +1,5 @@
 using BulletRPG.Characters.Player;
 using Patterns;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,12 +13,16 @@ namespace BulletRPG.Characters.NPC
 
         private NPCHealth myHealth;
         private INPCMove myMove;        
-        private NPCShoot myShoot;
+        private INPCShoot myShoot;
         private NavMeshAgent navAgent;
         private Transform playerTransform;
 
         public Attribute[] attributes;
         CharacterStats baseStats;
+
+        [Header("StateMachine Settings")]
+        public float walkTime;
+        public float shotsPerShoot;
 
         private void Awake()
         {
@@ -28,7 +30,7 @@ namespace BulletRPG.Characters.NPC
             navAgent = GetComponent<NavMeshAgent>();
             myHealth = GetComponent<NPCHealth>();
             myMove = GetComponent<INPCMove>();
-            myShoot = GetComponent<NPCShoot>();
+            myShoot = GetComponent<INPCShoot>();
             baseStats = GetComponentInChildren<CharacterStats>();
             playerTransform = Utilities.GetPlayerTransform();
         }
@@ -48,30 +50,48 @@ namespace BulletRPG.Characters.NPC
             Init_MoveState(myMove);
 
             behaviorStateMachine.SetCurrentState(behaviorStateMachine.GetState((int)BehaviorState.Move));
+            InvokeRepeating("TriggerAttack", walkTime, walkTime);
         }
         private void Update()
         {
-            behaviorStateMachine.Update();
-            if(lookDirection == LookDirection.Destination)
+            if (myHealth.IsDead)
             {
-                transform.LookAt(navAgent.destination);
-            }else if(lookDirection == LookDirection.Player)
-            {
-                transform.LookAt(playerTransform);
+                return;
             }
+            ProcessLookDirection();
+            behaviorStateMachine.Update();
         }
         private void FixedUpdate()
         {
             behaviorStateMachine.FixedUpdate();
         }
+        private void ProcessLookDirection()
+        {
+            if (lookDirection == LookDirection.Destination)
+            {
+                transform.LookAt(navAgent.destination);
+            }
+            else if (lookDirection == LookDirection.Player)
+            {
+                transform.LookAt(playerTransform);
+            }
+        }
+        private void SetState(BehaviorState state)
+        {
+            behaviorStateMachine.SetCurrentState(behaviorStateMachine.GetState((int)state));
+        }
         public void Die()
         {
             SetState(BehaviorState.Die);
         }
-        // Helper function to set the state
-        private void SetState(BehaviorState state)
+
+        private void TriggerAttack()
         {
-            behaviorStateMachine.SetCurrentState(behaviorStateMachine.GetState((int)state));
+            SetState(BehaviorState.Attack);
+        }
+        private void TriggerMove()
+        {
+            SetState(BehaviorState.Move);
         }
 
         void Init_IdleState()
@@ -90,19 +110,7 @@ namespace BulletRPG.Characters.NPC
 
             state.OnUpdateDelegate += delegate ()
             {
-                //Debug.Log("OnUpdate - IDLE");
-                if (Input.GetKeyDown("c"))
-                {
-                    SetState(BehaviorState.Move);
-                }
-                else if (Input.GetKeyDown("d"))
-                {
-                    SetState(BehaviorState.Damaged);
-                }
-                else if (Input.GetKeyDown("a"))
-                {
-                    SetState(BehaviorState.Attack);
-                }
+
             };
         }
         void Init_AttackState()
@@ -111,43 +119,35 @@ namespace BulletRPG.Characters.NPC
 
             state.OnEnterDelegate += delegate ()
             {
-
+                Debug.Log("Entering Attack");
+                myShoot.StartAttackAnimation();
             };
             state.OnExitDelegate += delegate ()
             {
-                Debug.Log("OnExit - ATTACK");
+                Debug.Log("Exiting Attack");
             };
-
             state.OnUpdateDelegate += delegate ()
             {
-                //Debug.Log("OnUpdate - ATTACK");
-                if (Input.GetKeyDown("c"))
-                {
-                    SetState(BehaviorState.Move);
-                }
-                else if (Input.GetKeyDown("d"))
-                {
-                    SetState(BehaviorState.Damaged);
-                }
+                
             };
+        }
+        public void AttackFinished()
+        {
+            animator.SetBool("shoot", false);
+            TriggerMove();
         }
         void Init_DieState()
         {
             NPCStateNode state = (NPCStateNode)behaviorStateMachine.GetState((int)BehaviorState.Die);
 
-            // Add a text message to the OnEnter and OnExit delegates.
             state.OnEnterDelegate += delegate ()
             {
-
             };
             state.OnExitDelegate += delegate ()
             {
-                Debug.Log("OnExit - DIE");
             };
-
             state.OnUpdateDelegate += delegate ()
-            {
-                //Debug.Log("OnUpdate - DIE");
+            {                
             };
         }
 
@@ -177,11 +177,13 @@ namespace BulletRPG.Characters.NPC
             // Add a text message to the OnEnter and OnExit delegates.
             state.OnEnterDelegate += delegate ()
             {
+                Debug.Log("Entering Moving");
                 animator.SetBool("moving", true);
             };
             state.OnExitDelegate += delegate ()
             {
-                myMove.Stop();
+                Debug.Log("Exiting Moving");
+                myMove.Stop();                
             };
 
             state.OnUpdateDelegate += delegate ()

@@ -5,13 +5,12 @@ using UnityEngine;
 
 namespace BulletRPG.Gear.Weapons.RangedWeapons
 {
-    [RequireComponent(typeof(Collider))]
-    public class BulletBehaviour : MonoBehaviour
+    public class BasicBullet : BulletBehavior
     {
         [HideInInspector] public float BulletSpeed;
         [HideInInspector] public Damage damage;
 
-        private void OnTriggerEnter(Collider other)
+        public override void OnTriggerEnter(Collider other)
         {
             Debug.Log("Collided");
             var health = other.GetComponent<IHealth>();
@@ -21,7 +20,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
                 Destroy(gameObject);
             }
         }
-        void Update()
+        public override void Update()
         {
             transform.Translate(Vector3.forward * Time.deltaTime * BulletSpeed);
         }

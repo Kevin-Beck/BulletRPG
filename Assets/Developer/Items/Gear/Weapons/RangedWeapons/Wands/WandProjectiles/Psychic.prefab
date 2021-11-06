@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2727230363487181490}
-  - component: {fileID: 4017171946083626343}
   - component: {fileID: 4004403626311285055}
   - component: {fileID: -3731096942403723463}
+  - component: {fileID: 8813178094718746160}
   m_Layer: 10
   m_Name: Psychic
   m_TagString: Untagged
@@ -65,19 +65,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4017171946083626343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5081223669405588219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c34530e73f55b4e99ae6cc974e2173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletSpeed: 0
 --- !u!135 &4004403626311285055
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -107,6 +94,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8813178094718746160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081223669405588219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc6283dad59f96478f8f44df6213730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpeed: 0
 --- !u!1001 &3868724213012381105
 PrefabInstance:
   m_ObjectHideFlags: 0

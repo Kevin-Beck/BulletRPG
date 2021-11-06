@@ -63,7 +63,7 @@ namespace BulletRPG.Gear.Weapons.RangedWeapons
             Debug.Log("Firing Projectile");
             var bullet = Instantiate(rangedWeapon.projectile, transform.position + transform.up, Quaternion.identity);
             bullet.transform.rotation = Quaternion.identity;
-            var bulletSettings = bullet.GetComponent<BulletBehaviour>();
+            var bulletSettings = bullet.GetComponent<BasicBullet>();
             bulletSettings.BulletSpeed = rangedWeapon.projectileSpeed;
             bulletSettings.damage = rangedWeapon.damage.GetDamage();
 

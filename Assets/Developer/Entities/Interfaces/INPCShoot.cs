@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace BulletRPG.Characters.NPC
 {
-    public interface IShoot
+    public interface INPCShoot
     {
         public void FireAttack();
+        public void StartAttackAnimation();
     }
 }
 

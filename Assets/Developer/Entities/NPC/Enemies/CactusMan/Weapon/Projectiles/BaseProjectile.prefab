@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2339376828719191454}
   - component: {fileID: -3256669315200431045}
-  - component: {fileID: -3844815417748881141}
+  - component: {fileID: 9211420000503436194}
   m_Layer: 0
   m_Name: BaseProjectile
   m_TagString: Untagged
@@ -46,7 +46,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3844815417748881141
+--- !u!114 &9211420000503436194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 584886539412385579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c34530e73f55b4e99ae6cc974e2173, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cc6283dad59f96478f8f44df6213730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpeed: 0
