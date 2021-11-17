@@ -48,9 +48,8 @@ MonoBehaviour:
   BulletSpeed: 0
   subProjectiles: {fileID: 2756078663860587410, guid: e3779b381b68eae45b29f2fab56fa06d,
     type: 3}
-  numberOfSubProjectiles: 4
-  explosionParticles: {fileID: 0}
-  popHeight: 2
+  numberOfSubProjectiles: 3
+  deathParticles: {fileID: 0}
 --- !u!135 &7838856784969262068
 SphereCollider:
   m_ObjectHideFlags: 0

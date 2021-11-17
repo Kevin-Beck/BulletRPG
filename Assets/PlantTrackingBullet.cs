@@ -1,11 +1,13 @@
 using BulletRPG;
 using BulletRPG.Gear.Weapons.RangedWeapons;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackingBullet : BulletBehavior
+public class PlantTrackingBullet : BulletBehavior
 {
+    [SerializeField] private float startToLandingTime;
     [SerializeField] private float acceleration = 4f;
     [SerializeField] private float accelerationTime = 5f;
     [SerializeField] private float missileSpeed = 5f;
@@ -16,12 +18,14 @@ public class TrackingBullet : BulletBehavior
     
     private bool isAccelerating = true;
     private float accelerationTimer = 0f;
+    private bool chase = false;
 
     private Rigidbody myRigidbody;
     private Quaternion guideRotation;
 
     [SerializeField] Transform target;
     [SerializeField] bool trackPlayer;
+    [SerializeField] GameObject trackingLostParticles;
 
     void Start()
     {
@@ -29,19 +33,28 @@ public class TrackingBullet : BulletBehavior
         {
             Debug.LogWarning($"ALIVE TIMER IS SET TO 0 ON ${gameObject} Bullet");
         }
-        aliveTimer = Time.time;
         myRigidbody = GetComponent<Rigidbody>();
-        accelerationTime = Time.time;
+
         if (trackPlayer)
         {
             target = Utilities.GetPlayerTransform();
         }
+        Vector3 landingPosition = transform.position + transform.forward * 3f;
+        landingPosition.y = 1f;
+        transform.DOMove(landingPosition, startToLandingTime).SetEase(Ease.InOutCirc).OnComplete(() => 
+        { 
+            chase = true;
+            aliveTimer = Time.time;
+            accelerationTime = Time.time;
+        });
     }
-
     // Update is called once per frame
     public override void Update()
     {
-        Run();
+        if (chase)
+        {
+            Run();
+        }
     }
     private void Run()
     {
@@ -73,11 +86,18 @@ public class TrackingBullet : BulletBehavior
             if(Vector3.SqrMagnitude(relativePosition) < 6f)
             {
                 isTracking = false;
+                if (trackingLostParticles != null)
+                {
+                    Instantiate(trackingLostParticles, transform.position, Quaternion.LookRotation(GetComponent<Rigidbody>().velocity * -1, transform.up));
+                }
             }
         }
     }
     private float Since(float since)
     {
         return Time.time - since;
+    }
+    private void OnDestroy()
+    {
     }
 }
