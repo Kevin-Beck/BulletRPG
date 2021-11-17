@@ -51,7 +51,7 @@ MonoBehaviour:
   acceleration: 4
   accelerationTime: 5
   missileSpeed: 5
-  turnRate: 90
+  turnRate: 90000
   aliveTime: 6
   aliveTimer: 0
   target: {fileID: 0}
