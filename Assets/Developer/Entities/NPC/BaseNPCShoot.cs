@@ -39,7 +39,7 @@ namespace BulletRPG.Characters.NPC
             trueOffset += transform.right * Offset.x;
             trueOffset += transform.up * Offset.y;
             var bullet = Instantiate(projectile, transform.position + trueOffset, Quaternion.identity);
-            bullet.transform.rotation = Quaternion.identity;
+            bullet.transform.rotation = transform.rotation;
             var settings = bullet.GetComponent<BulletBehavior>();
             settings.BulletSpeed = projectileSpeed;
             settings.damage = generator.GetDamage();

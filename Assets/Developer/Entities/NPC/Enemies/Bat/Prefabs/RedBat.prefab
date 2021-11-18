@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673292251}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigRArm2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673367229}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673303217}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigLArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673380917}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigJawUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 6589722195193421278}
   - component: {fileID: 6566753302487479401}
   - component: {fileID: 5837684794622325154}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RedBat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f739e0221a9b44680588e2d7811439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookDirection: 0
+  lookDirection: 1
   attributes: []
   walkTime: 2
   shotsPerShoot: 1
@@ -283,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e5f8327648f047aa952f8181bcc3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6084621292800676996, guid: 300f3f7039f4b1747b669fd0ef729ba5,
+  projectile: {fileID: 6084621292800676996, guid: 0877e0257be5c4d4096106685e6e3c16,
     type: 3}
+  Offset: {x: 0, y: 0, z: 1}
   projectileSpeed: 8
   generator:
     min: 1
@@ -299,7 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673385217}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigHeadGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673350967}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigJawBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673362523}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigLArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673350395}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673383249}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigRArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673372573}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigRArm1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673289001}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigRArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673353835}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigLArm1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673303229}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigJawBottomGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673273427}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigLArm2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829204324673373221}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RigJawUpGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2829204324673290987}
   - component: {fileID: 2829204324686587045}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Toon Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
