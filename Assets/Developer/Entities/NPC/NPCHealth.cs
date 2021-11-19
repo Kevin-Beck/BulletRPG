@@ -1,4 +1,4 @@
-﻿using BulletRPG.Gear.Weapons;
+﻿using BulletRPG.Effects;
 using BulletRPG.Temp;
 using System;
 using System.Collections;

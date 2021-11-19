@@ -1,6 +1,4 @@
-using BulletRPG.Characters;
-using System.Collections;
-using System.Collections.Generic;
+using BulletRPG.Elements.Projectiles;
 using UnityEngine;
 
 namespace BulletRPG.Gear.Weapons.RangedWeapons

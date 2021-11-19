@@ -1,7 +1,5 @@
-using BulletRPG.Characters.NPC;
-using BulletRPG.Gear;
-using BulletRPG.Gear.Weapons;
-using BulletRPG.Gear.Weapons.RangedWeapons;
+using BulletRPG.Effects;
+using BulletRPG.Elements.Projectiles;
 using UnityEngine;
 
 namespace BulletRPG.Characters.NPC

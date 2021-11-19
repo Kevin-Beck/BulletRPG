@@ -1,8 +1,6 @@
 using BulletRPG;
-using BulletRPG.Gear.Weapons.RangedWeapons;
+using BulletRPG.Elements.Projectiles;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlantTrackingBullet : BulletBehavior
@@ -96,8 +94,5 @@ public class PlantTrackingBullet : BulletBehavior
     private float Since(float since)
     {
         return Time.time - since;
-    }
-    private void OnDestroy()
-    {
     }
 }

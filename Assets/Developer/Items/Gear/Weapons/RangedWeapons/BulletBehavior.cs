@@ -1,12 +1,9 @@
 using BulletRPG.Characters;
-using System.Collections;
-using System.Collections.Generic;
+using BulletRPG.Effects;
 using UnityEngine;
 
-
-namespace BulletRPG.Gear.Weapons.RangedWeapons
+namespace BulletRPG.Elements.Projectiles
 {
-
     [RequireComponent(typeof(Collider))]
     public abstract class BulletBehavior : MonoBehaviour
     {

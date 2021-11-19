@@ -1,7 +1,5 @@
-using BulletRPG.Gear.Armor;
-using BulletRPG.Gear.Weapons;
+using BulletRPG.Effects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

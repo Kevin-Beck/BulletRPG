@@ -1,4 +1,4 @@
-using BulletRPG.Gear.Weapons;
+using BulletRPG.Effects;
 using System.Collections;
 using TMPro;
 using UnityEngine;

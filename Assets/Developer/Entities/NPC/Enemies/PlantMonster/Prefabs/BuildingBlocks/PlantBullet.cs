@@ -1,8 +1,6 @@
-using BulletRPG.Gear.Weapons.RangedWeapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using BulletRPG.Elements.Projectiles;
 
 public class PlantBullet : BulletBehavior
 {
